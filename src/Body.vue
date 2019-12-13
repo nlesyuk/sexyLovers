@@ -1,15 +1,19 @@
 <template>
 <main>
-    <div class="container main__girl">
+    <div class="container">
 		
 		<div class="main__18">
 			<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="35px"><path fill-rule="evenodd"  opacity="0.502" fill="rgb(131, 122, 100)" d="M25.083,14.133 L24.397,14.133 L24.397,10.941 C24.397,5.037 19.695,0.105 13.819,-0.000 C13.659,-0.003 13.338,-0.003 13.178,-0.000 C7.299,0.105 2.598,5.037 2.598,10.941 L2.598,14.133 L1.913,14.133 C0.857,14.133 -0.003,15.218 -0.003,16.557 L-0.003,32.567 C-0.003,33.905 0.857,35.000 1.913,35.000 L25.083,35.000 C26.136,35.000 26.997,33.905 26.997,32.567 L26.997,16.557 C26.997,15.218 26.136,14.133 25.083,14.133 L25.083,14.133 ZM15.668,24.546 L15.668,29.384 C15.668,29.938 15.203,30.406 14.646,30.406 L12.348,30.406 C11.792,30.406 11.327,29.938 11.327,29.384 L11.327,24.546 C10.787,24.017 10.473,23.285 10.473,22.475 C10.473,20.941 11.663,19.623 13.178,19.562 C13.338,19.555 13.659,19.555 13.819,19.562 C15.333,19.623 16.522,20.941 16.522,22.475 C16.522,23.285 16.208,24.017 15.668,24.546 L15.668,24.546 ZM19.887,14.133 L7.110,14.133 L7.110,10.941 C7.110,7.424 9.976,4.516 13.498,4.516 C17.017,4.516 19.887,7.424 19.887,10.941 L19.887,14.133 Z"/></svg>
 			<p class="main__text1">получить контент <br>18+</p>
 		</div>
 
-		<myEggs></myEggs>
-		<myQuiz></myQuiz>
-		<myMap></myMap>
+		<div class="main__cont">
+			<myEggs></myEggs>
+			<myQuiz></myQuiz>
+			<myMap></myMap>
+		</div>
+
+		<myAccounts></myAccounts>
 
     </div>
 </main>
@@ -19,6 +23,7 @@
 import eggs from './Eggs'
 import quiz from './Quiz'
 import map from './Map'
+import accounts from './Accounts'
 
 
 export default {
@@ -32,6 +37,7 @@ export default {
 		myEggs: eggs,
 		myQuiz: quiz,
 		myMap: map,
+		myAccounts: accounts,
 	}
 }
 </script>
@@ -40,13 +46,12 @@ export default {
 @import 'styles/main.sass'
 main
 	width: 100%
-	background: url(/src/assets/body__girl.png) no-repeat 15% center /contain
+	background: url(/src/assets/body__girl.png) no-repeat 10% center /contain
 	background-color: $black
 	min-height: 90vh
 	position: relative
-	.main__girl
-		padding-left: 20%
-		// background: url(/src/assets/body__girl.png) no-repeat 20% center /contain
+	.main__cont
+		padding-left: 25%
 	.main__18
 		width: 70px
 		height: auto

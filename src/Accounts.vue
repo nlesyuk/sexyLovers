@@ -23,7 +23,7 @@ export default {
 	name: 'app',
 	data () {
 		return {
-			msg: 'Eggs'
+			msg: 'Accounts'
 		}
 	}
 }
