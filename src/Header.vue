@@ -19,8 +19,12 @@
 </template>
 
 <script>
+import cookie from './mixins/cookie';
+console.log(cookie);
+
 export default {
 	name: 'app',
+	mixins: [cookie],
 	data () {
 		return {
 			msg: 'Welcome to Your Vue.js App'

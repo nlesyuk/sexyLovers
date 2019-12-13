@@ -1,22 +1,185 @@
 <template>
 <section id="quiz">
-	<h2 class="quiz__title">ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:</h2>
+	<h2 class="quiz__title">{{title}}</h2>
+
+	<form class="quiz__form">
+		<div class="quiz__step1">
+			<div class="quiz__cont intim">
+				<input type="radio" name="target" id="target1">
+				<label for="target1">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52px" height="36px"><path fill-rule="evenodd"  d="M50.534,32.309 L47.474,32.309 L47.474,34.554 C47.474,35.340 46.823,35.987 46.008,35.987 L41.034,35.987 C40.224,35.987 39.576,35.340 39.576,34.554 L39.576,32.309 L12.455,32.309 L12.455,34.554 C12.455,35.340 11.779,35.987 10.971,35.987 L5.992,35.987 C5.186,35.987 4.516,35.340 4.516,34.554 L4.516,32.309 L1.472,32.309 C0.660,32.309 -0.004,31.662 -0.004,30.875 L-0.004,24.947 L0.021,24.947 C0.260,22.879 3.721,21.030 9.078,19.772 C7.887,18.623 6.930,17.691 6.887,17.650 C5.005,15.813 5.005,12.829 6.887,10.994 C7.827,10.073 9.065,9.618 10.300,9.618 C11.529,9.618 12.759,10.073 13.698,10.982 C14.641,10.073 15.873,9.618 17.099,9.618 C18.337,9.618 19.573,10.073 20.514,10.994 C22.402,12.829 22.402,15.808 20.514,17.650 C20.495,17.667 20.261,17.895 19.898,18.250 C21.851,18.122 23.896,18.052 26.000,18.052 C28.105,18.052 30.149,18.122 32.109,18.250 C31.744,17.895 31.513,17.667 31.489,17.650 C29.605,15.813 29.605,12.829 31.489,10.994 C32.433,10.073 33.672,9.618 34.903,9.618 C36.132,9.618 37.365,10.073 38.303,10.982 C39.244,10.073 40.473,9.618 41.706,9.618 C42.941,9.618 44.174,10.073 45.117,10.994 C47.001,12.829 47.001,15.808 45.117,17.650 C45.078,17.691 44.113,18.623 42.930,19.772 C48.287,21.030 51.747,22.879 51.988,24.947 L51.995,30.875 C51.995,31.662 51.342,32.309 50.534,32.309 ZM50.147,19.917 C49.266,19.457 48.281,19.043 47.212,18.669 C49.465,15.942 49.298,11.949 46.714,9.437 C45.375,8.132 43.593,7.408 41.706,7.408 C40.498,7.408 39.332,7.707 38.303,8.254 C37.268,7.707 36.109,7.408 34.903,7.408 C33.006,7.408 31.226,8.132 29.886,9.437 C28.105,11.181 27.470,13.627 27.998,15.872 C27.311,15.855 26.641,15.849 26.000,15.849 C25.360,15.849 24.698,15.855 24.008,15.872 C24.130,15.370 24.190,14.853 24.190,14.321 C24.190,12.474 23.454,10.737 22.109,9.432 C20.775,8.132 18.994,7.408 17.099,7.408 C15.892,7.408 14.733,7.707 13.698,8.254 C12.669,7.707 11.509,7.408 10.300,7.408 C8.407,7.408 6.625,8.132 5.286,9.437 C2.706,11.955 2.536,15.960 4.791,18.669 C3.715,19.043 2.722,19.463 1.844,19.929 L1.844,7.398 L1.850,7.398 C2.244,3.836 12.903,0.980 26.000,0.980 C39.100,0.980 49.757,3.836 50.150,7.398 L50.147,7.398 L50.147,19.917 Z"/></svg>
+					<p class="quiz__text">Интим</p>
+				</label>
+			</div>
+			<div class="quiz__cont">
+				<input type="radio" name="target" id="target2">
+				<label for="target2">
+					<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="39px" height="45px" class="romantic"><path fill-rule="evenodd"  opacity="0.8"  d="M36.864,34.702 C36.862,34.874 36.828,35.037 36.781,35.194 C36.793,35.273 36.809,35.349 36.809,35.430 L36.809,42.856 C36.809,43.871 35.859,44.694 34.685,44.694 L34.371,44.694 C33.201,44.694 32.249,43.871 32.249,42.856 L32.249,36.502 L31.046,36.502 L31.046,42.703 C31.046,43.718 30.085,44.540 28.897,44.540 L28.579,44.540 C27.389,44.540 26.426,43.718 26.426,42.703 L26.426,35.278 C26.426,35.180 26.443,35.087 26.463,34.993 C26.443,34.896 26.433,34.795 26.430,34.692 C26.371,34.697 26.313,34.707 26.252,34.707 C25.049,34.707 24.076,33.916 24.076,32.942 L24.076,22.150 C24.076,20.349 26.291,18.547 27.491,18.547 C27.517,18.547 27.531,18.556 27.555,18.557 C27.561,18.564 27.567,18.569 27.575,18.576 C27.819,18.808 28.082,19.021 28.363,19.208 C29.301,19.832 30.432,20.196 31.647,20.196 C32.751,20.196 33.778,19.891 34.661,19.371 C35.045,19.145 35.400,18.879 35.721,18.576 C35.727,18.571 35.733,18.566 35.737,18.561 C36.965,18.702 38.996,20.424 38.996,22.150 L38.996,32.940 C38.996,33.903 38.046,34.683 36.864,34.702 ZM34.942,18.435 C34.040,19.152 32.895,19.584 31.648,19.584 C30.403,19.584 29.257,19.152 28.353,18.435 C27.150,17.480 26.377,16.018 26.377,14.378 C26.377,11.508 28.740,9.172 31.648,9.172 C34.555,9.172 36.921,11.508 36.921,14.378 C36.921,16.018 36.149,17.480 34.942,18.435 ZM20.342,14.378 C14.803,8.451 12.331,7.646 12.331,4.576 C12.331,0.559 17.281,-1.527 20.145,1.304 L20.342,1.498 L20.537,1.304 C23.401,-1.527 28.353,0.559 28.353,4.576 C28.353,7.644 26.001,8.320 20.342,14.378 ZM12.439,17.907 C11.475,18.935 10.101,19.584 8.573,19.584 C7.047,19.584 5.672,18.935 4.708,17.907 C3.839,16.978 3.302,15.740 3.302,14.378 C3.302,11.508 5.666,9.172 8.573,9.172 C11.481,9.172 13.846,11.508 13.846,14.378 C13.846,15.740 13.308,16.978 12.439,17.907 ZM4.576,18.659 L4.560,18.744 L4.582,18.647 C5.632,19.606 7.032,20.196 8.574,20.196 C10.117,20.196 11.517,19.606 12.568,18.647 L12.568,18.653 C12.568,18.653 13.538,18.870 13.744,19.839 C13.950,20.808 16.741,32.394 16.741,32.394 C16.741,32.394 17.105,32.979 15.868,33.313 L16.225,34.895 C16.225,35.909 15.392,36.732 14.363,36.732 L13.538,36.732 L13.538,43.162 C13.538,44.177 12.704,45.000 11.676,45.000 L11.398,45.000 C10.370,45.000 9.537,44.177 9.537,43.162 L9.537,36.732 L7.954,36.732 L7.954,43.162 C7.954,44.177 7.122,45.000 6.093,45.000 L5.816,45.000 C4.788,45.000 3.956,44.177 3.956,43.162 L3.956,36.732 L2.785,36.732 C1.757,36.732 0.924,35.909 0.924,34.895 L1.278,33.325 C-0.398,32.976 0.055,32.292 0.055,32.292 C0.055,32.292 3.141,20.779 3.372,19.815 C3.602,18.850 4.576,18.659 4.576,18.659 Z"/></svg>
+					<p class="quiz__text">Романтика</p>
+				</label>
+			</div>
+			<div class="quiz__cont brak">
+				<input type="radio" name="target" id="target3">
+				<label for="target3">
+					<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52px" height="40px"><path fill-rule="evenodd" d="M35.752,40.009 C32.084,40.009 28.709,38.785 25.986,36.746 C23.266,38.785 19.891,40.009 16.223,40.009 C7.271,40.009 -0.015,32.791 -0.015,23.917 C-0.015,15.037 7.271,7.819 16.223,7.819 C19.891,7.819 23.266,9.044 25.986,11.082 C28.705,9.044 32.084,7.819 35.752,7.819 C44.707,7.819 51.987,15.037 51.987,23.917 C51.987,32.791 44.707,40.009 35.752,40.009 ZM22.798,14.245 C20.920,12.987 18.656,12.250 16.223,12.250 C9.732,12.250 4.454,17.482 4.454,23.917 C4.454,30.346 9.732,35.578 16.223,35.578 C18.656,35.578 20.920,34.842 22.798,33.583 C20.746,30.888 19.512,27.547 19.512,23.917 C19.512,20.285 20.746,16.941 22.798,14.245 ZM25.986,17.413 C24.724,19.269 23.981,21.511 23.981,23.917 C23.981,26.323 24.720,28.559 25.986,30.420 C27.250,28.559 27.989,26.323 27.989,23.917 C27.989,21.511 27.250,19.269 25.986,17.413 ZM35.752,12.250 C33.315,12.250 31.055,12.987 29.176,14.245 C31.229,16.941 32.464,20.285 32.464,23.917 C32.464,27.547 31.229,30.888 29.176,33.583 C31.055,34.842 33.315,35.578 35.752,35.578 C42.239,35.578 47.520,30.346 47.520,23.917 C47.520,17.482 42.239,12.250 35.752,12.250 ZM25.671,9.183 L25.654,9.165 C20.755,7.210 18.869,2.692 21.026,0.732 C23.182,-1.225 25.654,1.458 25.654,1.458 L25.671,1.458 C25.671,1.458 28.141,-1.225 30.298,0.732 C32.455,2.692 30.570,7.222 25.671,9.183 Z"/></svg>
+					<p class="quiz__text">Брак</p>
+				</label>
+			</div>
+			<div class="quiz__cont">
+				<input type="radio" name="target" id="target4">
+				<label for="target4">
+					<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34px" height="36px"><path fill-rule="evenodd" d="M31.863,25.702 C31.861,25.874 31.829,26.037 31.781,26.194 C31.793,26.273 31.809,26.349 31.809,26.430 L31.809,33.856 C31.809,34.871 30.859,35.694 29.688,35.694 L29.369,35.694 C28.199,35.694 27.249,34.871 27.249,33.856 L27.249,27.502 L26.046,27.502 L26.046,33.703 C26.046,34.718 25.085,35.540 23.897,35.540 L23.578,35.540 C22.391,35.540 21.428,34.718 21.428,33.703 L21.428,26.278 C21.428,26.180 21.445,26.087 21.462,25.993 C21.444,25.896 21.431,25.795 21.431,25.692 C21.370,25.697 21.313,25.707 21.251,25.707 C20.051,25.707 19.076,24.916 19.076,23.942 L19.076,13.150 C19.076,11.349 21.291,9.547 22.492,9.547 C22.515,9.547 22.531,9.556 22.554,9.557 C22.561,9.564 22.567,9.569 22.576,9.576 C22.819,9.808 23.081,10.021 23.363,10.208 C24.301,10.832 25.431,11.196 26.647,11.196 C27.750,11.196 28.780,10.891 29.660,10.371 C30.045,10.145 30.400,9.879 30.721,9.576 C30.726,9.571 30.732,9.566 30.738,9.561 C31.965,9.702 33.998,11.424 33.996,13.150 L33.996,23.940 C33.996,24.903 33.046,25.683 31.863,25.702 ZM29.943,9.435 C29.040,10.152 27.894,10.584 26.648,10.584 C25.402,10.584 24.257,10.152 23.354,9.435 C22.148,8.480 21.374,7.018 21.374,5.378 C21.374,2.508 23.742,0.172 26.648,0.172 C29.555,0.172 31.920,2.508 31.920,5.378 C31.920,7.018 31.146,8.480 29.943,9.435 ZM15.869,24.313 L16.225,25.895 C16.225,26.909 15.390,27.732 14.363,27.732 L13.537,27.732 L13.537,34.162 C13.537,35.177 12.704,36.000 11.675,36.000 L11.398,36.000 C10.370,36.000 9.538,35.177 9.538,34.162 L9.538,27.732 L7.954,27.732 L7.954,34.162 C7.954,35.177 7.120,36.000 6.093,36.000 L5.816,36.000 C4.788,36.000 3.955,35.177 3.955,34.162 L3.955,27.732 L2.785,27.732 C1.758,27.732 0.924,26.909 0.924,25.895 L1.278,24.325 C-0.397,23.976 0.057,23.292 0.057,23.292 C0.057,23.292 3.140,11.779 3.372,10.815 C3.603,9.850 4.577,9.659 4.577,9.659 L4.560,9.744 L4.582,9.647 C5.632,10.606 7.032,11.196 8.575,11.196 C10.118,11.196 11.518,10.606 12.568,9.647 L12.569,9.653 C12.569,9.653 13.537,9.870 13.744,10.839 C13.949,11.808 16.742,23.394 16.742,23.394 C16.742,23.394 17.106,23.979 15.869,24.313 ZM8.574,10.584 C7.046,10.584 5.673,9.935 4.709,8.907 C3.839,7.978 3.301,6.740 3.301,5.378 C3.301,2.508 5.666,0.172 8.574,0.172 C11.482,0.172 13.846,2.508 13.846,5.378 C13.846,6.740 13.308,7.978 12.438,8.907 C11.476,9.935 10.102,10.584 8.574,10.584 Z"/></svg>
+					<p class="quiz__text">Дружба</p>
+				</label>
+			</div>
+		</div>
+
+		<div class="quiz__step2">
+			<div class="quiz__cont">
+				<input type="radio" name="sex" id="sex1">
+				<label for="sex1">
+					<img src="./assets/girl.png">
+					<p class="quiz__text">Девушек</p>
+				</label>
+			</div>
+			<div class="quiz__cont">
+				<input type="radio" name="sex" id="sex2">
+				<label for="sex2">
+					<img src="./assets/man.png">
+					<p class="quiz__text">Парней</p>
+				</label>
+			</div>
+		</div>
+
+		<div class="quiz__step3">
+			<div class="quiz__cont">
+				<label>
+					<input type="checkbox" name="partner_location[]">
+					<p class="quiz__text">В радиусе 2 км</p>
+				</label>
+				<label>
+					<input type="checkbox" name="partner_location[]">
+					<p class="quiz__text">В одном городе</p>
+				</label>
+				<label>
+					<input type="checkbox" name="partner_location[]">
+					<p class="quiz__text">Не имеет значения</p>
+				</label>
+				<label>
+					<input type="checkbox" name="partner_location[]">
+					<p class="quiz__text">В радиусе 10 км</p>
+				</label>
+				<label>
+					<input type="checkbox" name="partner_location[]">
+					<p class="quiz__text">В другой стране</p>
+				</label>
+			</div>
+			<button type="button" id="btn__step3" class="btn__continue">ПРОДОЛЖИТЬ</button>
+		</div>
+
+		<div class="quiz__step4">
+			<div class="quiz__cont">
+				<label>
+					<input type="radio" name="partner_body">
+					<p class="quiz__text">Нормальное</p>
+				</label>
+				<label>
+					<input type="radio" name="partner_body">
+					<p class="quiz__text">Спортивное</p>
+				</label>
+				<label>
+					<input type="radio" name="partner_body">
+					<p class="quiz__text">Полное</p>
+				</label>
+			</div>
+			<button type="button" id="btn__step4" class="btn__continue">ПРОДОЛЖИТЬ</button>
+		</div>
+
+		<div class="quiz__step5">
+
+			<div class="quiz__cont">
+				<div class="quiz__item">
+					<input type="radio" name="sex2" id="sex2_1">
+					<label class="first" for="sex2_1">
+						<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="47px" height="70px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M46.957,23.759 C46.957,10.670 36.416,0.002 23.472,0.002 C10.531,0.002 -0.009,10.659 -0.009,23.759 C-0.009,35.157 7.951,44.697 18.537,46.990 L18.537,52.523 L13.314,52.523 C10.802,52.523 8.761,54.600 8.761,57.144 C8.761,59.691 10.802,61.768 13.314,61.768 L18.537,61.768 L18.537,65.384 C18.537,67.928 20.586,69.994 23.113,69.994 C25.628,69.994 27.680,67.940 27.680,65.384 L27.680,61.768 L33.158,61.768 C35.671,61.768 37.712,59.691 37.712,57.144 C37.712,54.600 35.683,52.523 33.158,52.523 L27.680,52.523 L27.680,47.151 C38.557,45.141 46.957,35.420 46.957,23.759 L46.957,23.759 ZM9.110,23.759 C9.110,15.750 15.546,9.221 23.472,9.221 C31.399,9.221 37.836,15.750 37.836,23.759 C37.836,31.780 31.399,38.306 23.472,38.306 C15.546,38.306 9.110,31.780 9.110,23.759 L9.110,23.759 Z"/></svg>
+						<p class="quiz__text girl">Девушка</p>
+					</label>
+				</div>
+				<div class="quiz__item">
+					<input type="radio" name="sex2" id="sex2_2">
+					<label class="first" for="sex2_2">
+						<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72px" height="71px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M71.021,5.202 C71.021,2.337 68.703,0.011 65.834,0.011 L45.252,-0.000 L45.242,-0.000 C42.372,-0.000 40.055,2.326 40.043,5.191 C40.043,8.057 42.372,10.383 45.242,10.383 L53.287,10.383 L38.778,24.886 C34.847,22.344 30.280,20.971 25.481,20.971 C18.932,20.971 12.763,23.524 8.129,28.154 C-1.454,37.714 -1.454,53.278 8.129,62.839 C12.763,67.468 18.920,70.032 25.481,70.032 C32.046,70.032 38.215,67.479 42.849,62.839 C47.483,58.221 50.050,52.057 50.050,45.503 C50.050,40.710 48.675,36.147 46.131,32.221 L60.638,17.726 L60.638,25.764 C60.638,28.630 62.967,30.956 65.834,30.956 C68.703,30.956 71.032,28.630 71.032,25.764 L71.021,5.202 ZM35.499,55.507 C32.823,58.168 29.273,59.649 25.492,59.649 C21.703,59.649 18.154,58.168 15.478,55.507 C9.958,49.991 9.958,41.012 15.478,35.497 C18.154,32.825 21.703,31.354 25.492,31.354 C29.273,31.354 32.823,32.825 35.499,35.497 C38.173,38.168 39.646,41.715 39.646,45.492 C39.646,49.277 38.173,52.835 35.499,55.507 L35.499,55.507 Z"/></svg>
+						<p class="quiz__text girl">Парень</p>
+					</label>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="quiz__step6">
+			<div class="quiz__cont">
+				<label>
+					<input type="checkbox" name="desire[]">
+					<p class="quiz__text">Классический секс</p>
+				</label>
+				<label>
+					<input type="checkbox" name="desire[]">
+					<p class="quiz__text">Классический секс</p>
+				</label>
+				<label>
+					<input type="checkbox" name="desire[]">
+					<p class="quiz__text">Пары</p>
+				</label>
+				<label>
+					<input type="checkbox" name="desire[]">
+					<p class="quiz__text">BDSM</p>
+				</label>
+				<label>
+					<input type="checkbox" name="desire[]">
+					<p class="quiz__text">Зрелые</p>
+				</label>
+				<label>
+					<input type="checkbox" name="desire[]">
+					<p class="quiz__text">Оральные ласки</p>
+				</label>
+				<label>
+					<input type="checkbox" name="desire[]">
+					<p class="quiz__text">Порно</p>
+				</label>
+				<label>
+					<input type="checkbox" name="desire[]">
+					<p class="quiz__text">Молоденькие</p>
+				</label>
+			</div>
+			<button type="button" id="btn__step6" class="btn__continue">ПРОДОЛЖИТЬ</button>
+		</div>
+
+		<div class="quiz__result"></div>
+	</form>
+
 </section>
 </template>
 
 <script>
-export default {
-	name: 'app',
-	data () {
-		return {
-			msg: 'Quiz'
+	export default {
+		name: 'app',
+		data () {
+			return {
+				title: 'ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:',
+				titles: ['ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:','ПОКАЖИТЕ МНЕ:', 'КАК БЛИЗКО ДОЛЖЕН БЫТЬ ПАРТНЕР?', 'КАКОЙ У ВАС ТИП ТЕЛОСЛОЖЕНИЯ?', 'ВЫБЕРИТЕ ВАШ ПОЛ:', 'МЕНЯ ВОЗБУЖДАЕТ:', 'ИЩЕМ ПАРТНЕРОВ В ВАШЕМ ГОРОДЕ']
+			}
+		},
+		methods: {
+			setTitle(index) {
+				this.title = titles[index];
+			}
 		}
 	}
-}
 </script>
 
 <style lang="sass">
 @import 'styles/main.sass'
+
 #quiz
 	width: 100%
 	padding: 50px 16px 70px
@@ -28,6 +191,281 @@ export default {
 		text-align: center
 		color: white
 		margin-bottom: 60px
+	.quiz__form
+		.btn__continue
+			display: block
+			width: 200px
+			width: 33%
+			margin: 0 auto
+			border: none
+			border-radius: 5px
+			padding: 16px
+			background: $pink
+			font: bold 1rem/1 $font
+			text-transform: uppercase
+			text-align: center
+			color: white
+			margin-top: 30px
+			transition: all .25s
+			cursor: pointer
+			&:hover
+				background: $hover
+				transition: all .25s
+		.quiz__step1
+			display: flex
+			justify-content: space-around
+			align-items: stretch
+			display: none
+			.quiz__cont
+				display: flex
+				align-items: stretch
+				&.intim
+					svg
+						margin-bottom: 12px
+				&.brak
+					svg,
+					.quiz__text
+						fill: white
+						color: white
+				&:hover
+					label
+						border: 1px solid $pink
+						cursor: pointer
+					svg,
+					.quiz__text
+						fill: $pink
+						color: $pink
+			input
+				display: none
+				&:checked + label
+					border: 1px solid $pink
+					svg
+						fill: $pink !important
+					.quiz__text
+						color: $pink !important
+
+			label
+				display: block
+				width: 160px
+				max-width: 100%
+				border-radius: 5px
+				padding: 16px
+				color: red
+				border: 1px solid $grey
+				svg
+					display: block
+					margin: 0 auto
+					fill: $grey3
+					margin-bottom: 8px
+					&.romantic
+						margin-top: -5px
+				.quiz__text
+					font: 500 1rem/1 $font
+					text-align: center
+					text-transform: uppercase
+					color: $grey3
+
+		.quiz__step2
+			display: flex
+			justify-content: center
+			align-items: stretch
+			display: none
+			.quiz__cont
+				margin: 0 20px
+			input
+				display: none
+				&:checked + label
+					img
+						border: 2px solid white
+			label
+				display: block
+				width: 160px
+				max-width: 100%
+				padding: 16px
+				cursor: pointer
+				img
+					display: block
+					max-width: 100%
+					border-radius: 50%
+					border: 2px solid transparent
+					margin-bottom: 14px
+					box-shadow: -8px 16px 20px 0px rgba(0, 0, 0, 0.3)
+				.quiz__text
+					font: bold 1rem/1 $font
+					text-transform: uppercase
+					text-align: center
+					color: white
+
+		.quiz__step3,
+		.quiz__step6
+			width: 100%
+			display: none
+			.quiz__cont
+				display: flex
+				justify-content: center
+				justify-content: space-around
+				justify-content: flex-start
+				flex-wrap: wrap
+				width: 90%
+				margin-left: auto
+			label
+				display: inline-block
+				width: 33%
+				max-width: 100%
+				padding: 10px 0
+				// background: rgba(255,255,255,.1)
+				cursor: pointer
+				position: relative
+				&:before
+					content: ""
+					display: block
+					box-sizing: border-box
+					width: 20px
+					height: 20px
+					border: 2px solid $pink
+					border-radius: 3px
+					position: absolute
+					left: 0
+					top: calc(50% - 10px)
+				input
+					display: none
+					&:checked + .quiz__text
+						color: $pink
+						position: relative
+						&:before
+							content: ""
+							display: block
+							box-sizing: border-box
+							width: 13px
+							height: 7px
+							border: 1px solid transparent
+							border-left: 2px solid $accent
+							border-bottom: 2px solid $accent
+							transform: rotate(-48deg)
+							position: absolute
+							left: 4px
+							top: 3px
+				.quiz__text
+					font: 500 1rem/1 $font
+					text-transform: uppercase
+					color: white
+					padding-left: 30px
+
+
+		.quiz__step4
+			display: none
+			.quiz__cont
+				display: flex
+				justify-content: space-around
+				flex-wrap: wrap
+				width: 80%
+				margin: 0 auto
+			label
+				display: inline-block
+				max-width: 100%
+				padding: 10px 0
+				cursor: pointer
+				position: relative
+				&:before
+					content: ""
+					display: block
+					box-sizing: border-box
+					width: 20px
+					height: 20px
+					border: 2px solid $pink
+					border-radius: 50%
+					position: absolute
+					left: 0
+					top: calc(50% - 10px)
+				input
+					display: none
+					&:checked + .quiz__text
+						color: $pink
+						position: relative
+						&:before
+							content: ""
+							display: block
+							width: 8px
+							height: 8px
+							background: $pink
+							border-radius: 50%
+							position: absolute
+							left: 6px
+							top: 4px
+				.quiz__text
+					font: 500 1rem/1 $font
+					text-transform: uppercase
+					color: white
+					padding-left: 30px
+
+		.quiz__step5
+			display: none
+			.quiz__cont
+				display: flex
+				justify-content: center
+				flex-wrap: wrap
+				width: 100%
+			.quiz__item
+				input
+					display: none
+					&:checked + label
+						opacity: 1
+						transition: all .25s
+						border: 5px solid white
+			label
+				display: flex
+				justify-content: center
+				align-items: center
+				box-sizing: border-box
+				width: 140px
+				height: 140px
+				max-width: 100%
+				border-radius: 50%
+				border: 5px solid transparent
+				background: $grey2
+				cursor: pointer
+				box-shadow: -7px 5px 20px 0px rgba(0, 0, 0, 0.3)
+				transition: all .25s
+				opacity: .8
+				position: relative
+				&.first
+					margin-right: 40px
+				input
+					display: none
+					&:checked + .quiz__text
+						color: $pink
+				.quiz__text
+					font: 500 1rem/1 $font
+					text-transform: uppercase
+					color: white
+					position: absolute
+					bottom: -35px
+					left: calc(50% - 28px)
+					&.girl
+						left: calc(50% - 38px)
+
+
+		.quiz__step6
+			display: block
+		.quiz__result
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
