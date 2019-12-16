@@ -10,10 +10,10 @@
 		<div class="main__cont">
 			<myEggs></myEggs>
 			<myQuiz></myQuiz>
-			<myMap></myMap>
+			<myMap v-if="false"></myMap>
 		</div>
 
-		<myAccounts></myAccounts>
+		
 
     </div>
 </main>
@@ -23,8 +23,6 @@
 import eggs from './Eggs'
 import quiz from './Quiz'
 import map from './Map'
-import accounts from './Accounts'
-
 
 export default {
 	name: 'app',
@@ -37,7 +35,6 @@ export default {
 		myEggs: eggs,
 		myQuiz: quiz,
 		myMap: map,
-		myAccounts: accounts,
 	}
 }
 </script>
@@ -48,7 +45,7 @@ main
 	width: 100%
 	background: url(/src/assets/body__girl.png) no-repeat 10% center /contain
 	background-color: $black
-	min-height: 90vh
+	min-height: 80vh
 	position: relative
 	.main__cont
 		padding-left: 25%

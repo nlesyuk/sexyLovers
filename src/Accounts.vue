@@ -8,41 +8,40 @@
 		</div>
 		<ul class="acccount__list">
 			<li>
-				<img src="assets/ava1.jpg" alt="" class="accounts__ava">
+				<img src="./assets/ava1.jpg" alt="" class="accounts__ava">
 				<h3 class="accounts__name">kisska072</h3>
 				<h3 class="accounts__age">22, Красноярск</h3>
 			</li>
 			<li>
-				<img src="assets/ava2.jpg" alt="" class="accounts__ava">
+				<img src="./assets/ava2.jpg" alt="" class="accounts__ava">
 				<h3 class="accounts__name">Таня</h3>
 				<h3 class="accounts__age">27, Омск</h3>
 			</li>
 			<li>
-				<img src="assets/ava3.jpg" alt="" class="accounts__ava">
+				<img src="./assets/ava3.jpg" alt="" class="accounts__ava">
 				<h3 class="accounts__name">Анатолий</h3>
 				<h3 class="accounts__age">35, Челябинск</h3>
 			</li>
 			<li>
-				<img src="assets/ava4.jpg" alt="" class="accounts__ava">
+				<img src="./assets/ava4.jpg" alt="" class="accounts__ava">
 				<h3 class="accounts__name">Алина+Даша</h3>
 				<h3 class="accounts__age">31, Красноярск</h3>
 			</li>
 			<li>
-				<img src="assets/ava5.jpg" alt="" class="accounts__ava">
+				<img src="./assets/ava5.jpg" alt="" class="accounts__ava">
 				<h3 class="accounts__name">Александр</h3>
 				<h3 class="accounts__age">23, Москва</h3>
 			</li>
 			<li>
-				<img src="assets/ava6.jpg" alt="" class="accounts__ava">
+				<img src="./assets/ava6.jpg" alt="" class="accounts__ava">
 				<h3 class="accounts__name">Ксюша</h3>
 				<h3 class="accounts__age">27, Омск</h3>
 			</li>
 			<li>
-				<img src="assets/ava7.jpg" alt="" class="accounts__ava">
+				<img src="./assets/ava7.jpg" alt="" class="accounts__ava">
 				<h3 class="accounts__name">Карина</h3>
 				<h3 class="accounts__age">29, Киев</h3>
 			</li>
-
 		</ul>
 
 	</div>
@@ -51,7 +50,7 @@
 
 <script>
 export default {
-	name: 'app',
+	name: 'Accountsе',
 	data () {
 		return {
 			msg: 'Accounts'
@@ -65,31 +64,44 @@ export default {
 
 #accounts
 	box-sizing: border-box
+	background: $grey2
 	max-width: 100%
 	padding: 40px 0
 	.accounts__cont
+		display: flex
+		justify-content: space-between
+		align-items: center
+		margin-bottom: 30px
 		.accounts__title
-			font: 1rem/1 $font
+			font: bold 1.5rem/1 $font
+			text-transform: uppercase
+			color: $grey
 		.acccount__reg
-			font: 1rem/1 $font
-			color: rgba(255,255,255,.8)
+			font: 600 .87rem/1 $font
+			color: $grey
 			span
 				color: white
 	.acccount__list
 		display: flex
 		justify-content: space-between
 		li
-			display: flex
-			justify-content: flex-start
-			align-items: flex-start
+			width: calc(100% / 7)
 			.accounts__ava
 				display: block
+				border-radius: 50%
+				border: 1px border $grey2
 				margin: 0 auto
 				margin-bottom: 8px
 			.accounts__name
-				font: 1rem/1 $font
+				font: bold 1rem/1 $font
+				text-align: center
+				color: $grey
+				margin-bottom: 4px
 			.accounts__age
-				font: 1rem/1 $font
+				font: 500 .87rem/1 $font
+				text-align: center
+				color: $grey
+
 
 
 

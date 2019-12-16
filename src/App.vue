@@ -3,6 +3,7 @@
 
 	<myHeader></myHeader>
 	<myBody></myBody>
+	<myAccounts></myAccounts>
 	<myFooter></myFooter>
 	<myPopupGirls></myPopupGirls>
 
@@ -14,6 +15,7 @@ import header from './Header'
 import body from './Body'
 import footer from './Footer'
 import PopupGirls from './PopupGirls'
+import accounts from './Accounts'
 
 export default {
 	name: 'app',
@@ -27,6 +29,7 @@ export default {
 		myBody: body,
 		myFooter: footer,
 		myPopupGirls: PopupGirls,
+		myAccounts: accounts
 	}
 }
 </script>
