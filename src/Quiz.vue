@@ -1,5 +1,5 @@
 <template>
-<section id="quiz">
+<section id="quiz" class="result">
 	<h2 class="quiz__title">{{title}}</h2>
 
 	<form class="quiz__form">
@@ -154,11 +154,37 @@
 			<button type="button" id="btn__step6" class="btn__continue">ПРОДОЛЖИТЬ</button>
 		</div>
 
-		<div class="quiz__result"></div>
+		<div class="quiz__result">
+			<div class="quiz__cont1">
+				<div class="quiz__s">
+					<p class="quiz__res-text1">В ВАШЕМ ГОРОДЕ</p>
+					<div class="quiz__res-progress">
+						НАЙДЕНО: 233
+					</div>
+				</div>
+				<div class="quiz__s">
+					<p class="quiz__res-text1">ПОДБОР ПО СЕКСУАЛЬНЫМ ПРЕДПОЧТЕНИЯМ</p>
+					<div class="quiz__res-progress">
+						НАЙДЕНО: 148
+					</div>
+				</div>
+			</div>
+
+			<p class="quiz__res-text2">Перед регистрацией, ознакомьтесь с нашими основными правилами:</p>
+			<ul class="quiz__r-list">
+				<li>Не афишируйте, если увидите знакомых вам людей</li>
+				<li>Уважайте желания пользователей.</li>
+				<li>Мы не несем ответственность за ваши отношения между другими пользователями</li>
+			</ul>
+
+			<button type="button" id="btn__result" class="btn__confirm">Подтверждаю</button>
+		</div>
 	</form>
 
 </section>
 </template>
+
+
 
 <script>
 	export default {
@@ -186,13 +212,23 @@
 	border-radius: 15px
 	background: $grey2
 	margin-bottom: 40px
+	&.result
+		padding: 50px 50px 70px
+		.quiz__title
+			text-align: left
+			margin-bottom: 15px
+
 	.quiz__title
 		font: bold 2rem/1 $font
 		text-align: center
 		color: white
 		margin-bottom: 60px
+		&.result
+			text-align: left
+			margin-bottom: 15px
 	.quiz__form
-		.btn__continue
+		.btn__continue,
+		.btn__confirm
 			display: block
 			width: 200px
 			width: 33%
@@ -446,10 +482,69 @@
 
 
 		.quiz__step6
-			display: block
+			display: none
 		.quiz__result
+			display: block
+			// background: red
+			.quiz__cont1
+				display: flex
+				justify-content: space-between
+			.quiz__s
+				width: 48%
+				margin-bottom: 20px
+			.quiz__res-text1
+				font: 500 .87rem/1 $font
+				color: rgba(255,255,255,.8)
+				margin-bottom: 8px
+			.quiz__res-progress
+				display: block
+				border: 1px solid $green
+				border-radius: 4px
+				padding: 6px
+				font: 500 .87rem/1 $font
+				text-align: center
+				color: white
+			.quiz__res-text2
+				font: 500 .87rem/1 $font
+				color: white
+				padding-left: 30px
+				position: relative
+				margin-bottom: 10px
+				&:before
+					content: "i"
+					box-sizing: border-box
+					display: flex
+					justify-content: center
+					align-items: center
+					width: 20px
+					height: 20px
+					border: 2px solid red
+					border-radius: 50%
+					font: 500 1rem/1 $font
+					color: red
+					position: absolute
+					left: 0
+					top: calc(50% - 10px)
 
+			.quiz__r-list
+				margin-bottom: 20px
+				li 
+					font: 500 .87rem/1 $font
+					color: rgba(255,255,255,.5)
+					padding-left: 20px
+					margin-bottom: 8px
+					position: relative
+					&:last-child
+						margin-bottom: 0
+					&:before
+						content: url(assets/arrows.png)
+						position: absolute
+						left: 0
+						top: calc(50% - 6px)
 
+			.btn__confirm
+				margin: 0
+				margin-right: auto !important
 
 
 
