@@ -38,14 +38,14 @@
 			<div class="quiz__cont">
 				<input type="radio" name="sex" id="sex1">
 				<label for="sex1">
-					<img src="/assets/girl.png">
+					<img src="../assets/girl.png">
 					<p class="quiz__text">Девушек</p>
 				</label>
 			</div>
 			<div class="quiz__cont">
 				<input type="radio" name="sex" id="sex2">
 				<label for="sex2">
-					<img src="/assets/man.png">
+					<img src="../assets/man.png">
 					<p class="quiz__text">Парней</p>
 				</label>
 			</div>
@@ -386,7 +386,7 @@
 			display: flex
 			justify-content: space-around
 			align-items: stretch
-			display: none
+			// display: none
 			.quiz__cont
 				display: flex
 				align-items: stretch
@@ -440,7 +440,7 @@
 			display: flex
 			justify-content: center
 			align-items: stretch
-			display: none
+			// display: none
 			.quiz__cont
 				margin: 0 20px
 			input
@@ -470,7 +470,7 @@
 		.quiz__step3,
 		.quiz__step6
 			width: 100%
-			display: none
+			// display: none
 			.quiz__cont
 				display: flex
 				justify-content: center
@@ -524,7 +524,7 @@
 
 
 		.quiz__step4
-			display: none
+			// display: none
 			.quiz__cont
 				display: flex
 				justify-content: space-around
@@ -570,7 +570,7 @@
 					padding-left: 30px
 
 		.quiz__step5
-			display: none
+			// display: none
 			.quiz__cont
 				display: flex
 				justify-content: center
@@ -617,9 +617,9 @@
 
 
 		.quiz__step6
-			display: none
+			// display: none
 		.quiz__result
-			display: none
+			// display: none
 			.quiz__cont1
 				display: flex
 				justify-content: space-between
@@ -681,7 +681,7 @@
 				margin-right: auto !important
 
 		.quiz__reg
-			display: none
+			// display: none
 			.quiz__reg-description
 				font: 500 .87rem/1 $font
 				text-align: left

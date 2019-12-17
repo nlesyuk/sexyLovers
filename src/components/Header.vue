@@ -37,7 +37,7 @@ export default {
 
 header
 	width: 100%
-	padding: 0px 0
+	padding: 0
 	background: $black
 	box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.35)
 	position: relative
@@ -70,4 +70,52 @@ header
 		color: $grey
 		span
 			color: white
+
+
+
+
+
+
+@media (max-width: 992.98px)
+	header
+		.header__cont
+			flex-wrap: wrap
+		.logo
+			width: 100%
+			margin-bottom: 8px
+			img
+				margin: 0 auto
+		.header__list
+			width: 100%
+			justify-content: center
+			margin-bottom: 8px
+			li 
+				margin-right: 8px
+				svg
+					margin-right: 1px
+				span
+					position: relative
+					top: -3px
+		.headers__registered
+			width: 100%
+			text-align: center
+			margin-bottom: 10px
+
+@media (max-width: 768.98px)
+	header
+		padding-bottom: 18px
+
+@media (max-width: 576.98px)
+	header
+		padding-bottom: 18px
+
+
+
+
+
+
+
+
+
+
 </style>

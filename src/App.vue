@@ -4,8 +4,8 @@
 	<myHeader></myHeader>
 	<myBody></myBody>
 	<myAccounts v-if="false"></myAccounts>
-	<myFooter></myFooter>
-	<myPopupGirls></myPopupGirls>
+	<myFooter  v-if="true"></myFooter>
+	<myPopupGirls  v-if="false"></myPopupGirls>
 
 </div>
 </template>
@@ -20,9 +20,7 @@ import accounts from './components/Accounts'
 export default {
 	name: 'app',
 	data () {
-		return {
-			msg: 'Welcome to Your Vue.js App'
-		}
+		return {}
 	},
 	components: {
 		myHeader: header,
@@ -36,9 +34,4 @@ export default {
 
 <style lang="sass">
 @import 'styles/main.sass'
-
-h1.title
-	color: red
-	font-size: 22px
-	font: 1.25rem/1 $font
 </style>

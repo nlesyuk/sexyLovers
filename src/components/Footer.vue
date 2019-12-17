@@ -50,4 +50,32 @@ footer
 		text-align: center
 
 
+@media (max-width: 992.98px)
+	footer
+		padding: 15px 0 !important
+		.footer__text1
+			font: 300 .75rem/1.25 $font
+			text-align: center
+			margin-bottom: 8px
+		.footer__list
+			flex-wrap: wrap
+			margin-bottom: 10px
+			li 
+				display: block
+				width: 100%
+				color: inherit
+		.footer__text2
+			font: 300 .75rem/1.25 $font
+			text-align: center
+
+
+@media (max-width: 768.98px)
+	.eggs
+		padding: 10px 0
+
+
+@media (max-width: 576.98px)
+	header
+		padding-bottom: 18px
+
 </style>

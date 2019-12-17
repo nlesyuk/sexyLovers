@@ -9,11 +9,9 @@
 
 		<div class="main__cont">
 			<myEggs></myEggs>
-			<myQuiz></myQuiz>
+			<myQuiz v-if="false"></myQuiz>
 			<myMap v-if="false"></myMap>
 		</div>
-
-		
 
     </div>
 </main>
@@ -64,10 +62,35 @@ main
 		svg
 			display: block
 			margin: 0 auto
+			max-width: 100%
 		.main__text1
 			margin-top: 8px
 			font: 600 .75rem/1.25 $font
 			text-align: center
 			color: $brown
+
+
+
+@media (max-width: 992.98px)
+	main
+		padding-bottom: 30px
+		background: $black
+		.main__cont
+			padding-left: 0
+		.main__18
+			display: none
+@media (max-width: 768.98px)
+	header
+		padding-bottom: 18px
+
+@media (max-width: 576.98px)
+	header
+		padding-bottom: 18px
+
+
+
+
+
+
 
 </style>
