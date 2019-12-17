@@ -19,8 +19,7 @@
 </template>
 
 <script>
-import cookie from './mixins/cookie';
-console.log(cookie);
+import cookie from '../mixins/cookie';
 
 export default {
 	name: 'app',
@@ -34,7 +33,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import 'styles/main.sass'
+@import './src/styles/main.sass'
 
 header
 	width: 100%

@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import 'styles/main.sass'
+@import './src/styles/main.sass'
 
 .eggs
 	box-sizing: border-box

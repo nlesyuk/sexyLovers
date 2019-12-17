@@ -38,14 +38,14 @@
 			<div class="quiz__cont">
 				<input type="radio" name="sex" id="sex1">
 				<label for="sex1">
-					<img src="./assets/girl.png">
+					<img src="/assets/girl.png">
 					<p class="quiz__text">Девушек</p>
 				</label>
 			</div>
 			<div class="quiz__cont">
 				<input type="radio" name="sex" id="sex2">
 				<label for="sex2">
-					<img src="./assets/man.png">
+					<img src="/assets/man.png">
 					<p class="quiz__text">Парней</p>
 				</label>
 			</div>
@@ -314,7 +314,7 @@
 </script>
 
 <style lang="sass">
-@import 'styles/main.sass'
+@import './src/styles/main.sass'
 
 #quiz
 	width: 100%
@@ -651,7 +651,7 @@
 					&:last-child
 						margin-bottom: 0
 					&:before
-						content: url(assets/arrows.png)
+						content: url(/src/assets/arrows.png)
 						position: absolute
 						left: 0
 						top: calc(50% - 6px)

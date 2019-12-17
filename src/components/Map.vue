@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import 'styles/main.sass'
+@import './src/styles/main.sass'
 
 #map
 	width: 100%

@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import 'styles/main.sass'
+@import './src/styles/main.sass'
 main
 	width: 100%
 	background: url(/src/assets/body__girl.png) no-repeat 10% center /contain

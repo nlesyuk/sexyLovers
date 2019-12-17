@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import 'styles/main.sass'
+@import './src/styles/main.sass'
 
 footer
 	padding: 15px 0 !important

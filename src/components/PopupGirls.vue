@@ -4,7 +4,7 @@
 	<ul class="popup__list">
 		<li>
 			<div class="popup__top">
-				<img src="./assets/popup_1.jpg" alt="">
+				<img src="../assets/popup_1.jpg" alt="">
 				<h3>Оля, <span>26</span></h3>
 			</div>
 			<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
@@ -12,7 +12,7 @@
 		</li>
 		<li>
 			<div class="popup__top">
-				<img src="./assets/popup_2.jpg" alt="">
+				<img src="../assets/popup_2.jpg" alt="">
 				<h3>Мята, <span>27</span></h3>
 			</div>
 			<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
@@ -20,7 +20,7 @@
 		</li>
 		<li>
 			<div class="popup__top">
-				<img src="./assets/popup_3.jpg" alt="">
+				<img src="../assets/popup_3.jpg" alt="">
 				<h3>Вера, <span>41</span></h3>
 			</div>
 			<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
@@ -28,7 +28,7 @@
 		</li>
 		<li>
 			<div class="popup__top">
-				<img src="./assets/popup_4.jpg" alt="">
+				<img src="../assets/popup_4.jpg" alt="">
 				<h3>Альбина, <span>24</span></h3>
 			</div>
 			<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
@@ -36,7 +36,7 @@
 		</li>
 		<li>
 			<div class="popup__top">
-				<img src="./assets/popup_4.jpg" alt="">
+				<img src="../assets/popup_4.jpg" alt="">
 				<h3>Вика, <span>28</span></h3>
 			</div>
 			<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import 'styles/main.sass'
+@import '../styles/main.sass'
 
 .popup__list
 	position: fixed 

@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import header from './Header'
-import body from './Body'
-import footer from './Footer'
-import PopupGirls from './PopupGirls'
-import accounts from './Accounts'
+import header from './components/Header'
+import body from './components/Body'
+import footer from './components/Footer'
+import PopupGirls from './components/PopupGirls'
+import accounts from './components/Accounts'
 
 export default {
 	name: 'app',
@@ -41,6 +41,4 @@ h1.title
 	color: red
 	font-size: 22px
 	font: 1.25rem/1 $font
-
-
 </style>
