@@ -15,7 +15,7 @@
 				<img src="../assets/popup_2.jpg" alt="">
 				<h3>Мята, <span>27</span></h3>
 			</div>
-			<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
+			<p class="popup__text">Проведу приятный вечер, а может и ночь с незнакомцем.</p>
 			<a href="#" class="popup__link">Начать общение</a>
 		</li>
 		<li>
@@ -23,7 +23,7 @@
 				<img src="../assets/popup_3.jpg" alt="">
 				<h3>Вера, <span>41</span></h3>
 			</div>
-			<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
+			<p class="popup__text">Отдыхаем с подругами. Кто составит компанию?</p>
 			<a href="#" class="popup__link">Начать общение</a>
 		</li>
 		<li>
@@ -31,7 +31,7 @@
 				<img src="../assets/popup_4.jpg" alt="">
 				<h3>Альбина, <span>24</span></h3>
 			</div>
-			<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
+			<p class="popup__text">Мечтаю попробовать секс втроем!!!</p>
 			<a href="#" class="popup__link">Начать общение</a>
 		</li>
 		<li>
@@ -39,7 +39,7 @@
 				<img src="../assets/popup_4.jpg" alt="">
 				<h3>Вика, <span>28</span></h3>
 			</div>
-			<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
+			<p class="popup__text">Хочу взрослого мужчину без комплексов!</p>
 			<a href="#" class="popup__link">Начать общение</a>
 		</li>
 	</ul>

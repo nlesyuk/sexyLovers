@@ -43,10 +43,12 @@ export default {
 @import './src/styles/main.sass'
 main
 	width: 100%
-	background: url(/src/assets/body__girl.png) no-repeat 10% center /contain
+	background: url(/src/assets/body__girl.png) no-repeat 10% top
+	background-size: contain
 	background-color: $black
-	min-height: 80vh
+	// min-height: 80vh
 	position: relative
+	padding-bottom: 30px
 	.main__cont
 		padding-left: 25%
 	.main__18

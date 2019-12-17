@@ -22,6 +22,7 @@ export default {
 @import './src/styles/main.sass'
 
 #map
+	margin-top: 30px
 	width: 100%
 	.map__title
 		font: bold 2rem/1 $font

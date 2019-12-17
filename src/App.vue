@@ -3,7 +3,7 @@
 
 	<myHeader></myHeader>
 	<myBody></myBody>
-	<myAccounts></myAccounts>
+	<myAccounts v-if="false"></myAccounts>
 	<myFooter></myFooter>
 	<myPopupGirls></myPopupGirls>
 

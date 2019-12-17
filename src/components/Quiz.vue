@@ -180,26 +180,29 @@
 			<button type="button" id="btn__result" class="btn__confirm">Подтверждаю</button>
 		</div>
 
-
 		<div class="quiz__reg">
 			<p class="quiz__reg-description">ЧТОБЫ ПОДКЛЮЧИТЬ ДОСТУП К ПОДПИСКЕ НА КОНТЕНТ, ЗАПОЛНИТЕ СЛЕДУЮЩУЮ ФОРМУ:</p>
+
 			<label class="quiz__reg-labels">
 				<span class="quiz__reg-span">Имя:</span>
 				<input type="text" name="reg_name">
 			</label>
-			<label class="quiz__reg-labels">
+			<label class="quiz__reg-labels age">
 				<span class="quiz__reg-span">Возраст:</span>
-				<input type="text" name="reg_age">
+				<input type="number" name="reg_age" min="18" max="100" value="18">
 			</label>
-			<label class="quiz__reg-labels">
+
+			<div class="quiz__reg-labels">
 				<span class="quiz__reg-span">Ваш пол:</span>
-				<div class="quiz__reg-cont">
-					<input type="radio" name="reg_sex">
-					<span>Парень</span>
-					<input type="radio" name="reg_sex">
-					<span>Девушка</span>
+				<div class="quiz__reg-radio">
+					<input type="radio" name="reg_sex" id="reg_sex1" checked>
+					<label for="reg_sex1">Парень</label>
+
+					<input type="radio" name="reg_sex" id="reg_sex2">
+					<label for="reg_sex2">Девушка</label>
 				</div>
-			</label>
+			</div>
+
 			<label class="quiz__reg-labels aifs">
 				<span class="quiz__reg-span">Телефон:</span>
 				<div class="quiz__reg-cont">
@@ -218,7 +221,7 @@
 				</label>
 
 				<div class="quiz__reg-policy">
-					<div style="font-size:12px; color:#333;">
+					<div>
 						<span style="font-weight:bold;text-decoration:underline;">ПРАВИЛА ПРЕДОСТАВЛЕНИЯ ПОДПИСКИ НА КОНТЕНТ ДЛЯ АБОНЕНТОВ ПАО «ВЫМПЕЛКОМ»</span><br>
 						Данные положения являются обязательными и озвучиваются в настоящих правилах на предоставление доступа с Сервисам Провайдера по Подписке (далее «услуга «Подписка») Абонентам ПАО «ВымпелКом» (далее – Абонент).<br>
 						1. Воспользоваться услугой «Подписка» на Интернет-ресурс «https://modullink.com» на указанных ниже условиях могут любые физические лица, достигшие 18 лет и являющиеся Абонентами оператора сотовой связи Билайн (далее – «Оператор»), где Абонент совершает действия из пункта 3.<br>
@@ -287,10 +290,28 @@
 
 				</div>
 
+				<button type="button" id="btn__reg" class="btn__continue">Продолжить</button>
 			</div>
 
-			<button type="button" id="btn__reg" class="btn__confirm">Продолжить</button>
 		</div>
+
+		<div class="quiz__auth quiz__reg">
+			<p class="quiz__reg-description quiz__auth">ЕСЛИ ВАМ ИСПОЛНИЛОСЬ 18 ЛЕТ, ЗАПОЛНИТЕ ПОЛЕ И НАЖМИТЕ КНОПКУ "ПОЛУЧИТЬ КОНТЕНТ".</p>
+
+			<label class="quiz__reg-labels aifs">
+				<span class="quiz__reg-span mt0">Ваш номер телефона:</span>
+				<div class="quiz__reg-cont">
+					<input type="text" name="auth_phone">
+					<span class="quiz__reg-text1">Пример: +7 (916) 987 11 11 или +380 (50) 111 11 11</span>
+				</div>
+			</label>
+
+			<div class="quiz__reg-footer">
+				<button type="button" id="btn__auth" class="btn__continue">Продолжить</button>
+			</div>
+
+		</div>
+
 	</form>
 
 </section>
@@ -318,10 +339,10 @@
 
 #quiz
 	width: 100%
+	box-sizing: border-box;
 	padding: 50px 16px 70px
 	border-radius: 15px
 	background: $grey2
-	margin-bottom: 40px
 	&.reg
 		padding: 50px 50px 70px
 		.quiz__title
@@ -599,7 +620,6 @@
 			display: none
 		.quiz__result
 			display: none
-			// background: red
 			.quiz__cont1
 				display: flex
 				justify-content: space-between
@@ -661,40 +681,172 @@
 				margin-right: auto !important
 
 		.quiz__reg
+			display: none
 			.quiz__reg-description
 				font: 500 .87rem/1 $font
 				text-align: left
 				color: white
 				margin-bottom: 20px
+				&.quiz__auth
+					margin-bottom: 40px
 			.quiz__reg-labels
 				display: flex
 				justify-content: flex-start
 				align-items: center
+				margin-bottom: 14px
 				&.aifs
 					align-items: flex-start
+					.quiz__reg-span
+						margin-top: 10px
+						&.mt0
+							margin-top: 5px
+					input
+						margin-bottom: 4px
+				&.age
+					input
+						width: 60px
 				.quiz__reg-span
 					display: block
-					width: 100px
-					color: red
+					width: 110px
+					font: 500 1rem/1 $font
+					color: white
 				input
-					color: red
+					display: block
+					width: 260px
+					max-width: 100%
+					padding: 8px
+					border-radius: 3px
+					background: transparent
+					border: 2px solid #909093
+					font: 500 1rem/1 $font
+					color: white
+					&:focus
+						border-color: white
+						outline: none
+				.quiz__reg-radio
+					display: flex
+					justify-content: flex-start
+					align-items: center
+					padding: 10px 0
+					input
+						display: none
+						&:checked + label
+							&:after
+								display: block
+					label
+						display: block
+						padding: 0 10px 0 25px
+						font: 500 1rem/1 $font
+						color: white
+						position: relative
+						margin-right: 10px
+						cursor: pointer
+						&:before
+							content: ""
+							display: block
+							box-sizing: border-box
+							width: 20px
+							height: 20px
+							border: 2px solid $pink
+							border-radius: 50%
+							position: absolute
+							left: 0
+							top: calc(50% - 10px)
+						&:after
+							content: ""
+							display: none
+							width: 8px
+							height: 8px
+							background: $pink
+							border-radius: 50%
+							position: absolute
+							left: 6px
+							top: 4px
 				.quiz__reg-cont
 					color: red
-					input
-						color: red
 					.quiz__reg-text1
-						color: red
-				.quiz__reg-footer
-					color: red
-					.quiz__reg-cost
-						color: red
-					input[type=reg_check]
-						color: red
-					.quiz__reg-check
-						color: red
-					.quiz__reg-policy
-						color: red
+						font: 500 .75rem/1 $font
+						color: rgba(255,255,255,.25)
 
+			.quiz__reg-footer
+				margin-left: 110px
+				padding-top: 24px
+				.quiz__reg-cost
+					display: block
+					font: 500 .75rem/1 $font
+					color: rgba(255,255,255, .5)
+					margin-bottom: 10px
+				input[id=reg_check]
+					display: none
+					&:checked + .quiz__reg-check
+						// color: $pink
+						&:after
+							display: block
+				.quiz__reg-check
+					display: block
+					font: 500 .75rem/1.25 $font
+					color: white
+					padding-left: 30px
+					margin-bottom: 10px
+					cursor: pointer
+					position: relative
+					&:before
+						content: ""
+						display: block
+						box-sizing: border-box
+						width: 20px
+						height: 20px
+						border: 2px solid white
+						border-radius: 3px
+						position: absolute
+						left: 0
+						top: calc(50% - 10px)
+					&:after
+						content: ""
+						display: none
+						// display: block
+						box-sizing: border-box
+						width: 13px
+						height: 7px
+						border: 1px solid transparent
+						border-left: 2px solid white
+						border-bottom: 2px solid white
+						transform: rotate(-48deg)
+						position: absolute
+						left: 4px
+						top: 9px
+				.quiz__reg-policy
+					display: block
+					max-height: 120px
+					background: $black
+					border-radius: 4px
+					padding: 10px
+					font: .75rem/1.25 $font
+					color: rgba(255,255,255,.2)
+					overflow: auto
+					margin-bottom: 20px
+					&::-webkit-scrollbar
+						width: 8px
+						// height: 6px
+					&::-webkit-scrollbar-button
+						// background-color: #222
+					&::-webkit-scrollbar-track
+						background-color: red
+					&::-webkit-scrollbar-track-piece
+						background-color: #313138
+					&::-webkit-scrollbar-thumb
+						height: 30px
+						background-color: #45454f
+					&::-webkit-scrollbar-corner
+						background-color: purpure
+					&::-webkit-resizer
+						background-color: green
+			.btn__continue
+				margin: 0
+				margin-right: auto
+
+		.quiz__auth
+			display: block
 
 
 </style>
