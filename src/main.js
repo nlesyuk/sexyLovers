@@ -2,10 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import Meta from 'vue-meta'
 
-Vue.use(Meta);
+Vue.config.productionTip = false
 
 new Vue({
-  el: '#app',
   render: h => h(App),
   metaInfo: {
     htmlAttrs: {
@@ -18,4 +17,4 @@ new Vue({
       { name: 'theme-colo', content: '#837a64' },
     ]
   }
-})
+}).$mount('#app')

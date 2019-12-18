@@ -1,9 +1,9 @@
 <template>
-<section id="quiz" :class="{'result': false, 'reg': true }">
-	<h2 class="quiz__title">{{title}}</h2>
+<section id="quiz" :class="{'result': false, 'reg': false }">
+	<h2 class="quiz__title"> {{ title }} </h2>
 
 	<form class="quiz__form">
-		<div class="quiz__step1">
+		<div class="quiz__step1" v-if="false">
 			<div class="quiz__cont intim">
 				<input type="radio" name="target" id="target1">
 				<label for="target1">
@@ -34,7 +34,7 @@
 			</div>
 		</div>
 
-		<div class="quiz__step2">
+		<div class="quiz__step2" v-if="true">
 			<div class="quiz__cont">
 				<input type="radio" name="sex" id="sex1">
 				<label for="sex1">
@@ -51,7 +51,7 @@
 			</div>
 		</div>
 
-		<div class="quiz__step3">
+		<div class="quiz__step3" v-if="false">
 			<div class="quiz__cont">
 				<label>
 					<input type="checkbox" name="partner_location[]">
@@ -77,7 +77,7 @@
 			<button type="button" id="btn__step3" class="btn__continue">ПРОДОЛЖИТЬ</button>
 		</div>
 
-		<div class="quiz__step4">
+		<div class="quiz__step4" v-if="false">
 			<div class="quiz__cont">
 				<label>
 					<input type="radio" name="partner_body">
@@ -95,28 +95,28 @@
 			<button type="button" id="btn__step4" class="btn__continue">ПРОДОЛЖИТЬ</button>
 		</div>
 
-		<div class="quiz__step5">
+		<div class="quiz__step5" v-if="true">
 
 			<div class="quiz__cont">
-				<div class="quiz__item">
+				<div class="quiz__item first">
 					<input type="radio" name="sex2" id="sex2_1">
-					<label class="first" for="sex2_1">
+					<label for="sex2_1">
 						<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="47px" height="70px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M46.957,23.759 C46.957,10.670 36.416,0.002 23.472,0.002 C10.531,0.002 -0.009,10.659 -0.009,23.759 C-0.009,35.157 7.951,44.697 18.537,46.990 L18.537,52.523 L13.314,52.523 C10.802,52.523 8.761,54.600 8.761,57.144 C8.761,59.691 10.802,61.768 13.314,61.768 L18.537,61.768 L18.537,65.384 C18.537,67.928 20.586,69.994 23.113,69.994 C25.628,69.994 27.680,67.940 27.680,65.384 L27.680,61.768 L33.158,61.768 C35.671,61.768 37.712,59.691 37.712,57.144 C37.712,54.600 35.683,52.523 33.158,52.523 L27.680,52.523 L27.680,47.151 C38.557,45.141 46.957,35.420 46.957,23.759 L46.957,23.759 ZM9.110,23.759 C9.110,15.750 15.546,9.221 23.472,9.221 C31.399,9.221 37.836,15.750 37.836,23.759 C37.836,31.780 31.399,38.306 23.472,38.306 C15.546,38.306 9.110,31.780 9.110,23.759 L9.110,23.759 Z"/></svg>
-						<p class="quiz__text girl">Девушка</p>
 					</label>
+					<p class="quiz__text">Девушка</p>
 				</div>
 				<div class="quiz__item">
 					<input type="radio" name="sex2" id="sex2_2">
-					<label class="first" for="sex2_2">
+					<label for="sex2_2">
 						<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72px" height="71px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M71.021,5.202 C71.021,2.337 68.703,0.011 65.834,0.011 L45.252,-0.000 L45.242,-0.000 C42.372,-0.000 40.055,2.326 40.043,5.191 C40.043,8.057 42.372,10.383 45.242,10.383 L53.287,10.383 L38.778,24.886 C34.847,22.344 30.280,20.971 25.481,20.971 C18.932,20.971 12.763,23.524 8.129,28.154 C-1.454,37.714 -1.454,53.278 8.129,62.839 C12.763,67.468 18.920,70.032 25.481,70.032 C32.046,70.032 38.215,67.479 42.849,62.839 C47.483,58.221 50.050,52.057 50.050,45.503 C50.050,40.710 48.675,36.147 46.131,32.221 L60.638,17.726 L60.638,25.764 C60.638,28.630 62.967,30.956 65.834,30.956 C68.703,30.956 71.032,28.630 71.032,25.764 L71.021,5.202 ZM35.499,55.507 C32.823,58.168 29.273,59.649 25.492,59.649 C21.703,59.649 18.154,58.168 15.478,55.507 C9.958,49.991 9.958,41.012 15.478,35.497 C18.154,32.825 21.703,31.354 25.492,31.354 C29.273,31.354 32.823,32.825 35.499,35.497 C38.173,38.168 39.646,41.715 39.646,45.492 C39.646,49.277 38.173,52.835 35.499,55.507 L35.499,55.507 Z"/></svg>
-						<p class="quiz__text girl">Парень</p>
 					</label>
+					<p class="quiz__text">Парень</p>
 				</div>
 			</div>
 
 		</div>
 
-		<div class="quiz__step6">
+		<div class="quiz__step6" v-if="false">
 			<div class="quiz__cont">
 				<label>
 					<input type="checkbox" name="desire[]">
@@ -154,7 +154,7 @@
 			<button type="button" id="btn__step6" class="btn__continue">ПРОДОЛЖИТЬ</button>
 		</div>
 
-		<div class="quiz__result">
+		<div class="quiz__result" v-if="false">
 			<div class="quiz__cont1">
 				<div class="quiz__s">
 					<p class="quiz__res-text1">В ВАШЕМ ГОРОДЕ</p>
@@ -180,7 +180,7 @@
 			<button type="button" id="btn__result" class="btn__confirm">Подтверждаю</button>
 		</div>
 
-		<div class="quiz__reg">
+		<div class="quiz__reg" v-if="false">
 			<p class="quiz__reg-description">ЧТОБЫ ПОДКЛЮЧИТЬ ДОСТУП К ПОДПИСКЕ НА КОНТЕНТ, ЗАПОЛНИТЕ СЛЕДУЮЩУЮ ФОРМУ:</p>
 
 			<label class="quiz__reg-labels">
@@ -295,7 +295,7 @@
 
 		</div>
 
-		<div class="quiz__auth quiz__reg">
+		<div class="quiz__auth quiz__reg" v-if="false">
 			<p class="quiz__reg-description quiz__auth">ЕСЛИ ВАМ ИСПОЛНИЛОСЬ 18 ЛЕТ, ЗАПОЛНИТЕ ПОЛЕ И НАЖМИТЕ КНОПКУ "ПОЛУЧИТЬ КОНТЕНТ".</p>
 
 			<label class="quiz__reg-labels aifs">
@@ -339,7 +339,7 @@
 
 #quiz
 	width: 100%
-	box-sizing: border-box;
+	box-sizing: border-box
 	padding: 50px 16px 70px
 	border-radius: 15px
 	background: $grey2
@@ -362,6 +362,9 @@
 			text-align: left
 			margin-bottom: 15px
 	.quiz__form
+		display: block
+		width: 100%
+		box-sizing: border-box
 		.btn__continue,
 		.btn__confirm
 			display: block
@@ -386,7 +389,7 @@
 			display: flex
 			justify-content: space-around
 			align-items: stretch
-			// display: none
+			display: none
 			.quiz__cont
 				display: flex
 				align-items: stretch
@@ -414,7 +417,6 @@
 						fill: $pink !important
 					.quiz__text
 						color: $pink !important
-
 			label
 				display: block
 				width: 160px
@@ -436,11 +438,11 @@
 					text-transform: uppercase
 					color: $grey3
 
+
 		.quiz__step2
 			display: flex
 			justify-content: center
 			align-items: stretch
-			// display: none
 			.quiz__cont
 				margin: 0 20px
 			input
@@ -470,7 +472,6 @@
 		.quiz__step3,
 		.quiz__step6
 			width: 100%
-			// display: none
 			.quiz__cont
 				display: flex
 				justify-content: center
@@ -484,7 +485,6 @@
 				width: 33%
 				max-width: 100%
 				padding: 10px 0
-				// background: rgba(255,255,255,.1)
 				cursor: pointer
 				position: relative
 				&:before
@@ -524,7 +524,6 @@
 
 
 		.quiz__step4
-			// display: none
 			.quiz__cont
 				display: flex
 				justify-content: space-around
@@ -552,25 +551,26 @@
 					display: none
 					&:checked + .quiz__text
 						color: $pink
-						position: relative
 						&:before
 							content: ""
 							display: block
-							width: 8px
-							height: 8px
-							background: $pink
-							border-radius: 50%
-							position: absolute
-							left: 6px
-							top: 4px
 				.quiz__text
 					font: 500 1rem/1 $font
 					text-transform: uppercase
 					color: white
 					padding-left: 30px
-
+					position: relative
+					&:before
+						content: ""
+						display: none
+						width: 8px
+						height: 8px
+						background: $pink
+						border-radius: 50%
+						position: absolute
+						left: 6px
+						top: 4px
 		.quiz__step5
-			// display: none
 			.quiz__cont
 				display: flex
 				justify-content: center
@@ -583,6 +583,8 @@
 						opacity: 1
 						transition: all .25s
 						border: 5px solid white
+				&.first
+					margin-right: 40px
 			label
 				display: flex
 				justify-content: center
@@ -590,6 +592,8 @@
 				box-sizing: border-box
 				width: 140px
 				height: 140px
+				margin: 0
+				margin: 0 auto
 				max-width: 100%
 				border-radius: 50%
 				border: 5px solid transparent
@@ -599,27 +603,22 @@
 				transition: all .25s
 				opacity: .8
 				position: relative
-				&.first
-					margin-right: 40px
+				margin-bottom: 16px
 				input
 					display: none
 					&:checked + .quiz__text
 						color: $pink
-				.quiz__text
-					font: 500 1rem/1 $font
-					text-transform: uppercase
-					color: white
-					position: absolute
-					bottom: -35px
-					left: calc(50% - 28px)
-					&.girl
-						left: calc(50% - 38px)
+			.quiz__text
+				font: 500 1rem/1 $font
+				text-transform: uppercase
+				text-align: center
+				color: white
 
 
 		.quiz__step6
 			// display: none
 		.quiz__result
-			// display: none
+			display: none
 			.quiz__cont1
 				display: flex
 				justify-content: space-between
@@ -681,7 +680,7 @@
 				margin-right: auto !important
 
 		.quiz__reg
-			// display: none
+			display: none
 			.quiz__reg-description
 				font: 500 .87rem/1 $font
 				text-align: left
@@ -846,7 +845,289 @@
 				margin-right: auto
 
 		.quiz__auth
-			display: block
+			display: none
+
+
+@media (max-width: 1200.98px)
+	#quiz
+		padding: 30px 30px 40px
+		&.reg
+			padding: 50px 50px 70px
+			.quiz__title
+				margin-bottom: 15px
+		&.result
+			padding: 50px 50px 70px
+			.quiz__title
+				margin-bottom: 15px
+		.quiz__title
+			font: bold 1.5rem/1 $font
+			margin-bottom: 50px
+			&.result
+				margin-bottom: 15px
+		.quiz__form
+			.btn__continue,
+			.btn__confirm
+				display: block
+				width: 33%
+				margin: 0 auto
+				padding: 16px
+				font: bold 1rem/1 $font
+				margin-top: 30px
+
+			.quiz__step1
+				label
+					display: block
+					width: 100px
+					max-width: 100%
+					padding: 16px
+					svg
+						margin-bottom: 8px
+					.quiz__text
+						font: 500 1rem/1 $font
+
+			.quiz__step3,
+			.quiz__step6
+				width: 100%
+				.quiz__cont
+					justify-content: flex-start
+					width: 100%
+				label
+					width: 33%
+					padding: 10px 0
+					&:before
+						content: ""
+						width: 20px
+						height: 20px
+						position: absolute
+						left: 0
+						top: calc(50% - 10px)
+					input
+						&:checked + .quiz__text
+							&:before
+								content: ""
+								width: 13px
+								height: 7px
+								position: absolute
+								left: 4px
+								top: 3px
+					.quiz__text
+						font: 500 1rem/1 $font
+						padding-left: 30px
+
+
+
+
+
+
+
+
+@media (max-width: 992.98px)
+	#quiz
+		padding: 30px 16px 40px
+		&.reg
+			padding: 50px 50px 70px
+			.quiz__title
+				margin-bottom: 15px
+		&.result
+			padding: 50px 50px 70px
+			.quiz__title
+				margin-bottom: 15px
+
+		.quiz__title
+			font: bold 1.25rem/1 $font
+			margin-bottom: 40px
+			&.result
+				margin-bottom: 15px
+		.quiz__form
+			.quiz__step1
+				display: flex
+				flex-wrap: wrap
+				.quiz__cont
+					width: 48%
+					// background: red
+					margin-bottom: 2%
+				label
+					display: block
+					width: 100%
+					margin: 0 auto
+					padding: 16px
+					svg
+						margin-bottom: 8px
+					.quiz__text
+						font: 500 .75rem/1 $font
+			
+
+
+
+
+
+
+
+@media (max-width: 768.98px)
+	#quiz
+		padding: 30px 16px 40px
+		&.reg
+			padding: 50px 50px 70px
+		&.result
+			padding: 50px 50px 70px
+		.quiz__title
+			font: bold 1.25rem/1 $font
+
+		.quiz__form
+			.btn__continue,
+			.btn__confirm
+				width: 50%
+
+			.quiz__step2
+				box-sizing: border-box
+				justify-content: center
+				.quiz__cont
+					margin: 0px
+				label
+					box-sizing: border-box
+					padding: 0
+					img
+						max-width: 100%
+						margin-bottom: 14px
+
+			.quiz__step3,
+			.quiz__step6
+				.quiz__cont
+					justify-content: flex-start
+					width: 100%
+				label
+					width: 50%
+					padding: 10px 0
+					&:before
+						content: ""
+						width: 20px
+						height: 20px
+						position: absolute
+						left: 0
+						top: calc(50% - 10px)
+					input
+						&:checked + .quiz__text
+							&:before
+								content: ""
+								width: 13px
+								height: 7px
+								position: absolute
+								left: 4px
+								top: 3px
+					.quiz__text
+						font: 500 .87rem/1 $font
+						padding-left: 30px
+
+			.quiz__step4
+				.quiz__cont
+					width: 100%
+					justify-content: space-between
+				label
+					padding: 10px 0
+					&:before
+						width: 20px
+						height: 20px
+						left: 0
+						top: calc(50% - 10px)
+					.quiz__text
+						font: 500 .87rem/1 $font
+						padding-left: 30px
+						&:before
+							display: none
+							width: 8px
+							height: 8px
+							left: 6px
+							top: 3px
+
+			.quiz__step5
+				box-sizing: border-box
+				justify-content: center
+				.quiz__cont
+					flex-wrap: wrap
+					width: 100%
+				.quiz__item
+					width: 50%
+					&.first
+						margin-right: 0px
+				label
+					box-sizing: border-box
+					width: 120px
+					height: 120px
+
+
+
+
+
+
+@media (max-width: 576.98px)
+	#quiz
+		padding: 30px 16px 40px
+		&.reg
+			padding: 50px 50px 70px
+			.quiz__title
+				margin-bottom: 15px
+		&.result
+			padding: 50px 50px 70px
+			.quiz__title
+				margin-bottom: 15px
+		.quiz__title
+			font: bold 1.125rem/1 $font
+			margin-bottom: 20px
+			&.result
+				margin-bottom: 15px
+		.quiz__form
+			.btn__continue,
+			.btn__confirm
+				width: 80%
+				padding: 12px
+				font: bold .87rem/1 $font
+
+			.quiz__step2
+				display: flex
+				justify-content: center
+				align-items: stretch
+				.quiz__cont
+					box-sizing: border-box
+					margin: 0
+				label
+					display: block
+					width: 160px
+					max-width: 100%
+					padding: 16px
+					img
+						max-width: 100%
+					.quiz__text
+						font: bold 1rem/1 $font
+
+			.quiz__step3,
+			.quiz__step6
+				.quiz__cont
+					justify-content: flex-start
+				label
+					width: 50%
+					padding: 10px 0
+					&:before
+						content: ""
+						width: 16px
+						height: 16px
+						position: absolute
+						left: 0
+						top: calc(50% - 8px)
+						top: 8px
+					input
+						&:checked + .quiz__text
+							&:before
+								content: ""
+								width: 11px
+								height: 6px
+								position: absolute
+								left: 3px
+								top: calc(50% - 3px)
+								top: 2px
+					.quiz__text
+						font: 500 .75rem/1 $font
+						padding-left: 20px
+
 
 
 </style>

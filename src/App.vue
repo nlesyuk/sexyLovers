@@ -1,13 +1,14 @@
 <template>
-<div>
+	<div id="app">
 
-	<myHeader></myHeader>
-	<myBody></myBody>
-	<myAccounts v-if="false"></myAccounts>
-	<myFooter  v-if="true"></myFooter>
-	<myPopupGirls  v-if="false"></myPopupGirls>
+		<myHeader></myHeader>
+		<myBody></myBody>
+		<myAccounts v-if="false"></myAccounts>
+		<myFooter  v-if="true"></myFooter>
+		<myPopupGirls  v-if="false"></myPopupGirls>
 
-</div>
+
+	</div>
 </template>
 
 <script>
@@ -19,9 +20,6 @@ import accounts from './components/Accounts'
 
 export default {
 	name: 'app',
-	data () {
-		return {}
-	},
 	components: {
 		myHeader: header,
 		myBody: body,
@@ -33,5 +31,5 @@ export default {
 </script>
 
 <style lang="sass">
-@import 'styles/main.sass'
+@import './src/styles/main.sass'
 </style>

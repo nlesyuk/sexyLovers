@@ -30,6 +30,7 @@ export default {
 @import './src/styles/main.sass'
 
 footer
+	width: 100%
 	padding: 15px 0 !important
 	background: black
 	color: rgba(255,255,255,.20)

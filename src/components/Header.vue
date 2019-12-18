@@ -2,7 +2,7 @@
 	<header>
 		<div class="container header__cont">
 			<a href="/" class="logo">
-				<img src="src/assets/logo.png" alt="logo">
+				<img src="../assets/logo.png" alt="logo">
 			</a>
 			<ul class="header__list">
 				<li>Сейчас онлайн:</li>
@@ -22,11 +22,10 @@
 import cookie from '../mixins/cookie';
 
 export default {
-	name: 'app',
+	name: 'top-header',
 	mixins: [cookie],
 	data () {
 		return {
-			msg: 'Welcome to Your Vue.js App'
 		}
 	}
 }
