@@ -34,7 +34,7 @@
 			</div>
 		</div>
 
-		<div class="quiz__step2" v-if="true">
+		<div class="quiz__step2" v-if="false">
 			<div class="quiz__cont">
 				<input type="radio" name="sex" id="sex1">
 				<label for="sex1">
@@ -95,7 +95,7 @@
 			<button type="button" id="btn__step4" class="btn__continue">ПРОДОЛЖИТЬ</button>
 		</div>
 
-		<div class="quiz__step5" v-if="true">
+		<div class="quiz__step5" v-if="false">
 
 			<div class="quiz__cont">
 				<div class="quiz__item first">
@@ -217,7 +217,7 @@
 
 				<input type="checkbox" id="reg_check">
 				<label for="reg_check" class="quiz__reg-check">
-					Мне исполнилось 18 лет и Я согласен с Правилами <br>предоставления Подписки на Контент.
+					Мне исполнилось 18 лет и Я согласен с Правилами предоставления Подписки на Контент.
 				</label>
 
 				<div class="quiz__reg-policy">
@@ -295,7 +295,7 @@
 
 		</div>
 
-		<div class="quiz__auth quiz__reg" v-if="false">
+		<div class="quiz__auth quiz__reg" v-if="true">
 			<p class="quiz__reg-description quiz__auth">ЕСЛИ ВАМ ИСПОЛНИЛОСЬ 18 ЛЕТ, ЗАПОЛНИТЕ ПОЛЕ И НАЖМИТЕ КНОПКУ "ПОЛУЧИТЬ КОНТЕНТ".</p>
 
 			<label class="quiz__reg-labels aifs">
@@ -618,7 +618,6 @@
 		.quiz__step6
 			// display: none
 		.quiz__result
-			display: none
 			.quiz__cont1
 				display: flex
 				justify-content: space-between
@@ -633,7 +632,7 @@
 				display: block
 				border: 1px solid $green
 				border-radius: 4px
-				padding: 6px
+				padding: 10px
 				font: 500 .87rem/1 $font
 				text-align: center
 				color: white
@@ -670,7 +669,7 @@
 					&:last-child
 						margin-bottom: 0
 					&:before
-						content: url(/src/assets/arrows.png)
+						content: url(../assets/arrows.png)
 						position: absolute
 						left: 0
 						top: calc(50% - 6px)
@@ -680,9 +679,8 @@
 				margin-right: auto !important
 
 		.quiz__reg
-			display: none
 			.quiz__reg-description
-				font: 500 .87rem/1 $font
+				font: 500 .87rem/1.125 $font
 				text-align: left
 				color: white
 				margin-bottom: 20px
@@ -706,11 +704,12 @@
 						width: 60px
 				.quiz__reg-span
 					display: block
-					width: 110px
+					width: 120px
 					font: 500 1rem/1 $font
 					color: white
 				input
 					display: block
+					box-sizing: border-box
 					width: 260px
 					max-width: 100%
 					padding: 8px
@@ -762,7 +761,6 @@
 							left: 6px
 							top: 4px
 				.quiz__reg-cont
-					color: red
 					.quiz__reg-text1
 						font: 500 .75rem/1 $font
 						color: rgba(255,255,255,.25)
@@ -845,9 +843,10 @@
 				margin-right: auto
 
 		.quiz__auth
-			display: none
+			display: block
 
 
+// ADAPTIVE
 @media (max-width: 1200.98px)
 	#quiz
 		padding: 30px 30px 40px
@@ -900,7 +899,7 @@
 						height: 20px
 						position: absolute
 						left: 0
-						top: calc(50% - 10px)
+						top: 10px
 					input
 						&:checked + .quiz__text
 							&:before
@@ -914,8 +913,21 @@
 						font: 500 1rem/1 $font
 						padding-left: 30px
 
-
-
+			.quiz__result
+				.quiz__cont1
+					justify-content: space-between
+				.quiz__s
+					width: 48%
+					margin-bottom: 20px
+				.quiz__res-text1
+					font: 500 .87rem/1 $font
+					margin-bottom: 8px
+					min-height: 27px
+				.quiz__res-progress
+					padding: 10px
+					font: 500 .87rem/1 $font
+				.quiz__res-text2
+					font: 500 .87rem/1 $font
 
 
 
@@ -982,10 +994,12 @@
 				box-sizing: border-box
 				justify-content: center
 				.quiz__cont
+					width: 50%
 					margin: 0px
 				label
 					box-sizing: border-box
-					padding: 0
+					padding: 0 16px
+					margin: 0 auto
 					img
 						max-width: 100%
 						margin-bottom: 14px
@@ -1061,7 +1075,7 @@
 
 @media (max-width: 576.98px)
 	#quiz
-		padding: 30px 16px 40px
+		padding: 30px 8px
 		&.reg
 			padding: 50px 50px 70px
 			.quiz__title
@@ -1088,14 +1102,11 @@
 				align-items: stretch
 				.quiz__cont
 					box-sizing: border-box
-					margin: 0
 				label
-					display: block
-					width: 160px
 					max-width: 100%
-					padding: 16px
+					padding: 0px
 					img
-						max-width: 100%
+						max-width: 90%
 					.quiz__text
 						font: bold 1rem/1 $font
 
@@ -1127,7 +1138,92 @@
 					.quiz__text
 						font: 500 .75rem/1 $font
 						padding-left: 20px
+			.quiz__result
+				.quiz__cont1
+					justify-content: space-between
+					flex-wrap: wrap
+				.quiz__s
+					width: 100%
+					margin-bottom: 20px
+				.quiz__res-text1
+					font: 500 .87rem/1.25 $font
+					min-height: 0px
+				.quiz__res-progress
+					padding: 10px
+					font: 500 .87rem/1.25 $font
+				.quiz__res-text2
+					font: 500 .87rem/1.25 $font
+				.btn__confirm
+					margin: 0 auto
 
+			.quiz__reg
+				.quiz__reg-description
+					font: 500 .87rem/1.25 $font
+					margin-bottom: 20px
+					&.quiz__auth
+						margin-bottom: 40px
+				.quiz__reg-labels
+					flex-wrap: wrap
+					width: 100%
+					&.aifs
+						align-items: flex-start
+						.quiz__reg-span
+							margin-top: 10px
+							&.mt0
+								margin-top: 5px
+						input
+							margin-bottom: 4px
+					&.age
+						input
+							width: 100px
+					.quiz__reg-span
+						width: 100%
+						font: 500 .87rem/1 $font
+						text-transform: uppercase
+						margin-bottom: 8px
+					input
+						display: block
+						box-sizing: border-box
+						width: 100%
+						padding: 8px
+						font: 500 1rem/1 $font
+					.quiz__reg-radio
+						width: 100%
+						justify-content: space-between
+						padding: 10px 0 0 0
+						label
+							display: block
+							width: 50%
+					.quiz__reg-cont
+						display: block
+						.quiz__reg-text1
+							font: 500 .75rem/1 $font
+
+				.quiz__reg-footer
+					margin-left: 0px
+					padding-top: 8px
+					.quiz__reg-cost
+						display: block
+						font: 500 .75rem/1 $font
+						margin-bottom: 10px
+					.quiz__reg-check
+						display: block
+						font: 500 .75rem/1.25 $font
+						padding-left: 30px
+						margin-bottom: 10px
+						&:before
+							top: 2px
+						&:after
+							top: 6px
+					.quiz__reg-policy
+						max-height: 160px
+						font: .75rem/1.25 $font
+						margin-bottom: 20px
+				.btn__continue
+					margin: 0 auto
+
+			.quiz__auth
+				display: block
 
 
 </style>
