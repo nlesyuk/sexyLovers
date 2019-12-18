@@ -1,5 +1,5 @@
 <template>
-<section id="quiz" :class="{'result': false, 'reg': false }">
+<section id="quiz" :class="{'result': true }">
 	<h2 class="quiz__title"> {{ title }} </h2>
 
 	<form class="quiz__form">
@@ -949,6 +949,7 @@
 			font: bold 1.25rem/1 $font
 			margin-bottom: 40px
 			&.result
+				text-align: center
 				margin-bottom: 15px
 		.quiz__form
 			.quiz__step1

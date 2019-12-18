@@ -1,6 +1,7 @@
 <template>
 	<header>
 		<div class="container header__cont">
+
 			<a href="/" class="logo">
 				<img src="../assets/logo.png" alt="logo">
 			</a>
@@ -14,6 +15,7 @@
 				</li>
 			</ul>
 			<p class="headers__registered">Всего зарегистрировано: <span>9 071 333</span></p>
+
 		</div>
 	</header>
 </template>
@@ -77,36 +79,73 @@ header
 
 @media (max-width: 992.98px)
 	header
-		.header__cont
-			flex-wrap: wrap
 		.logo
-			width: 100%
-			margin-bottom: 8px
+			width: 50%
+			margin-bottom: 0px
 			img
 				margin: 0 auto
 		.header__list
-			width: 100%
+			width: 50%
 			justify-content: center
-			margin-bottom: 8px
+			margin-bottom: 0px
 			li 
 				margin-right: 8px
 				svg
-					margin-right: 1px
+					margin-right: 3px
 				span
 					position: relative
 					top: -3px
 		.headers__registered
-			width: 100%
-			text-align: center
-			margin-bottom: 10px
+			display: none
 
 @media (max-width: 768.98px)
 	header
-		padding-bottom: 18px
+		.logo
+			color: red
+			img
+				margin: 0 auto
+		.header__list
+			justify-content: center
+			li 
+				margin-right: 8px
+				font: 600 .75rem/1 $font
+				svg
+					margin-right: 1px
+				span
+					top: -4px
 
 @media (max-width: 576.98px)
 	header
-		padding-bottom: 18px
+		.header__cont
+			align-items: stretch
+			align-content: stretch
+		.logo
+			width: 55%
+			color: red
+			img
+				max-width: 100%
+				margin: 0 auto
+		.header__list
+			justify-content: flex-end
+			position: relative
+			li 
+				margin-right: 8px
+				font: 600 .75rem/1 $font
+				&:nth-child(1)
+					margin-right: 75px
+				&:nth-child(2),
+				&:nth-child(3)
+					position: absolute
+					right: 0
+				&:nth-child(2)
+					top: 0
+				&:nth-child(3)
+					bottom: 0
+				svg
+					margin-right: 1px
+					transform: scale(.75)
+				span
+					top: -4px
 
 
 
