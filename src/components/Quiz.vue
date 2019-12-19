@@ -160,13 +160,13 @@
 				<div class="quiz__s">
 					<p class="quiz__res-text1">В ВАШЕМ ГОРОДЕ</p>
 					<div class="quiz__res-progress active">
-						НАЙДЕНО: <span>0</span>
+						НАЙДЕНО: <span>{{ found }}</span>
 					</div>
 				</div>
 				<div class="quiz__s">
 					<p class="quiz__res-text1">ПОДБОР ПО СЕКСУАЛЬНЫМ ПРЕДПОЧТЕНИЯМ</p>
 					<div class="quiz__res-progress active">
-						НАЙДЕНО: <span>0</span>
+						НАЙДЕНО: <span>{{ found2 }}</span>
 					</div>
 				</div>
 			</div>
@@ -320,7 +320,7 @@
 
 <script>
 	export default {
-		name: 'Quiz component',
+		name: 'Quiz',
 		data () {
 			return {
 				title: 'ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:',
@@ -342,6 +342,8 @@
 				btn4isDisabled: true,
 				desire: [],
 				btn6isDisabled: true,
+				found: 0,
+				found2: 0
 			}
 		},
 		methods: {
@@ -356,9 +358,29 @@
 				this.formData[step] = true;
 				this.formData[prevStep] = !this.formData[prevStep];
 				// send event to Body component
-				if(step === '7') this.$emit('stepResult', true);
-				if(step === '8') this.$emit('stepResult', false);
-			}
+				if(step === '7') {
+					this.$emit('stepResult', true);
+				} else {
+					this.$emit('stepResult', false);
+				}
+			},
+			animateCount(variable, from, to) {
+				const start = Date.now();
+
+				let id = setInterval( () => {
+					let now = Date.now() - start;
+					let progress = now / 1000;
+					let result = Math.floor((to - from) * progress + from);
+					if (progress > 1) { clearInterval( id ) }
+					let res = (progress < 1 ? result : to).toLocaleString('ru-RU');
+
+					this.$set(this, variable, res)
+				}, 100)
+			},
+			getRandomArbitrary(min, max) {
+				return Math.floor( Math.random() * (max - min) + min );
+			},
+			
 		},
 		watch: {
 			partner_location: function(value){
@@ -382,6 +404,18 @@
 					this.btn6isDisabled = true;
 				}
 			},
+			"formData.7": function(value){
+				if(value){
+					// set animation count
+					let random1 = this.getRandomArbitrary(353, 600);
+					this.animateCount('found', 0, random1)
+					let random2 = this.getRandomArbitrary(223, 400);
+					this.animateCount('found2', 0, random2)
+				}
+			}
+		},
+		mounted(){
+
 		}
 	}
 </script>

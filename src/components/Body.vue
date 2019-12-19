@@ -27,7 +27,7 @@ import map from './Map'
 import accounts from './Accounts'
 
 export default {
-	name: 'body',
+	name: 'Main',
 	data () {
 		return {
 			msg: 'Body',
