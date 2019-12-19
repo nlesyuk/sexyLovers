@@ -4,7 +4,7 @@
 
 	<form class="quiz__form">
 
-		<div class="quiz__step1" v-if="formData['1']">
+		<div class="quiz__step1" v-show="formData['1']">
 			<div class="quiz__cont intim">
 				<input type="radio" name="target" id="target1" @click="nextStep('2', '1')">
 				<label for="target1" >
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 
-		<div class="quiz__step2" v-if="formData['2']">
+		<div class="quiz__step2" v-show="formData['2']">
 			<div class="quiz__cont">
 				<input type="radio" name="sex" id="sex1" @click="nextStep('3', '2')">
 				<label for="sex1">
@@ -52,7 +52,7 @@
 			</div>
 		</div>
 
-		<div class="quiz__step3" v-if="formData['3']">
+		<div class="quiz__step3" v-show="formData['3']"> 
 			<div class="quiz__cont">
 				<label>
 					<input type="checkbox" name="partner_location[]" value="1" v-model="partner_location"> 
@@ -75,39 +75,39 @@
 					<p class="quiz__text">В другой стране</p>
 				</label>
 			</div>
-			<button type="button" id="btn__step3" class="btn__continue" :disabled="activateBtn3">ПРОДОЛЖИТЬ</button>
+			<button type="button" class="btn__continue" :disabled="btn3isDisabled" @click="nextStep('4', '3')">ПРОДОЛЖИТЬ</button>
 		</div>
 
-		<div class="quiz__step4" v-if="formData['4']">
+		<div class="quiz__step4" v-show="formData['4']">
 			<div class="quiz__cont">
 				<label>
-					<input type="radio" name="partner_body">
+					<input type="radio" name="partner_body" value="1" v-model="partner_body">
 					<p class="quiz__text">Нормальное</p>
 				</label>
 				<label>
-					<input type="radio" name="partner_body">
+					<input type="radio" name="partner_body" value="2" v-model="partner_body">
 					<p class="quiz__text">Спортивное</p>
 				</label>
 				<label>
-					<input type="radio" name="partner_body">
+					<input type="radio" name="partner_body" value="3" v-model="partner_body">
 					<p class="quiz__text">Полное</p>
 				</label>
 			</div>
-			<button type="button" id="btn__step4" class="btn__continue">ПРОДОЛЖИТЬ</button>
+			<button type="button" id="btn__step4" class="btn__continue" :disabled="btn4isDisabled" @click="nextStep('5', '4')">ПРОДОЛЖИТЬ</button>
 		</div>
 
-		<div class="quiz__step5" v-if="formData['5']">
+		<div class="quiz__step5" v-show="formData['5']">
 
 			<div class="quiz__cont">
 				<div class="quiz__item first">
-					<input type="radio" name="sex2" id="sex2_1">
+					<input type="radio" name="sex2" id="sex2_1" @click="nextStep('6', '5')">
 					<label for="sex2_1">
 						<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="47px" height="70px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M46.957,23.759 C46.957,10.670 36.416,0.002 23.472,0.002 C10.531,0.002 -0.009,10.659 -0.009,23.759 C-0.009,35.157 7.951,44.697 18.537,46.990 L18.537,52.523 L13.314,52.523 C10.802,52.523 8.761,54.600 8.761,57.144 C8.761,59.691 10.802,61.768 13.314,61.768 L18.537,61.768 L18.537,65.384 C18.537,67.928 20.586,69.994 23.113,69.994 C25.628,69.994 27.680,67.940 27.680,65.384 L27.680,61.768 L33.158,61.768 C35.671,61.768 37.712,59.691 37.712,57.144 C37.712,54.600 35.683,52.523 33.158,52.523 L27.680,52.523 L27.680,47.151 C38.557,45.141 46.957,35.420 46.957,23.759 L46.957,23.759 ZM9.110,23.759 C9.110,15.750 15.546,9.221 23.472,9.221 C31.399,9.221 37.836,15.750 37.836,23.759 C37.836,31.780 31.399,38.306 23.472,38.306 C15.546,38.306 9.110,31.780 9.110,23.759 L9.110,23.759 Z"/></svg>
 					</label>
 					<p class="quiz__text">Девушка</p>
 				</div>
 				<div class="quiz__item">
-					<input type="radio" name="sex2" id="sex2_2">
+					<input type="radio" name="sex2" id="sex2_2" @click="nextStep('6', '5')">
 					<label for="sex2_2">
 						<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72px" height="71px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M71.021,5.202 C71.021,2.337 68.703,0.011 65.834,0.011 L45.252,-0.000 L45.242,-0.000 C42.372,-0.000 40.055,2.326 40.043,5.191 C40.043,8.057 42.372,10.383 45.242,10.383 L53.287,10.383 L38.778,24.886 C34.847,22.344 30.280,20.971 25.481,20.971 C18.932,20.971 12.763,23.524 8.129,28.154 C-1.454,37.714 -1.454,53.278 8.129,62.839 C12.763,67.468 18.920,70.032 25.481,70.032 C32.046,70.032 38.215,67.479 42.849,62.839 C47.483,58.221 50.050,52.057 50.050,45.503 C50.050,40.710 48.675,36.147 46.131,32.221 L60.638,17.726 L60.638,25.764 C60.638,28.630 62.967,30.956 65.834,30.956 C68.703,30.956 71.032,28.630 71.032,25.764 L71.021,5.202 ZM35.499,55.507 C32.823,58.168 29.273,59.649 25.492,59.649 C21.703,59.649 18.154,58.168 15.478,55.507 C9.958,49.991 9.958,41.012 15.478,35.497 C18.154,32.825 21.703,31.354 25.492,31.354 C29.273,31.354 32.823,32.825 35.499,35.497 C38.173,38.168 39.646,41.715 39.646,45.492 C39.646,49.277 38.173,52.835 35.499,55.507 L35.499,55.507 Z"/></svg>
 					</label>
@@ -117,56 +117,56 @@
 
 		</div>
 
-		<div class="quiz__step6" v-if="formData['6']">
+		<div class="quiz__step6" v-show="formData['6']">
 			<div class="quiz__cont">
 				<label>
-					<input type="checkbox" name="desire[]">
+					<input type="checkbox" name="desire[]"  value="1" v-model="desire">
 					<p class="quiz__text">Классический секс</p>
 				</label>
 				<label>
-					<input type="checkbox" name="desire[]">
+					<input type="checkbox" name="desire[]"  value="2" v-model="desire">
 					<p class="quiz__text">Классический секс</p>
 				</label>
 				<label>
-					<input type="checkbox" name="desire[]">
+					<input type="checkbox" name="desire[]"  value="3" v-model="desire">
 					<p class="quiz__text">Пары</p>
 				</label>
 				<label>
-					<input type="checkbox" name="desire[]">
+					<input type="checkbox" name="desire[]"  value="4" v-model="desire">
 					<p class="quiz__text">BDSM</p>
 				</label>
 				<label>
-					<input type="checkbox" name="desire[]">
+					<input type="checkbox" name="desire[]"  value="5" v-model="desire">
 					<p class="quiz__text">Зрелые</p>
 				</label>
 				<label>
-					<input type="checkbox" name="desire[]">
+					<input type="checkbox" name="desire[]"  value="6" v-model="desire">
 					<p class="quiz__text">Оральные ласки</p>
 				</label>
 				<label>
-					<input type="checkbox" name="desire[]">
+					<input type="checkbox" name="desire[]"  value="7" v-model="desire">
 					<p class="quiz__text">Порно</p>
 				</label>
 				<label>
-					<input type="checkbox" name="desire[]">
+					<input type="checkbox" name="desire[]"  value="8" v-model="desire">
 					<p class="quiz__text">Молоденькие</p>
 				</label>
 			</div>
-			<button type="button" id="btn__step6" class="btn__continue">ПРОДОЛЖИТЬ</button>
+			<button type="button" id="btn__step6" class="btn__continue" :disabled="btn6isDisabled" @click="nextStep('7', '6')">ПРОДОЛЖИТЬ</button>
 		</div>
 
-		<div class="quiz__result" v-if="formData['7']">
+		<div class="quiz__result" v-show="formData['7']">
 			<div class="quiz__cont1">
 				<div class="quiz__s">
 					<p class="quiz__res-text1">В ВАШЕМ ГОРОДЕ</p>
-					<div class="quiz__res-progress">
-						НАЙДЕНО: 233
+					<div class="quiz__res-progress active">
+						НАЙДЕНО: <span>0</span>
 					</div>
 				</div>
 				<div class="quiz__s">
 					<p class="quiz__res-text1">ПОДБОР ПО СЕКСУАЛЬНЫМ ПРЕДПОЧТЕНИЯМ</p>
-					<div class="quiz__res-progress">
-						НАЙДЕНО: 148
+					<div class="quiz__res-progress active">
+						НАЙДЕНО: <span>0</span>
 					</div>
 				</div>
 			</div>
@@ -181,7 +181,7 @@
 			<button type="button" id="btn__result" class="btn__confirm">Подтверждаю</button>
 		</div>
 
-		<div class="quiz__reg" v-if="formData['8']">
+		<div class="quiz__reg" v-show="formData['8']">
 			<p class="quiz__reg-description">ЧТОБЫ ПОДКЛЮЧИТЬ ДОСТУП К ПОДПИСКЕ НА КОНТЕНТ, ЗАПОЛНИТЕ СЛЕДУЮЩУЮ ФОРМУ:</p>
 
 			<label class="quiz__reg-labels">
@@ -296,7 +296,7 @@
 
 		</div>
 
-		<div class="quiz__auth quiz__reg" v-if="formData['9']">
+		<div class="quiz__auth quiz__reg" v-show="formData['9']">
 			<p class="quiz__reg-description quiz__auth">ЕСЛИ ВАМ ИСПОЛНИЛОСЬ 18 ЛЕТ, ЗАПОЛНИТЕ ПОЛЕ И НАЖМИТЕ КНОПКУ "ПОЛУЧИТЬ КОНТЕНТ".</p>
 
 			<label class="quiz__reg-labels aifs">
@@ -320,7 +320,7 @@
 
 <script>
 	export default {
-		name: 'app',
+		name: 'Quiz component',
 		data () {
 			return {
 				title: 'ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:',
@@ -337,7 +337,11 @@
 					'9': false
 				},
 				partner_location: [],
-				activateBtn3: 'disabled'
+				btn3isDisabled: true,
+				partner_body: [],
+				btn4isDisabled: true,
+				desire: [],
+				btn6isDisabled: true,
 			}
 		},
 		methods: {
@@ -345,29 +349,39 @@
 				this.title = titles[index];
 			},
 			nextStep(step, prevStep) {
+				// change title
 				let index = +step - 1;
 				this.title = this.titles[index];
+				// change step section
 				this.formData[step] = true;
 				this.formData[prevStep] = !this.formData[prevStep];
-				console.log(this.formData)
-			},
-			countinueStep() {
-
+				// send event to Body component
+				if(step === '7') this.$emit('stepResult', true);
+				if(step === '8') this.$emit('stepResult', false);
 			}
 		},
 		watch: {
-			isCheced(v) {
-				console.log(v)
-			},
-			partner_location: function(v){
-				console.log(v, this.partner_location.length)
-
-				if( this.partner_location ) {
-					this.activateBtn3 = false;
+			partner_location: function(value){
+				if( this.partner_location.length ) {
+					this.btn3isDisabled = false;
 				} else {
-					this.activateBtn3 = 'disabled';
+					this.btn3isDisabled = true;
 				}
-			}
+			},
+			partner_body: function(value){
+				if( this.partner_body.length ) {
+					this.btn4isDisabled = false;
+				} else {
+					this.btn4isDisabled = true;
+				}
+			},
+			desire: function(value){
+				if( this.desire.length ) {
+					this.btn6isDisabled = false;
+				} else {
+					this.btn6isDisabled = true;
+				}
+			},
 		}
 	}
 </script>
@@ -375,12 +389,15 @@
 <style lang="sass">
 @import './src/styles/main.sass'
 
+
 #quiz
 	width: 100%
 	box-sizing: border-box
-	padding: 50px 16px 70px
+	padding: 50px 16px
 	border-radius: 15px
+	min-height: 400px
 	background: $grey2
+	margin-bottom: 40px
 	&.reg
 		padding: 50px 50px 70px
 		.quiz__title
@@ -395,7 +412,7 @@
 		font: bold 2rem/1 $font
 		text-align: center
 		color: white
-		margin-bottom: 60px
+		margin-bottom: 50px
 		&.result
 			text-align: left
 			margin-bottom: 15px
@@ -420,6 +437,11 @@
 			margin-top: 30px
 			transition: all .25s
 			cursor: pointer
+			&:disabled
+				background: $grey3
+				&:hover
+					background: $grey3
+					cursor: not-allowed
 			&:hover
 				background: $hover
 				transition: all .25s
@@ -673,6 +695,19 @@
 				font: 500 .87rem/1 $font
 				text-align: center
 				color: white
+				position: relative
+				z-index: 2
+				&.active::before
+					content: ""
+					display: block
+					height: 100%
+					animation: 0.6s ease-in normal forwards running PROGRESS
+					background: $green
+					position: absolute
+					top: 0
+					left: 0
+					z-index: -1
+
 			.quiz__res-text2
 				font: 500 .87rem/1 $font
 				color: white
@@ -881,6 +916,15 @@
 
 		.quiz__auth
 			display: block
+
+
+@keyframes PROGRESS
+	from
+		width: 0% 
+		background: $green
+	to
+		width: 100%
+		background: $green
 
 
 // ADAPTIVE

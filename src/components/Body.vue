@@ -1,5 +1,5 @@
 <template>
-<main>
+<main :class="{'pb0': isAccountsShown, 'getero': false, 'bi': false}">
     <div class="container">
 
 		<div class="main__18">
@@ -9,11 +9,14 @@
 
 		<div class="main__cont">
 			<myEggs></myEggs>
-			<myQuiz v-if="true"></myQuiz>
-			<myMap v-if="false"></myMap>
+			<myQuiz v-show="true" @stepResult="isAccountsShown = $event"></myQuiz>
+			<myMap v-show="false"></myMap>
 		</div>
 
     </div>
+
+	<myAccounts v-show="isAccountsShown"></myAccounts>
+
 </main>
 </template>
 
@@ -21,18 +24,21 @@
 import eggs from './Eggs'
 import quiz from './Quiz'
 import map from './Map'
+import accounts from './Accounts'
 
 export default {
-	name: 'app',
+	name: 'body',
 	data () {
 		return {
-			msg: 'Body'
+			msg: 'Body',
+			isAccountsShown: false,
 		}
 	},
 	components: {
 		myEggs: eggs,
 		myQuiz: quiz,
 		myMap: map,
+		myAccounts: accounts,
 	}
 }
 </script>
@@ -43,12 +49,22 @@ export default {
 main
 	width: 100%
 	box-sizing: border-box
-	background: url(../assets/body__girl.png) no-repeat 10% top
+	background-image: url(../assets/body__girl.png)
 	background-size: contain
+	background-repeat: no-repeat
+	background-position: 10% top
 	background-color: $black
-	min-height: 30vh
+	min-height: calc(100vh - (44px + 200px))
 	position: relative
 	padding-bottom: 30px
+	&.getero
+		background-image: url(../assets/body__gm.png)
+		background-size: auto
+	&.bi
+		background-image: url(../assets/body__gg.png)
+		background-size: auto
+	&.pb0
+		padding-bottom: 0
 	.main__cont
 		padding-left: 25%
 		max-width: 100%
