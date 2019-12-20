@@ -28,4 +28,8 @@ export default {
 
 <style lang="sass">
 @import './src/styles/main.sass'
+#app
+	min-height: 100vh
+	height: auto
+	background: black
 </style>

@@ -52,9 +52,9 @@ export default {
 		}
 	},
 	mounted(){
-		this.animateCount('regCount', this.regCount, this.regCount+86500, 106500, 2000);
-		this.animateCount('girlsCount', this.girlsCount, this.girlsCount+86500, 86500*2, 2000);
-		this.animateCount('mansCount', this.mansCount, this.mansCount+86500, 86500*3, 2500);
+		this.animateCount('regCount', this.regCount, this.regCount+86500, 106500, 1000);
+		this.animateCount('girlsCount', this.girlsCount, this.girlsCount+86500, 86500, 800);
+		this.animateCount('mansCount', this.mansCount, this.mansCount+86500, 86500*1.25, 800);
 		console.log("MOUNTED"); 
 	}
 }
