@@ -178,7 +178,7 @@
 				<li>Мы не несем ответственность за ваши отношения между другими пользователями</li>
 			</ul>
 
-			<button type="button" id="btn__result" class="btn__confirm">Подтверждаю</button>
+			<button type="button" class="btn__confirm" @click="nextStep('8', '7')">Подтверждаю</button>
 		</div>
 
 		<div class="quiz__reg" v-show="formData['8']">
@@ -186,20 +186,20 @@
 
 			<label class="quiz__reg-labels">
 				<span class="quiz__reg-span">Имя:</span>
-				<input type="text" name="reg_name">
+				<input type="text" name="name">
 			</label>
 			<label class="quiz__reg-labels age">
 				<span class="quiz__reg-span">Возраст:</span>
-				<input type="number" name="reg_age" min="18" max="100" value="18">
+				<input type="number" name="age" min="18" max="100" value="18">
 			</label>
 
 			<div class="quiz__reg-labels">
 				<span class="quiz__reg-span">Ваш пол:</span>
 				<div class="quiz__reg-radio">
-					<input type="radio" name="reg_sex" id="reg_sex1" checked>
+					<input type="radio" name="gender" id="reg_sex1" value="man" checked>
 					<label for="reg_sex1">Парень</label>
 
-					<input type="radio" name="reg_sex" id="reg_sex2">
+					<input type="radio" name="gender" id="reg_sex2" value="woman">
 					<label for="reg_sex2">Девушка</label>
 				</div>
 			</div>
@@ -207,7 +207,7 @@
 			<label class="quiz__reg-labels aifs">
 				<span class="quiz__reg-span">Телефон:</span>
 				<div class="quiz__reg-cont">
-					<input type="text" name="reg_phone">
+					<input type="text" name="number">
 					<span class="quiz__reg-text1">Пример: +7 (916) 987 11 11 или +380 (50) 111 11 11</span>
 				</div>
 			</label>
@@ -380,7 +380,6 @@
 			getRandomArbitrary(min, max) {
 				return Math.floor( Math.random() * (max - min) + min );
 			},
-			
 		},
 		watch: {
 			partner_location: function(value){
