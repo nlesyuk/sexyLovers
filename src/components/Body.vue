@@ -1,5 +1,5 @@
 <template>
-<main :class="{'pb0': isAccountsShown, 'getero': false, 'bi': false}">
+<main :class="{'pb0': isAccountsShown, 'getero': isUserGetero, 'bi': isUserBi}">
     <div class="container">
 
 		<div class="main__18">
@@ -9,7 +9,11 @@
 
 		<div class="main__cont">
 			<myEggs></myEggs>
-			<myQuiz v-show="true" @stepResult="isAccountsShown = $event"></myQuiz>
+			<myQuiz v-show="true" 
+				@stepResult="isAccountsShown = $event"
+				@isUserGetero="isUserGetero = $event"
+				@isUserBi="isUserBi = $event"
+			></myQuiz>
 			<myMap v-show="false"></myMap>
 		</div>
 
@@ -32,6 +36,8 @@ export default {
 		return {
 			msg: 'Body',
 			isAccountsShown: false,
+			isUserGetero: false,
+			isUserBi: false,
 		}
 	},
 	components: {
@@ -58,11 +64,14 @@ main
 	position: relative
 	padding-bottom: 30px
 	&.getero
-		background-image: url(../assets/body__gm.png)
-		background-size: auto
+		// background-image: url(../assets/body__gms.png)
+		background-image: url(../assets/body__gm-lg.png)
+		// background-size: auto
+		background-position: 0% top
 	&.bi
 		background-image: url(../assets/body__gg.png)
-		background-size: auto
+		// background-size: auto
+		background-position: -5% top
 	&.pb0
 		padding-bottom: 0
 	.main__cont

@@ -1,5 +1,6 @@
 <template>
-<section id="quiz" :class="{'result': formData['7'] }">
+<section id="quiz" :class="{'result': formData['7'] || formData['8'] || formData['9'] }">
+
 	<h2 class="quiz__title"> {{ title }} </h2>
 
 	<form class="quiz__form">
@@ -37,14 +38,14 @@
 
 		<div class="quiz__step2" v-show="formData['2']">
 			<div class="quiz__cont">
-				<input type="radio" name="sex" id="sex1" @click="nextStep('3', '2')">
+				<input type="radio" name="sex" id="sex1" value="g" @click="nextStep('3', '2', $event.target.value)">
 				<label for="sex1">
 					<img src="../assets/girl.png">
 					<p class="quiz__text">Девушек</p>
 				</label>
 			</div>
 			<div class="quiz__cont">
-				<input type="radio" name="sex" id="sex2" @click="nextStep('3', '2')">
+				<input type="radio" name="sex" id="sex2" value="m" @click="nextStep('3', '2', $event.target.value)">
 				<label for="sex2">
 					<img src="../assets/man.png">
 					<p class="quiz__text">Парней</p>
@@ -100,14 +101,14 @@
 
 			<div class="quiz__cont">
 				<div class="quiz__item first">
-					<input type="radio" name="sex2" id="sex2_1" @click="nextStep('6', '5')">
+					<input type="radio" name="sex2" id="sex2_1" value="g" @click="nextStep('6', '5', $event.target.value)">
 					<label for="sex2_1">
 						<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="47px" height="70px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M46.957,23.759 C46.957,10.670 36.416,0.002 23.472,0.002 C10.531,0.002 -0.009,10.659 -0.009,23.759 C-0.009,35.157 7.951,44.697 18.537,46.990 L18.537,52.523 L13.314,52.523 C10.802,52.523 8.761,54.600 8.761,57.144 C8.761,59.691 10.802,61.768 13.314,61.768 L18.537,61.768 L18.537,65.384 C18.537,67.928 20.586,69.994 23.113,69.994 C25.628,69.994 27.680,67.940 27.680,65.384 L27.680,61.768 L33.158,61.768 C35.671,61.768 37.712,59.691 37.712,57.144 C37.712,54.600 35.683,52.523 33.158,52.523 L27.680,52.523 L27.680,47.151 C38.557,45.141 46.957,35.420 46.957,23.759 L46.957,23.759 ZM9.110,23.759 C9.110,15.750 15.546,9.221 23.472,9.221 C31.399,9.221 37.836,15.750 37.836,23.759 C37.836,31.780 31.399,38.306 23.472,38.306 C15.546,38.306 9.110,31.780 9.110,23.759 L9.110,23.759 Z"/></svg>
 					</label>
 					<p class="quiz__text">Девушка</p>
 				</div>
 				<div class="quiz__item">
-					<input type="radio" name="sex2" id="sex2_2" @click="nextStep('6', '5')">
+					<input type="radio" name="sex2" id="sex2_2" value="m" @click="nextStep('6', '5', $event.target.value)">
 					<label for="sex2_2">
 						<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72px" height="71px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M71.021,5.202 C71.021,2.337 68.703,0.011 65.834,0.011 L45.252,-0.000 L45.242,-0.000 C42.372,-0.000 40.055,2.326 40.043,5.191 C40.043,8.057 42.372,10.383 45.242,10.383 L53.287,10.383 L38.778,24.886 C34.847,22.344 30.280,20.971 25.481,20.971 C18.932,20.971 12.763,23.524 8.129,28.154 C-1.454,37.714 -1.454,53.278 8.129,62.839 C12.763,67.468 18.920,70.032 25.481,70.032 C32.046,70.032 38.215,67.479 42.849,62.839 C47.483,58.221 50.050,52.057 50.050,45.503 C50.050,40.710 48.675,36.147 46.131,32.221 L60.638,17.726 L60.638,25.764 C60.638,28.630 62.967,30.956 65.834,30.956 C68.703,30.956 71.032,28.630 71.032,25.764 L71.021,5.202 ZM35.499,55.507 C32.823,58.168 29.273,59.649 25.492,59.649 C21.703,59.649 18.154,58.168 15.478,55.507 C9.958,49.991 9.958,41.012 15.478,35.497 C18.154,32.825 21.703,31.354 25.492,31.354 C29.273,31.354 32.823,32.825 35.499,35.497 C38.173,38.168 39.646,41.715 39.646,45.492 C39.646,49.277 38.173,52.835 35.499,55.507 L35.499,55.507 Z"/></svg>
 					</label>
@@ -186,11 +187,11 @@
 
 			<label class="quiz__reg-labels">
 				<span class="quiz__reg-span">Имя:</span>
-				<input type="text" name="name">
+				<input type="text" name="name" required="required" v-model="reg_name">
 			</label>
 			<label class="quiz__reg-labels age">
 				<span class="quiz__reg-span">Возраст:</span>
-				<input type="number" name="age" min="18" max="100" value="18">
+				<input type="number" name="age" min="18" max="100" value="18"  required="required" v-model="reg_age">
 			</label>
 
 			<div class="quiz__reg-labels">
@@ -207,16 +208,15 @@
 			<label class="quiz__reg-labels aifs">
 				<span class="quiz__reg-span">Телефон:</span>
 				<div class="quiz__reg-cont">
-					<input type="text" name="number">
-					<span class="quiz__reg-text1">Пример: +7 (916) 987 11 11 или +380 (50) 111 11 11</span>
+					<input type="text" name="number" v-mask="'+7 (###) ### ## ##'" v-model="reg_phoneMask"  required="required">
+					<span class="quiz__reg-text1">Пример: +7 (916) 987 11 11</span>
 				</div>
 			</label>
 
 			<div class="quiz__reg-footer">
-
 				<a href="#" class="quiz__reg-cost">Стоимость услуги</a>
 
-				<input type="checkbox" id="reg_check">
+				<input type="checkbox" id="reg_check" v-model="reg_check">
 				<label for="reg_check" class="quiz__reg-check">
 					Мне исполнилось 18 лет и Я согласен с Правилами предоставления Подписки на Контент.
 				</label>
@@ -291,7 +291,7 @@
 
 				</div>
 
-				<button type="button" id="btn__reg" class="btn__continue">Продолжить</button>
+				<button type="button" id="btn__reg" class="btn__continue" :disabled="btn8isDisabled"  @click="nextStep('9', '8')">Продолжить</button>
 			</div>
 
 		</div>
@@ -308,7 +308,7 @@
 			</label>
 
 			<div class="quiz__reg-footer">
-				<button type="button" id="btn__auth" class="btn__continue">Продолжить</button>
+				<button type="button" id="btn__auth" class="btn__continue more" @click="submit()">ПОЛУЧИТЬ КОНТЕНТ</button>
 			</div>
 
 		</div>
@@ -336,6 +336,8 @@
 					'8': false,
 					'9': false
 				},
+				sex1: '',
+				sex2: '',
 				partner_location: [],
 				btn3isDisabled: true,
 				partner_body: [],
@@ -343,26 +345,48 @@
 				desire: [],
 				btn6isDisabled: true,
 				found: 0,
-				found2: 0
+				found2: 0,
+				reg_name: '',
+				reg_age: 18,
+				reg_phoneMask: '',
+				reg_phoneMaskStatus: false,
+				reg_check: false,
+				btn8isDisabled: true
 			}
 		},
 		methods: {
 			setTitle(index) {
 				this.title = titles[index];
 			},
-			nextStep(step, prevStep) {
+			nextStep(step, prevStep, event) {
 				// change title
 				let index = +step - 1;
 				this.title = this.titles[index];
 				// change step section
 				this.formData[step] = true;
 				this.formData[prevStep] = !this.formData[prevStep];
-				// send event to Body component
+				
+				// change bg in body component
+				if(step === '3') this.sex1 = event;
+				if(step === '6') this.sex2 = event;
 				if(step === '7') {
-					this.$emit('stepResult', true);
-				} else {
-					this.$emit('stepResult', false);
+					if ( this.sex1 === 'g' && this.sex2 === 'g' 
+						||
+						this.sex1 === 'm' && this.sex2 === 'm' 
+					   ) {
+						   this.$emit('isUserBi', true);
+					   }
+					if( this.sex1 === 'm' && this.sex2 === 'g'
+						||
+						this.sex1 === 'g' && this.sex2 === 'm'
+					){ 
+						this.$emit('isUserGetero', true);
+					}
 				}
+
+				// send event to Body component for add account component below
+				if(step === '7' || step === '8') this.$emit('stepResult', true);
+				else this.$emit('stepResult', false);
 			},
 			animateCount(variable, from, to) {
 				const start = Date.now();
@@ -380,6 +404,40 @@
 			getRandomArbitrary(min, max) {
 				return Math.floor( Math.random() * (max - min) + min );
 			},
+			submit() {
+
+				$('.ajax-reg-form').on('submit', function(e) {
+						e.preventDefault();
+
+						var form = $(this);
+						var preloader = $("#preloader");
+						var btn = $('#phone-submit');
+						preloader.show();
+						btn.hide();
+						$.post(window.location.href, form.serialize(), function(response) {
+							response = $.parseJSON(response);
+
+							if (response.error) {
+								var errorBlock = $('.error-block');
+								if (errorBlock.find('.error').length) {
+									errorBlock.find('.error').text(response.error);
+								} else {
+									errorBlock.append('<div class="error">'+response.error+'</div>');
+								}
+
+								return;
+							}
+
+							if (response.path) {
+								window.location.href = response.path;
+							}
+						}).always(function() {
+							preloader.hide();
+							btn.show();
+						});
+					});
+
+			}
 		},
 		watch: {
 			partner_location: function(value){
@@ -411,7 +469,32 @@
 					let random2 = this.getRandomArbitrary(223, 400);
 					this.animateCount('found2', 0, random2)
 				}
-			}
+			},
+			reg_name: function(value){
+				if( this.reg_name && this.reg_age && this.reg_phoneMaskStatus && this.reg_check ) this.btn8isDisabled = false
+				else this.btn8isDisabled = true
+			},
+			reg_age: function(value){
+				if( this.reg_name && this.reg_age && this.reg_phoneMaskStatus && this.reg_check ) this.btn8isDisabled = false
+				else this.btn8isDisabled = true
+			},
+			reg_phoneMask: function(value){
+				console.log(value, "+7 (123) 12 12 123")
+				let updtString = value.replace("(", '').replace(")", '').replace("+", '').split(' ').join('');
+				let len = updtString.length;
+
+				if( len === 11 ) this.reg_phoneMaskStatus = parseInt(updtString)
+				else this.reg_phoneMaskStatus = false
+
+				console.log(updtString, len,  parseInt(updtString))
+
+				if( this.reg_name && this.reg_age && this.reg_phoneMaskStatus && this.reg_check ) this.btn8isDisabled = false
+				else this.btn8isDisabled = true
+			},
+			reg_check: function(value){
+				if( this.reg_name && this.reg_age && this.reg_phoneMaskStatus && this.reg_check ) this.btn8isDisabled = false
+				else this.btn8isDisabled = true
+			},
 		},
 		mounted(){
 
@@ -470,6 +553,8 @@
 			margin-top: 30px
 			transition: all .25s
 			cursor: pointer
+			&.more
+				width: 40%
 			&:disabled
 				background: $grey3
 				&:hover
@@ -917,6 +1002,7 @@
 						position: absolute
 						left: 4px
 						top: 9px
+						top: calc(50% - 4.5px)
 				.quiz__reg-policy
 					display: block
 					max-height: 120px
@@ -1210,7 +1296,8 @@
 				width: 80%
 				padding: 12px
 				font: bold .87rem/1 $font
-
+				&.more
+					width: 90%
 			.quiz__step2
 				display: flex
 				justify-content: center
