@@ -217,13 +217,10 @@
 				<div class="quiz__reg-cont">
 					<!-- <input type="text" name="number" v-mask="'+7 (###) ### ## ##'" v-model="reg_phoneMask"  required="required"> -->
 						<phone-mask-input
-						  v-model="phone"
+						  v-model="reg_phone"
 						  autoDetectCountry
-						  showFlag
-						  @onValidate="onValidate"
 						  wrapperClass="wrraper-example"
 						  inputClass="input-example"
-						  flagClass="flag-example"
 						/>
 					<span class="quiz__reg-text1">Пример: +7 (916) 987 11 11</span>
 				</div>
@@ -319,7 +316,7 @@
 			<label class="quiz__reg-labels aifs">
 				<span class="quiz__reg-span mt0">Ваш номер телефона:</span>
 				<div class="quiz__reg-cont">
-					<input type="text" name="auth_phone">
+					<input type="text" name="auth_phone" v-model="reciver_phone">
 					<span class="quiz__reg-text1">Пример: +7 (916) 987 11 11 или +380 (50) 111 11 11</span>
 				</div>
 			</label>
@@ -368,7 +365,7 @@
 			</label>
 
 			<div class="quiz__reg-footer">
-				<button type="button" id="btn__auth" class="btn__continue more" @click="submit()">ПРОДОЛЖИТЬ</button>
+				<button type="button" id="btn__auth" class="btn__continue more" @click="submitAuth()">ПРОДОЛЖИТЬ</button>
 				<p class="quiz__other-text1">Если у вас уже есть код, нажмите <span @click="nextStep('9', '10')">здесь</span></p>
 				<p class="quiz__other-text2">Информация для абонентов</p>
 				<p class="quiz__other-text3">(для получения доступа требуется отправка 3 смс) <span>Для абонентов Азербайджана сумма к оплате: для абонентов Azercell - 5,9 AZN c НДС (за 1 смс). Доступ к сайту предоставляется без ограничения по времени.</span></p>
@@ -411,11 +408,12 @@
 				found2: 0,
 				reg_name: '',
 				reg_age: 18,
-				reg_phone: '+380500587203',
+				reg_phone: '',
 				reg_phoneMask: '',
 				reg_phoneMaskStatus: false,
 				reg_check: false,
 				btn8isDisabled: true,
+				reciver_phone: '',
 				selected: '4099,9853',
 				codeMsg: "4099",
 				codeNum: "9853",
@@ -465,6 +463,7 @@
 
 			},
 			submitReg(e) {
+				let phone = this.reg_phone;
 				// handler server scripts
 				if('ru'){
 					// Put below redirect to the link from server script 
@@ -476,7 +475,11 @@
 				}
 			},
 			submitGet() {
-				// launch server script for not ru country and redirect it
+				let phone = this.reciver_phone;
+				// handler for auth section
+			},
+			submitAuth() {
+				// handler for auth section
 			}
 		},
 		watch: {
@@ -942,6 +945,8 @@
 					width: 120px
 					font: 500 1rem/1 $font
 					color: white
+				.flag-none
+					display: none
 				input
 					display: block
 					box-sizing: border-box

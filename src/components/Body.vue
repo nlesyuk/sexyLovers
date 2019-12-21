@@ -14,7 +14,7 @@
 				@isUserGetero="isUserGetero = $event"
 				@isUserBi="isUserBi = $event"
 			></myQuiz>
-			<myMap v-show="true"></myMap>
+			<myMap v-show="!isAccountsShown"></myMap>
 		</div>
 
     </div>
