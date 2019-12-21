@@ -448,38 +448,29 @@
 			getRandomArbitrary(min, max) {
 				return Math.floor( Math.random() * (max - min) + min );
 			},
-			submit() {
+			submit(e) {
+				e.preventDefault();
 
-				$('.ajax-reg-form').on('submit', function(e) {
-						e.preventDefault();
+				var form = $(this);
 
-						var form = $(this);
-						var preloader = $("#preloader");
-						var btn = $('#phone-submit');
-						preloader.show();
-						btn.hide();
-						$.post(window.location.href, form.serialize(), function(response) {
-							response = $.parseJSON(response);
+				$.post(window.location.href, form.serialize(), function(response) {
+					response = $.parseJSON(response);
 
-							if (response.error) {
-								var errorBlock = $('.error-block');
-								if (errorBlock.find('.error').length) {
-									errorBlock.find('.error').text(response.error);
-								} else {
-									errorBlock.append('<div class="error">'+response.error+'</div>');
-								}
+					if (response.error) {
+						var errorBlock = $('.error-block');
+						if (errorBlock.find('.error').length) {
+							errorBlock.find('.error').text(response.error);
+						} else {
+							errorBlock.append('<div class="error">'+response.error+'</div>');
+						}
 
-								return;
-							}
+						return;
+					}
 
-							if (response.path) {
-								window.location.href = response.path;
-							}
-						}).always(function() {
-							preloader.hide();
-							btn.show();
-						});
-					});
+					if (response.path) {
+						window.location.href = response.path;
+					}
+				});
 
 			}
 		},
