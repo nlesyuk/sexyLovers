@@ -14,7 +14,7 @@
 				@isUserGetero="isUserGetero = $event"
 				@isUserBi="isUserBi = $event"
 			></myQuiz>
-			<myMap v-show="false"></myMap>
+			<myMap v-show="true"></myMap>
 		</div>
 
     </div>

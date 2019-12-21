@@ -36,6 +36,7 @@
 			</div>
 		</div>
 
+
 		<div class="quiz__step2" v-show="formData['2']">
 			<div class="quiz__cont">
 				<input type="radio" name="sex" id="sex1" value="g" @click="nextStep('3', '2', $event.target.value)">
@@ -52,6 +53,7 @@
 				</label>
 			</div>
 		</div>
+
 
 		<div class="quiz__step3" v-show="formData['3']"> 
 			<div class="quiz__cont">
@@ -79,6 +81,7 @@
 			<button type="button" class="btn__continue" :disabled="btn3isDisabled" @click="nextStep('4', '3')">ПРОДОЛЖИТЬ</button>
 		</div>
 
+
 		<div class="quiz__step4" v-show="formData['4']">
 			<div class="quiz__cont">
 				<label>
@@ -96,6 +99,7 @@
 			</div>
 			<button type="button" id="btn__step4" class="btn__continue" :disabled="btn4isDisabled" @click="nextStep('5', '4')">ПРОДОЛЖИТЬ</button>
 		</div>
+
 
 		<div class="quiz__step5" v-show="formData['5']">
 
@@ -117,6 +121,7 @@
 			</div>
 
 		</div>
+
 
 		<div class="quiz__step6" v-show="formData['6']">
 			<div class="quiz__cont">
@@ -156,6 +161,7 @@
 			<button type="button" id="btn__step6" class="btn__continue" :disabled="btn6isDisabled" @click="nextStep('7', '6')">ПРОДОЛЖИТЬ</button>
 		</div>
 
+
 		<div class="quiz__result" v-show="formData['7']">
 			<div class="quiz__cont1">
 				<div class="quiz__s">
@@ -181,7 +187,6 @@
 
 			<button type="button" class="btn__confirm" @click="nextStep('8', '7')">Подтверждаю</button>
 		</div>
-
 
 
 		<div class="quiz__reg" v-show="formData['8']">
@@ -210,7 +215,16 @@
 			<label class="quiz__reg-labels aifs">
 				<span class="quiz__reg-span">Телефон:</span>
 				<div class="quiz__reg-cont">
-					<input type="text" name="number" v-mask="'+7 (###) ### ## ##'" v-model="reg_phoneMask"  required="required">
+					<!-- <input type="text" name="number" v-mask="'+7 (###) ### ## ##'" v-model="reg_phoneMask"  required="required"> -->
+						<phone-mask-input
+						  v-model="phone"
+						  autoDetectCountry
+						  showFlag
+						  @onValidate="onValidate"
+						  wrapperClass="wrraper-example"
+						  inputClass="input-example"
+						  flagClass="flag-example"
+						/>
 					<span class="quiz__reg-text1">Пример: +7 (916) 987 11 11</span>
 				</div>
 			</label>
@@ -293,7 +307,7 @@
 
 				</div>
 
-				<button type="button" id="btn__reg" class="btn__continue" :disabled="btn8isDisabled"  @click="submit()">Продолжить</button>
+				<button type="button" id="btn__reg" class="btn__continue" :disabled="btn8isDisabled"  @click="submitReg()">Продолжить</button>
 			</div>
 
 		</div>
@@ -311,10 +325,9 @@
 			</label>
 
 			<div class="quiz__reg-footer">
-				<button type="button" id="btn__auth" class="btn__continue more" @click="submit()">ПОЛУЧИТЬ КОНТЕНТ</button>
+				<button type="button" id="btn__auth" class="btn__continue more" @click="submitGet()">ПОЛУЧИТЬ КОНТЕНТ</button>
 			</div>
 		</div>
-
 
 
 		<!-- https://modullink.com/intimsearch4/?page=join&action=j2 -->
@@ -448,39 +461,22 @@
 			getRandomArbitrary(min, max) {
 				return Math.floor( Math.random() * (max - min) + min );
 			},
-			submit() {
+			detectCountryByPhone() {
 
-				$('.ajax-reg-form').on('submit', function(e) {
-						e.preventDefault();
-
-						var form = $(this);
-						var preloader = $("#preloader");
-						var btn = $('#phone-submit');
-						preloader.show();
-						btn.hide();
-						$.post(window.location.href, form.serialize(), function(response) {
-							response = $.parseJSON(response);
-
-							if (response.error) {
-								var errorBlock = $('.error-block');
-								if (errorBlock.find('.error').length) {
-									errorBlock.find('.error').text(response.error);
-								} else {
-									errorBlock.append('<div class="error">'+response.error+'</div>');
-								}
-
-								return;
-							}
-
-							if (response.path) {
-								window.location.href = response.path;
-							}
-						}).always(function() {
-							preloader.hide();
-							btn.show();
-						});
-					});
-
+			},
+			submitReg(e) {
+				// handler server scripts
+				if('ru'){
+					// Put below redirect to the link from server script 
+				} else {
+					// Open section for other country
+					// redirect to the .quiz__other section. In this section push the button handle submitGet() which launch server script for not ru country
+					nextStep('10', '8') 
+					setTitle(8)
+				}
+			},
+			submitGet() {
+				// launch server script for not ru country and redirect it
 			}
 		},
 		watch: {
