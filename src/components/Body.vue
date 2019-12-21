@@ -8,13 +8,14 @@
 		</div>
 
 		<div class="main__cont">
-			<myEggs></myEggs>
+			<myEggs v-show="!currentWidth"></myEggs>
 			<myQuiz v-show="true" 
 				@stepResult="isAccountsShown = $event"
 				@isUserGetero="isUserGetero = $event"
 				@isUserBi="isUserBi = $event"
 			></myQuiz>
 			<myMap v-show="!isAccountsShown"></myMap>
+			<myEggs v-show="currentWidth"></myEggs>
 		</div>
 
     </div>
@@ -38,6 +39,7 @@ export default {
 			isAccountsShown: false,
 			isUserGetero: false,
 			isUserBi: false,
+			currentWidth: false
 		}
 	},
 	components: {
@@ -45,6 +47,9 @@ export default {
 		myQuiz: quiz,
 		myMap: map,
 		myAccounts: accounts,
+	},
+	mounted(){
+		if( window.innerWidth < 768 ) this.currentWidth = true;
 	}
 }
 </script>
@@ -66,12 +71,12 @@ main
 	&.getero
 		// background-image: url(../assets/body__gms.png)
 		background-image: url(../assets/body__gm-lg.png)
-		// background-size: auto
 		background-position: 0% top
+		background-repeat: no-repeat
 	&.bi
 		background-image: url(../assets/body__gg.png)
-		// background-size: auto
 		background-position: -5% top
+		background-repeat: no-repeat
 	&.pb0
 		padding-bottom: 0
 	.main__cont
@@ -99,25 +104,95 @@ main
 			color: $brown
 
 
+@media (max-width: 1400.98px)
+	main
+		&.getero
+			background-size: contain
+			background-position: -30% top
+			background-repeat: no-repeat
+		&.bi
+			background-size: auto
+			background-position: -10% top
+			background-repeat: no-repeat
+
+@media (max-width: 1200.98px)
+	main
+		&.getero
+			background-size: contain
+			background-position: -20% top
+			background-repeat: no-repeat
+		&.bi
+			background-size: auto
+			background-position: -25% top
+			background-repeat: no-repeat
 
 @media (max-width: 992.98px)
 	main
 		padding-bottom: 30px
-		background: $black
+		&.getero
+			background-size: contain
+			background-position: -150% top
+			background-repeat: no-repeat
+		&.bi
+			background-size: auto
+			background-position: -55% top
+			background-repeat: no-repeat
 		.main__cont
 			padding-left: 0
 		.main__18
 			display: none
 
 @media (max-width: 768.98px)
-	header
-		color: red
+	main
+		position: relative
+		background-image: none
+		z-index: 2
+		&:before
+			content: ""
+			display: block
+			width: 100%
+			height: 400px
+			background: url(../assets/body__girl.png) no-repeat 45% top/contain
+			position: absolute
+			top: 0
+			left: 0
+			right: 0
+			z-index: -1
+		&.getero
+			background-size: contain
+			background-position: -200px top
+			background-repeat: no-repeat
+			background-image: none
+			&:before
+				background: url(../assets/body__gm-lg.png) no-repeat 45% top/contain
+		&.bi
+			background-size: auto
+			background-position: -100px top
+			background-repeat: no-repeat
+			background-image: none
+			&:before
+				background: url(../assets/body__gg.png) no-repeat 45% top/contain
+		.main__cont
+			padding-top: 220px
 
 @media (max-width: 576.98px)
-	header
-		color: red
-
-
+	main
+		// &.getero
+		// 	background-size: contain
+		// 	background-position: -140% top
+		// 	background-repeat: no-repeat
+		// &.bi
+		// 	background-size: contain
+		// 	background-position: -45% top
+		// 	background-repeat: no-repeat
+		&:before
+			background: url(../assets/body__girl.png) no-repeat 35% top/contain
+		&.getero
+			&:before
+				background: url(../assets/body__gm-lg.png) no-repeat 35% top/contain
+		&.bi
+			&:before
+				background: url(../assets/body__gg.png) no-repeat 35% top/contain
 
 
 

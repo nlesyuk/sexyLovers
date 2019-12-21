@@ -394,7 +394,7 @@
 					'7': false,
 					'8': false,
 					'9': false,
-					'l': false,
+					'10': false,
 				},
 				sex1: '',
 				sex2: '',
@@ -1157,6 +1157,7 @@
 @media (max-width: 1200.98px)
 	#quiz
 		padding: 30px 30px 40px
+		margin-bottom: 30px
 		&.reg
 			padding: 50px 50px 70px
 			.quiz__title
@@ -1285,7 +1286,9 @@
 
 @media (max-width: 768.98px)
 	#quiz
+		background: rgba(33, 33, 38, 0.9)
 		padding: 30px 16px 40px
+		min-height: 0px
 		&.reg
 			padding: 50px 50px 70px
 		&.result
@@ -1389,7 +1392,7 @@
 			.quiz__title
 				margin-bottom: 15px
 		&.result
-			padding: 50px 50px 70px
+			padding: 30px 8px
 			.quiz__title
 				margin-bottom: 15px
 		.quiz__title

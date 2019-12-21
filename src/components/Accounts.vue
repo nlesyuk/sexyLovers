@@ -103,7 +103,37 @@ export default {
 				color: $grey
 
 
-
+@media (max-width: 1200.98px)
+	#accounts
+		.acccount__list
+			li
+				width: calc(100% / 7)
+				.accounts__ava
+					width: 60%
+@media (max-width: 992.98px)
+	#accounts
+		.acccount__list
+			flex-wrap: wrap
+			li
+				width: 25%
+				margin-bottom: 20px
+@media (max-width: 768.98px)
+	#map
+		.map__title
+			font: bold 1.25rem/1 $font
+@media (max-width: 576.98px)
+	#accounts
+		.accounts__cont
+			flex-wrap: wrap
+			.accounts__title
+				margin-bottom: 8px
+			.acccount__reg
+				width: 100%
+		.acccount__list
+			flex-wrap: wrap
+			li
+				width: 50%
+				margin-bottom: 20px
 
 
 </style>

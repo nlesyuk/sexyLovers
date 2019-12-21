@@ -36,4 +36,22 @@ export default {
 			display: block
 			max-width: 100%
 			width: 100%
+
+
+@media (max-width: 1200.98px)
+	#map
+		.map__title
+			font: bold 1.5rem/1 $font
+@media (max-width: 992.98px)
+	#map
+		.map__title
+			font: bold 1.25rem/1 $font
+@media (max-width: 768.98px)
+	#map
+		.map__title
+			font: bold 1.25rem/1 $font
+@media (max-width: 576.98px)
+	#map
+		.map__title
+			font: bold 1.125rem/1 $font
 </style>
