@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/intimsearch41/'
+    publicPath: '/test/'
 }
