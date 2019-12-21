@@ -1,5 +1,5 @@
 <template>
-<section id="quiz" :class="{'result': formData['7'] || formData['8'] || formData['9'] }">
+<section id="quiz" :class="{'result': formData['7'] || formData['8'] || formData['9'] || formData['10']}">
 
 	<h2 class="quiz__title"> {{ title }} </h2>
 
@@ -182,6 +182,8 @@
 			<button type="button" class="btn__confirm" @click="nextStep('8', '7')">Подтверждаю</button>
 		</div>
 
+
+
 		<div class="quiz__reg" v-show="formData['8']">
 			<p class="quiz__reg-description">ЧТОБЫ ПОДКЛЮЧИТЬ ДОСТУП К ПОДПИСКЕ НА КОНТЕНТ, ЗАПОЛНИТЕ СЛЕДУЮЩУЮ ФОРМУ:</p>
 
@@ -291,10 +293,11 @@
 
 				</div>
 
-				<button type="button" id="btn__reg" class="btn__continue" :disabled="btn8isDisabled"  @click="nextStep('9', '8')">Продолжить</button>
+				<button type="button" id="btn__reg" class="btn__continue" :disabled="btn8isDisabled"  @click="submit()">Продолжить</button>
 			</div>
 
 		</div>
+
 
 		<div class="quiz__auth quiz__reg" v-show="formData['9']">
 			<p class="quiz__reg-description quiz__auth">ЕСЛИ ВАМ ИСПОЛНИЛОСЬ 18 ЛЕТ, ЗАПОЛНИТЕ ПОЛЕ И НАЖМИТЕ КНОПКУ "ПОЛУЧИТЬ КОНТЕНТ".</p>
@@ -310,7 +313,53 @@
 			<div class="quiz__reg-footer">
 				<button type="button" id="btn__auth" class="btn__continue more" @click="submit()">ПОЛУЧИТЬ КОНТЕНТ</button>
 			</div>
+		</div>
 
+
+
+		<!-- https://modullink.com/intimsearch4/?page=join&action=j2 -->
+		<div class="quiz__other quiz__reg" v-show="formData['10']">
+			<p class="quiz__reg-description quiz__auth">ДЛЯ УСПЕШНОГО ПРОДОЛЖЕНИЯ ВАМ НУЖНО ОТПРАВИТЬ СМС И ВВЕСТИ ПОЛУЧЕННЫЙ КОД ДОСТУПА.</p>
+
+			<label class="quiz__reg-labels">
+				<span class="quiz__reg-span">Ваш номер телефона:</span>
+				<div class="quiz__reg-cont">
+					<p  class="quiz__other-phone">{{reg_phone}} | <span @click="nextStep('8', '10')">изменить номер</span> </p>
+				</div>
+			</label>
+			<label class="quiz__reg-labels aifs">
+				<span class="quiz__reg-span mt0">Выберите страну:</span>
+				<div class="quiz__reg-cont">
+					<select name="country" class="quiz__other-country" v-model="selected">
+						<option value="4099,9853" selected>Азербайджан</option>
+						<option value="4099,4680">Армения</option>
+						<option value="4099,3339">Беларусь</option>
+						<option value="4099,93337">Грузия</option>
+						<option value="4099,9683">Казахстан</option>
+						<option value="4099,3040">Киргизия</option>
+						<option value="4099,3323">Молдова</option>
+						<option value="4099,7968">Польша</option>
+						<option value="55,8925">Россия (Билайн)</option>
+						<option value="55,8442">Россия (МТС)</option>
+						<option value="70999,13015">Эстония</option>
+					</select>
+					<p class="quiz__other-sendmsg">Для получения кода активации отправьте сообщение c текстом <span>{{ codeMsg }}</span> на номер <span>{{ codeNum }}</span></p>
+					<p class="quiz__other-info">В ответном сообщении Вам придёт ключ доступа к нашему сайту</p>
+				</div>
+			</label>
+			<label class="quiz__reg-labels">
+				<span class="quiz__reg-span">ВВЕДИТЕ КОД:</span>
+				<div class="quiz__reg-cont">
+					<input type="text" name="auth_phone_confirm" placeholder="Введите полученный код" maxlength='20'>
+				</div>
+			</label>
+
+			<div class="quiz__reg-footer">
+				<button type="button" id="btn__auth" class="btn__continue more" @click="submit()">ПРОДОЛЖИТЬ</button>
+				<p class="quiz__other-text1">Если у вас уже есть код, нажмите <span @click="nextStep('9', '10')">здесь</span></p>
+				<p class="quiz__other-text2">Информация для абонентов</p>
+				<p class="quiz__other-text3">(для получения доступа требуется отправка 3 смс) <span>Для абонентов Азербайджана сумма к оплате: для абонентов Azercell - 5,9 AZN c НДС (за 1 смс). Доступ к сайту предоставляется без ограничения по времени.</span></p>
+			</div>
 		</div>
 
 	</form>
@@ -334,7 +383,8 @@
 					'6': false,
 					'7': false,
 					'8': false,
-					'9': false
+					'9': false,
+					'l': false,
 				},
 				sex1: '',
 				sex2: '',
@@ -348,10 +398,14 @@
 				found2: 0,
 				reg_name: '',
 				reg_age: 18,
+				reg_phone: '+380500587203',
 				reg_phoneMask: '',
 				reg_phoneMaskStatus: false,
 				reg_check: false,
-				btn8isDisabled: true
+				btn8isDisabled: true,
+				selected: '4099,9853',
+				codeMsg: "4099",
+				codeNum: "9853",
 			}
 		},
 		methods: {
@@ -370,18 +424,8 @@
 				if(step === '3') this.sex1 = event;
 				if(step === '6') this.sex2 = event;
 				if(step === '7') {
-					if ( this.sex1 === 'g' && this.sex2 === 'g' 
-						||
-						this.sex1 === 'm' && this.sex2 === 'm' 
-					   ) {
-						   this.$emit('isUserBi', true);
-					   }
-					if( this.sex1 === 'm' && this.sex2 === 'g'
-						||
-						this.sex1 === 'g' && this.sex2 === 'm'
-					){ 
-						this.$emit('isUserGetero', true);
-					}
+					if ( this.sex1 === 'g' && this.sex2 === 'g' || this.sex1 === 'm' && this.sex2 === 'm' ) this.$emit('isUserBi', true);
+					if( this.sex1 === 'm' && this.sex2 === 'g' || this.sex1 === 'g' && this.sex2 === 'm' ) this.$emit('isUserGetero', true);
 				}
 
 				// send event to Body component for add account component below
@@ -495,6 +539,11 @@
 				if( this.reg_name && this.reg_age && this.reg_phoneMaskStatus && this.reg_check ) this.btn8isDisabled = false
 				else this.btn8isDisabled = true
 			},
+			selected: function(value){
+				let arr = value.split(',');
+				this.codeMsg = arr[0];
+				this.codeNum = arr[1];
+			}
 		},
 		mounted(){
 
@@ -1035,6 +1084,63 @@
 
 		.quiz__auth
 			display: block
+		.quiz__other
+			display: block
+			.quiz__other-phone
+				font: 1.25rem/1 $font
+				color: rgba(255,255,255,1)
+				span
+					font-size: 70%
+					text-decoration: underline dotted
+					color: rgba(255,255,255,.5)
+					cursor: pointer
+					&:hover
+						color: white
+			.quiz__other-country
+				display: block
+				max-width: 100%
+				width: auto
+				border-radius: 4px
+				border: 2px solid #909093
+				background: transparent
+				font: 1rem/1 $font
+				color: white
+				padding: 8px 10px
+				margin-bottom: 8px
+				&:focus
+					outline: none
+				option
+					background: $black
+					color: white
+			.quiz__other-sendmsg
+				font: .87rem/1 $font
+				color: white
+				margin-bottom: 4px
+				span
+					font-weight: bold
+					color: $yellow
+					&:nth-child(2)
+						color: $green
+			.quiz__other-info
+				font: italic .87rem/1 $font
+				text-decoration: underline dotted
+				color: white
+
+			.btn__continue
+				margin-bottom: 8px
+			.quiz__other-text1
+				font: .87rem/1.25 $font
+				color: white
+				span
+					color: $green
+					cursor: pointer
+			.quiz__other-text2
+				font: .87rem/1.25 $font
+				// text-transform: uppercase
+				color: white
+			.quiz__other-text3
+				font: .65rem/1.25 $font
+				color: rgba(255,255,255,.5)
 
 
 @keyframes PROGRESS
