@@ -322,7 +322,7 @@
 			</label>
 
 			<div class="quiz__reg-footer">
-				<button type="button" id="btn__auth" class="btn__continue more" @click="submitGet()">ПОЛУЧИТЬ КОНТЕНТ</button>
+				<button type="button" id="btn__auth1" class="btn__continue more" @click="submitGet()">ПОЛУЧИТЬ КОНТЕНТ</button>
 			</div>
 		</div>
 

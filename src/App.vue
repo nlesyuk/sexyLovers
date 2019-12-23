@@ -4,7 +4,13 @@
 		<myHeader></myHeader>
 		<myBody></myBody>
 		<myFooter  v-if="true"></myFooter>
-		<myPopupGirls  v-if="false"></myPopupGirls>
+
+		<transition name="component-fade" mode="out-in">
+			<myPopupGirls 
+				@update="showControl = $event" 
+				v-show="showControl"
+			></myPopupGirls>
+		</transition>
 
 	</div>
 </template>
@@ -17,6 +23,11 @@ import PopupGirls from './components/PopupGirls'
 
 export default {
 	name: 'app',
+	data(){
+		return {
+			showControl: true
+		}
+	},
 	components: {
 		myHeader: header,
 		myBody: body,
@@ -32,4 +43,12 @@ export default {
 	min-height: 100vh
 	height: auto
 	background: black
+
+	
+.component-fade-enter-active, .component-fade-leave-active
+	transition: opacity .3s ease
+.component-fade-enter, .component-fade-leave-to
+	opacity: 0
+
+
 </style>
