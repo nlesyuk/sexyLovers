@@ -569,9 +569,9 @@
 		display: block
 		width: 100px
 		height: 120%
-		background: rgba(255,255,255,.1)
+		background: rgba(231, 57, 57, 0.1)
 		transform: rotate(20deg)
-		animation: 0.6s ease-in 3s normal forwards running fastLine
+		animation: 5s ease-in 5s infinite forwards running fastLine
 		position: absolute
 		top: -10%
 		right: -20%
@@ -1182,11 +1182,24 @@
 		background: $green
 
 @keyframes fastLine
-	from
-		right: -10% 
-	to
-		right: 120%
-
+	0%,
+	20%,
+	40%,
+	80%,
+	100%
+		right: 120% 
+	10%,
+	30%,
+	50%,
+	70%,
+	90%
+	0%,
+		right: -20%
+	20.1%,
+	40.1%,
+	80.1%,
+	100.1%
+		right: -20%
 
 // ADAPTIVE
 @media (max-width: 1200.98px)
@@ -1325,7 +1338,8 @@
 		padding: 30px 16px 40px
 		min-height: 0px
 		&::before
-			width: 100px
+			animation: 3s ease-in 5s infinite forwards running fastLine
+			width: 50px
 			height: 120%
 			top: -10%
 			right: -50%
