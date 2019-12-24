@@ -571,7 +571,7 @@
 		height: 120%
 		background: rgba(255,255,255,.1)
 		transform: rotate(20deg)
-		animation: 0.6s ease-in 5s normal forwards running fastLine
+		animation: 0.6s ease-in 3s normal forwards running fastLine
 		position: absolute
 		top: -10%
 		right: -20%
@@ -1324,6 +1324,11 @@
 		background: rgba(33, 33, 38, 0.9)
 		padding: 30px 16px 40px
 		min-height: 0px
+		&::before
+			width: 100px
+			height: 120%
+			top: -10%
+			right: -50%
 		&.reg
 			padding: 50px 50px 70px
 		&.result
