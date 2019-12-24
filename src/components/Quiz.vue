@@ -562,6 +562,21 @@
 	min-height: 400px
 	background: $grey2
 	margin-bottom: 40px
+	overflow: hidden
+	position: relative
+	&::before
+		content: ""
+		display: block
+		width: 100px
+		height: 120%
+		background: rgba(255,255,255,.1)
+		transform: rotate(20deg)
+		animation: 0.6s ease-in 5s normal forwards running fastLine
+		position: absolute
+		top: -10%
+		right: -20%
+		z-index: 20
+		pointer-events: none
 	&.reg
 		padding: 50px 50px 70px
 		.quiz__title
@@ -611,6 +626,15 @@
 			&:hover
 				background: $hover
 				transition: all .25s
+		.quiz__step1,
+		.quiz__step2,
+		.quiz__step3,
+		.quiz__step6,
+		.quiz__step4,
+		.quiz__step5,
+		.quiz__step6
+			z-index: 10
+
 		.quiz__step1
 			display: flex
 			justify-content: space-around
@@ -1144,6 +1168,11 @@
 				color: rgba(255,255,255,.5)
 
 
+
+	
+	
+	
+
 @keyframes PROGRESS
 	from
 		width: 0% 
@@ -1151,6 +1180,12 @@
 	to
 		width: 100%
 		background: $green
+
+@keyframes fastLine
+	from
+		right: -10% 
+	to
+		right: 120%
 
 
 // ADAPTIVE
