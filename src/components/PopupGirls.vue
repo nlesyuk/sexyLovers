@@ -13,7 +13,7 @@
 					<h3>Оля, <span>26</span></h3>
 				</div>
 				<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
-				<a href="#" class="popup__link">Начать общение</a>
+				<a href="#quiz" class="popup__link" @click.prevent="scrollTo($event)">Начать общение</a>
 			</li>
 			<li v-if="show['2']">
 				<div class="popup__top">
@@ -21,7 +21,7 @@
 					<h3>Мята, <span>27</span></h3>
 				</div>
 				<p class="popup__text">Проведу приятный вечер, а может и ночь с незнакомцем.</p>
-				<a href="#" class="popup__link">Начать общение</a>
+				<a href="#quiz" class="popup__link" @click.prevent="scrollTo($event)">Начать общение</a>
 			</li>
 			<li v-if="show['3']">
 				<div class="popup__top">
@@ -29,7 +29,7 @@
 					<h3>Вера, <span>41</span></h3>
 				</div>
 				<p class="popup__text">Отдыхаем с подругами. Кто составит компанию?</p>
-				<a href="#" class="popup__link">Начать общение</a>
+				<a href="#quiz" class="popup__link" @click.prevent="scrollTo($event)">Начать общение</a>
 			</li>
 			<li v-if="show['4']">
 				<div class="popup__top">
@@ -37,7 +37,7 @@
 					<h3>Альбина, <span>24</span></h3>
 				</div>
 				<p class="popup__text">Мечтаю попробовать секс втроем!!!</p>
-				<a href="#" class="popup__link">Начать общение</a>
+				<a href="#quiz" class="popup__link" @click.prevent="scrollTo($event)">Начать общение</a>
 			</li>
 			<li v-if="show['5']">
 				<div class="popup__top">
@@ -45,7 +45,7 @@
 					<h3>Вика, <span>28</span></h3>
 				</div>
 				<p class="popup__text">Хочу взрослого мужчину без комплексов!</p>
-				<a href="#" class="popup__link">Начать общение</a>
+				<a href="#quiz" class="popup__link" @click.prevent="scrollTo($event)">Начать общение</a>
 			</li>
 		</transition>
 	</ul>
@@ -107,6 +107,10 @@ export default {
 
 			}).catch(err => console.log(err))
 
+		},
+		scrollTo($event) {
+			let hash = $event.toElement.hash;
+			document.querySelector(hash).scrollIntoView({ behavior: 'smooth', block: 'end'});
 		}
 	},
 	mounted() {
