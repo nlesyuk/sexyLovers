@@ -5,12 +5,12 @@
 		<myBody></myBody>
 		<myFooter  v-if="true"></myFooter>
 
-		<transition name="component-fade" mode="out-in">
+		<!-- <transition name="component-fade" mode="out-in"> -->
 			<myPopupGirls 
 				@update="showControl = $event" 
 				v-show="showControl"
 			></myPopupGirls>
-		</transition>
+		<!-- </transition> -->
 
 	</div>
 </template>

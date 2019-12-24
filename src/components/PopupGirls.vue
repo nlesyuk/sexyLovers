@@ -1,48 +1,56 @@
 <template>
-
-	<ul class="popup__list">
-		<li v-show="show['1']">
-			<div class="popup__top">
-				<img src="../assets/popup_1.jpg" alt="">
-				<h3>Оля, <span>26</span></h3>
-			</div>
-			<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
-			<a href="#" class="popup__link">Начать общение</a>
-		</li>
-		<li v-show="show['2']">
-			<div class="popup__top">
-				<img src="../assets/popup_2.jpg" alt="">
-				<h3>Мята, <span>27</span></h3>
-			</div>
-			<p class="popup__text">Проведу приятный вечер, а может и ночь с незнакомцем.</p>
-			<a href="#" class="popup__link">Начать общение</a>
-		</li>
-		<li v-show="show['3']">
-			<div class="popup__top">
-				<img src="../assets/popup_3.jpg" alt="">
-				<h3>Вера, <span>41</span></h3>
-			</div>
-			<p class="popup__text">Отдыхаем с подругами. Кто составит компанию?</p>
-			<a href="#" class="popup__link">Начать общение</a>
-		</li>
-		<li v-show="show['4']">
-			<div class="popup__top">
-				<img src="../assets/popup_4.jpg" alt="">
-				<h3>Альбина, <span>24</span></h3>
-			</div>
-			<p class="popup__text">Мечтаю попробовать секс втроем!!!</p>
-			<a href="#" class="popup__link">Начать общение</a>
-		</li>
-		<li v-show="show['5']">
-			<div class="popup__top">
-				<img src="../assets/popup_5.jpg" alt="">
-				<h3>Вика, <span>28</span></h3>
-			</div>
-			<p class="popup__text">Хочу взрослого мужчину без комплексов!</p>
-			<a href="#" class="popup__link">Начать общение</a>
-		</li>
+<div>
+	<ul class="popup__list" >
+		<transition
+			name="custom-classes-transition"
+			enter-active-class="animated fadeInUp"
+			leave-active-class="animated fadeOutDown"
+			mode="out-in"
+		>
+			<li v-if="show['1']">
+				<div class="popup__top">
+					<img src="../assets/popup_1.jpg" alt="">
+					<h3>Оля, <span>26</span></h3>
+				</div>
+				<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
+				<a href="#" class="popup__link">Начать общение</a>
+			</li>
+			<li v-if="show['2']">
+				<div class="popup__top">
+					<img src="../assets/popup_2.jpg" alt="">
+					<h3>Мята, <span>27</span></h3>
+				</div>
+				<p class="popup__text">Проведу приятный вечер, а может и ночь с незнакомцем.</p>
+				<a href="#" class="popup__link">Начать общение</a>
+			</li>
+			<li v-if="show['3']">
+				<div class="popup__top">
+					<img src="../assets/popup_3.jpg" alt="">
+					<h3>Вера, <span>41</span></h3>
+				</div>
+				<p class="popup__text">Отдыхаем с подругами. Кто составит компанию?</p>
+				<a href="#" class="popup__link">Начать общение</a>
+			</li>
+			<li v-if="show['4']">
+				<div class="popup__top">
+					<img src="../assets/popup_4.jpg" alt="">
+					<h3>Альбина, <span>24</span></h3>
+				</div>
+				<p class="popup__text">Мечтаю попробовать секс втроем!!!</p>
+				<a href="#" class="popup__link">Начать общение</a>
+			</li>
+			<li v-if="show['5']">
+				<div class="popup__top">
+					<img src="../assets/popup_5.jpg" alt="">
+					<h3>Вика, <span>28</span></h3>
+				</div>
+				<p class="popup__text">Хочу взрослого мужчину без комплексов!</p>
+				<a href="#" class="popup__link">Начать общение</a>
+			</li>
+		</transition>
 	</ul>
-	
+
+</div>
 </template>
 
 <script>
@@ -57,39 +65,52 @@ export default {
 				'3': false,
 				'4': false,
 				'5': false,
-			}
+			},
+			currentItem: '0'
 		}
 	},
 	methods: {
-		showGirls(intervar, startFromItem) {
-			let countObj = {
-				current: startFromItem
-			}
-			// debugger
-			setInterval(()=>{
-				// hide 
-				for (let item in this.show) {
-					this.show[item] = false; 
-					this.$emit("update", false)
-				} 
+		showGirls(showAfter, hideAfter) {
+			return new Promise((resolve, reject) => {
 
-				// check
-				countObj.current = +countObj.current + 1;
-				if( +countObj.current > 5) countObj.current = 1
+				setTimeout( () => {
+					// hide all
+					for (let item in this.show) this.show[item] = false;
 
-				console.log(countObj.current, countObj.current.toString() );
-				// show
-				this.show[countObj.current.toString()] = true;
-				this.$emit("update", true);
-				setTimeout(()=>{
-					// this.$emit("update", false)
-				}, 1000)
+					// check
+					this.currentItem = +this.currentItem + 1;
+					if( +this.currentItem > 5) this.currentItem = 1
 
-			}, intervar * 1000)
+					// show
+					let strIndex = this.currentItem.toString();
+					this.show[strIndex] = true;
+
+					console.log(+strIndex, '1-timeout');
+					resolve(strIndex);
+
+				}, showAfter * 1000);
+
+			}).then( (index) => {
+				return new Promise((resolve, reject) => {
+
+					setTimeout(() => {
+						this.show[index] = false;
+						console.log(+index, '2-timeout');
+						resolve(index);
+					}, hideAfter * 1000)
+
+				});
+			}).then( (index) => {
+
+				console.log(+index, '3-timeout');
+				this.showGirls(5, 7);
+
+			}).catch(err => console.log(err))
+
 		}
 	},
 	mounted() {
-		this.showGirls(8, 1);
+		this.showGirls(5, 7)
 	}
 }
 </script>
@@ -102,6 +123,7 @@ export default {
 	right: 50px
 	bottom: 50px
 	cursor: default
+	z-index: 9999
 	li:first-child
 		display: block
 	li
@@ -145,5 +167,23 @@ export default {
 				cursor: pointer
 	color: red
 	font-size: 22px
+
+
+
+@media (max-width: 1200.98px)
+	.popup__list
+		position: fixed 
+		right: 10px
+		bottom: 10px
+
+@media (max-width: 992.98px)
+	.popup__list
+		position: fixed 
+@media (max-width: 768.98px)
+	.popup__list
+		position: fixed 
+@media (max-width: 576.98px)
+	.popup__list
+		position: fixed
 
 </style>
