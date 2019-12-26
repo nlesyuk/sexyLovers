@@ -85,7 +85,7 @@ export default {
 					let strIndex = this.currentItem.toString();
 					this.show[strIndex] = true;
 
-					console.log(+strIndex, '1-timeout');
+					// console.log(+strIndex, '1-timeout');
 					resolve(strIndex);
 
 				}, showAfter * 1000);
@@ -95,14 +95,14 @@ export default {
 
 					setTimeout(() => {
 						this.show[index] = false;
-						console.log(+index, '2-timeout');
+						// console.log(+index, '2-timeout');
 						resolve(index);
 					}, hideAfter * 1000)
 
 				});
 			}).then( (index) => {
 
-				console.log(+index, '3-timeout');
+				// console.log(+index, '3-timeout');
 				this.showGirls(5, 7);
 
 			}).catch(err => console.log(err))

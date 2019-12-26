@@ -63,6 +63,7 @@ export default {
 @import './src/styles/main.sass'
 
 #accounts
+	width: 100%
 	box-sizing: border-box
 	background: $grey2
 	max-width: 100%

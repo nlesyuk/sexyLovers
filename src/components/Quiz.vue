@@ -327,7 +327,6 @@
 		</div>
 
 
-		<!-- https://modullink.com/intimsearch4/?page=join&action=j2 -->
 		<div class="quiz__other quiz__reg" v-show="formData['10']">
 			<p class="quiz__reg-description quiz__auth">ДЛЯ УСПЕШНОГО ПРОДОЛЖЕНИЯ ВАМ НУЖНО ОТПРАВИТЬ СМС И ВВЕСТИ ПОЛУЧЕННЫЙ КОД ДОСТУПА.</p>
 
@@ -480,6 +479,10 @@
 			},
 			submitAuth() {
 				// handler for auth section
+			},
+			checkValidateFor8Button(){
+				if( this.reg_name && this.reg_age && this.reg_phone && this.reg_check ) this.btn8isDisabled = false
+				else this.btn8isDisabled = true
 			}
 		},
 		watch: {
@@ -514,29 +517,19 @@
 				}
 			},
 			reg_name: function(value){
-				if( this.reg_name && this.reg_age && this.reg_phoneMaskStatus && this.reg_check ) this.btn8isDisabled = false
-				else this.btn8isDisabled = true
+				this.checkValidateFor8Button()
 			},
 			reg_age: function(value){
-				if( this.reg_name && this.reg_age && this.reg_phoneMaskStatus && this.reg_check ) this.btn8isDisabled = false
-				else this.btn8isDisabled = true
+				if(value.length > 2){
+					this.reg_age = value.slice(0,2)
+				}
+				this.checkValidateFor8Button()
 			},
-			reg_phoneMask: function(value){
-				console.log(value, "+7 (123) 12 12 123")
-				let updtString = value.replace("(", '').replace(")", '').replace("+", '').split(' ').join('');
-				let len = updtString.length;
-
-				if( len === 11 ) this.reg_phoneMaskStatus = parseInt(updtString)
-				else this.reg_phoneMaskStatus = false
-
-				console.log(updtString, len,  parseInt(updtString))
-
-				if( this.reg_name && this.reg_age && this.reg_phoneMaskStatus && this.reg_check ) this.btn8isDisabled = false
-				else this.btn8isDisabled = true
+			reg_phone: function(){
+				this.checkValidateFor8Button()
 			},
 			reg_check: function(value){
-				if( this.reg_name && this.reg_age && this.reg_phoneMaskStatus && this.reg_check ) this.btn8isDisabled = false
-				else this.btn8isDisabled = true
+				this.checkValidateFor8Button()
 			},
 			selected: function(value){
 				let arr = value.split(',');
@@ -634,7 +627,6 @@
 		.quiz__step5,
 		.quiz__step6
 			z-index: 10
-
 		.quiz__step1
 			display: flex
 			justify-content: space-around
@@ -673,7 +665,7 @@
 				border-radius: 5px
 				padding: 16px
 				color: red
-				border: 1px solid $grey
+				border: 1px solid transparent
 				svg
 					display: block
 					margin: 0 auto
@@ -985,6 +977,29 @@
 					&:focus
 						border-color: white
 						outline: none
+					&[type=number]::-webkit-outer-spin-button,
+					&[type=number]::-webkit-inner-spin-button 
+						-webkit-appearance: none
+						margin: 0
+					&[type="number"]
+						-moz-appearance: textfield
+					&[type="number"]:hover,
+					&[type="number"]:focus
+						-moz-appearance: number-input
+				input:-webkit-autofill,
+				input:-webkit-autofill:hover, 
+				input:-webkit-autofill:focus,
+				textarea:-webkit-autofill,
+				textarea:-webkit-autofill:hover,
+				textarea:-webkit-autofill:focus,
+				select:-webkit-autofill,
+				select:-webkit-autofill:hover,
+				select:-webkit-autofill:focus
+					border: 2px solid white
+					-webkit-text-fill-color: white
+					-webkit-box-shadow: 0 0 0px 1000px $grey2 inset
+					transition: background-color 5000s ease-in-out 0s
+
 				.quiz__reg-radio
 					display: flex
 					justify-content: flex-start
@@ -1204,7 +1219,8 @@
 // ADAPTIVE
 @media (max-width: 1200.98px)
 	#quiz
-		padding: 30px 30px 40px
+		padding: 30px 30px
+		min-height: 355px
 		margin-bottom: 30px
 		&.reg
 			padding: 50px 50px 70px
@@ -1291,7 +1307,8 @@
 
 @media (max-width: 992.98px)
 	#quiz
-		padding: 30px 16px 40px
+		padding: 30px 16px 30px
+		min-height: 0px
 		&.reg
 			padding: 50px 50px 70px
 			.quiz__title
