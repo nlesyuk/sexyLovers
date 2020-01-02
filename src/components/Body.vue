@@ -111,9 +111,16 @@ main
 			text-align: center
 			color: $brown
 
+@media (max-width: 1650.98px)
+	main
+		background-position: 0% top
+@media (max-width: 1500.98px)
+	main
+		background-position: -10% top
 
 @media (max-width: 1400.98px)
 	main
+		background-position: -20% top
 		&.getero
 			background-size: contain
 			background-position: -30% top
@@ -136,6 +143,7 @@ main
 
 @media (max-width: 992.98px)
 	main
+		background-position: -80% top
 		padding-bottom: 30px
 		&.getero
 			background-size: contain
