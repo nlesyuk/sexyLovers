@@ -20,7 +20,7 @@
 					<p class="quiz__text">Романтика</p>
 				</label>
 			</div>
-			<div class="quiz__cont brak">
+			<div class="quiz__cont">
 				<input type="radio" name="target" id="target3" @click="nextStep('2', '1')">
 				<label for="target3">
 					<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52px" height="40px"><path fill-rule="evenodd" d="M35.752,40.009 C32.084,40.009 28.709,38.785 25.986,36.746 C23.266,38.785 19.891,40.009 16.223,40.009 C7.271,40.009 -0.015,32.791 -0.015,23.917 C-0.015,15.037 7.271,7.819 16.223,7.819 C19.891,7.819 23.266,9.044 25.986,11.082 C28.705,9.044 32.084,7.819 35.752,7.819 C44.707,7.819 51.987,15.037 51.987,23.917 C51.987,32.791 44.707,40.009 35.752,40.009 ZM22.798,14.245 C20.920,12.987 18.656,12.250 16.223,12.250 C9.732,12.250 4.454,17.482 4.454,23.917 C4.454,30.346 9.732,35.578 16.223,35.578 C18.656,35.578 20.920,34.842 22.798,33.583 C20.746,30.888 19.512,27.547 19.512,23.917 C19.512,20.285 20.746,16.941 22.798,14.245 ZM25.986,17.413 C24.724,19.269 23.981,21.511 23.981,23.917 C23.981,26.323 24.720,28.559 25.986,30.420 C27.250,28.559 27.989,26.323 27.989,23.917 C27.989,21.511 27.250,19.269 25.986,17.413 ZM35.752,12.250 C33.315,12.250 31.055,12.987 29.176,14.245 C31.229,16.941 32.464,20.285 32.464,23.917 C32.464,27.547 31.229,30.888 29.176,33.583 C31.055,34.842 33.315,35.578 35.752,35.578 C42.239,35.578 47.520,30.346 47.520,23.917 C47.520,17.482 42.239,12.250 35.752,12.250 ZM25.671,9.183 L25.654,9.165 C20.755,7.210 18.869,2.692 21.026,0.732 C23.182,-1.225 25.654,1.458 25.654,1.458 L25.671,1.458 C25.671,1.458 28.141,-1.225 30.298,0.732 C32.455,2.692 30.570,7.222 25.671,9.183 Z"/></svg>
@@ -422,24 +422,34 @@
 				this.title = titles[index];
 			},
 			nextStep(step, prevStep, event) {
-				// change title
-				let index = +step - 1;
-				this.title = this.titles[index];
-				// change step section
-				this.formData[step] = true;
-				this.formData[prevStep] = !this.formData[prevStep];
-				
-				// change bg in body component
-				if(step === '3') this.sex1 = event;
-				if(step === '6') this.sex2 = event;
-				if(step === '7') {
-					if ( this.sex1 === 'g' && this.sex2 === 'g' || this.sex1 === 'm' && this.sex2 === 'm' ) this.$emit('isUserBi', true);
-					if( this.sex1 === 'm' && this.sex2 === 'g' || this.sex1 === 'g' && this.sex2 === 'm' ) this.$emit('isUserGetero', true);
-				}
+				new Promise((resolve,reject) => {
+					// make pause
+					setTimeout(()=>{
+						resolve(1)
+					}, 500)
 
-				// send event to Body component for add account component below
-				if(step === '7' || step === '8') this.$emit('stepResult', true);
-				else this.$emit('stepResult', false);
+				}).then(result => {
+					
+					// change title
+					let index = +step - 1;
+					this.title = this.titles[index];
+					// change step section
+					this.formData[step] = true;
+					this.formData[prevStep] = !this.formData[prevStep];
+					
+					// change bg in body component
+					if(step === '3') this.sex1 = event;
+					if(step === '6') this.sex2 = event;
+					if(step === '7') {
+						if ( this.sex1 === 'g' && this.sex2 === 'g' || this.sex1 === 'm' && this.sex2 === 'm' ) this.$emit('isUserBi', true);
+						if( this.sex1 === 'm' && this.sex2 === 'g' || this.sex1 === 'g' && this.sex2 === 'm' ) this.$emit('isUserGetero', true);
+					}
+	
+					// send event to Body component for add account component below
+					if(step === '7' || step === '8') this.$emit('stepResult', true);
+					else this.$emit('stepResult', false);
+
+				});
 			},
 			animateCount(variable, from, to) {
 				const start = Date.now();
@@ -456,9 +466,6 @@
 			},
 			getRandomArbitrary(min, max) {
 				return Math.floor( Math.random() * (max - min) + min );
-			},
-			detectCountryByPhone() {
-
 			},
 			submitReg(e) {
 				let phone = this.reg_phone;
@@ -536,9 +543,7 @@
 				this.codeNum = arr[1];
 			}
 		},
-		mounted(){
-
-		}
+		mounted(){}
 	}
 </script>
 
@@ -636,12 +641,14 @@
 				&.intim
 					svg
 						margin-bottom: 12px
-				&.brak
+				&:hover
 					svg,
 					.quiz__text
 						fill: white
 						color: white
-				&:hover
+						cursor: pointer
+						transition: all .25s
+				&:focus
 					label
 						border: 1px solid $pink
 						cursor: pointer
@@ -670,6 +677,7 @@
 					margin: 0 auto
 					fill: $grey3
 					margin-bottom: 8px
+					transition: all .25s
 					&.romantic
 						margin-top: -5px
 				.quiz__text
@@ -677,6 +685,7 @@
 					text-align: center
 					text-transform: uppercase
 					color: $grey3
+					transition: all .25s
 
 
 		.quiz__step2
