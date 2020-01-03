@@ -4,6 +4,7 @@ import VueMeta from 'vue-meta'
 import VueMask from 'v-mask'
 import PhoneMaskInput from  "vue-phone-mask-input" // use as component <phone-mask-input/>
 import 'animate.css/animate.min.css'
+// title: 'Sexy lovers - Ищите интим без обязательств? Вы по адресу!',
 
 Vue.config.productionTip = false
 
@@ -15,14 +16,14 @@ new Vue({
     htmlAttrs: {
       lang: 'ru'
     },
-    title: 'Sexy lovers - Ищите интим без обязательств? Вы по адресу!',
+    title: 'title',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'theme-color', content: '#e73939' },
     ],
     link: [
-      { rel: 'favicon', href: 'favicon.ico' }
+      { rel: 'icon', href: '../public/favicon.ico', type: "image/x-icon"}
     ]
   },
   render: h => h(App)
