@@ -22,7 +22,7 @@ new Vue({
       { name: 'theme-color', content: '#e73939' },
     ],
     link: [
-      { rel: 'favicon', href: 'favicon.ico' }
+      { rel: 'icon', href: '../public/favicon.ico', type: "image/x-icon"}
     ]
   },
   render: h => h(App)
