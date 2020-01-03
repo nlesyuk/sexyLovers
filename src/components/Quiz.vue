@@ -378,7 +378,6 @@
 
 <script>
 	export default {
-		name: 'Quiz',
 		data () {
 			return {
 				title: 'ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:',

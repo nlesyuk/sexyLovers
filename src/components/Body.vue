@@ -33,7 +33,6 @@ import map from './Map'
 import accounts from './Accounts'
 
 export default {
-	name: 'Main',
 	data () {
 		return {
 			msg: 'Body',

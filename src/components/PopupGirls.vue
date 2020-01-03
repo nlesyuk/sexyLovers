@@ -55,7 +55,6 @@
 
 <script>
 export default {
-	name: 'app',
 	data () {
 		return {
 			msg: 'PopupGirls',
@@ -158,7 +157,7 @@ export default {
 			color: white
 			margin-bottom: 8px
 		.popup__link
-			display: block
+			display: none
 			background: $grey2
 			padding: 8px
 			border-radius: 4px

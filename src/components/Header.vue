@@ -24,7 +24,6 @@
 import cookie from '../mixins/cookie';
 
 export default {
-	name: 'top-header',
 	mixins: [cookie],
 	data () {
 		return {

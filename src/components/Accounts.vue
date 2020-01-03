@@ -50,7 +50,6 @@
 
 <script>
 export default {
-	name: 'Accountsе',
 	data () {
 		return {
 			msg: 'Accounts'

@@ -11,7 +11,6 @@ Vue.use(VueMeta);
 Vue.use(VueMask);
 
 new Vue({
-  render: h => h(App),
   metaInfo: {
     htmlAttrs: {
       lang: 'ru'
@@ -20,7 +19,11 @@ new Vue({
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'theme-colo', content: '#837a64' },
+      { name: 'theme-color', content: '#e73939' },
+    ],
+    link: [
+      { rel: 'favicon', href: 'favicon.ico' }
     ]
-  }
+  },
+  render: h => h(App)
 }).$mount('#app')
