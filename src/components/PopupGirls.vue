@@ -131,7 +131,7 @@ export default {
 		display: block
 	li
 		display: block
-		width: 150px
+		width: 250px
 		box-sizing: border-box
 		padding: 8px
 		border-radius: 5px
@@ -144,16 +144,20 @@ export default {
 			margin-bottom: 8px
 			img
 				display: block
+				width: 30%
 				max-width: 100%
 				border-radius: 8px
+				border-radius: 18px
 				margin-right: 8px
 			h3
 				font: bold .87rem/1.25 $font
+				font: bold 1.125rem/1.25 $font
 				color: white
 				span
 					display: block
 		.popup__text
 			font: .75rem/1.125 $font
+			font: .9rem/1.125 $font
 			color: white
 			margin-bottom: 8px
 		.popup__link
@@ -185,6 +189,18 @@ export default {
 @media (max-width: 768.98px)
 	.popup__list
 		position: fixed 
+		li
+			width: 200px
+			.popup__top
+				img
+					display: block
+					width: 50%
+					max-width: 100%
+					border-radius: 22px
+				h3
+					font: bold 1rem/1.25 $font
+			.popup__text
+				font: 1rem/1.125 $font
 @media (max-width: 576.98px)
 	.popup__list
 		position: fixed
