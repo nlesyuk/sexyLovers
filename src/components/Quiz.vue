@@ -217,10 +217,10 @@
 				<div class="quiz__reg-cont">
 					<!-- <input type="text" name="number" v-mask="'+7 (###) ### ## ##'" v-model="reg_phoneMask"  required="required"> -->
 						<phone-mask-input
-						  v-model="reg_phone"
-						  autoDetectCountry
-						  wrapperClass="wrraper-example"
-						  inputClass="input-example"
+							v-model="reg_phone"
+							autoDetectCountry
+							wrapperClass="wrraper-example"
+							inputClass="input-example"
 						/>
 					<span class="quiz__reg-text1">Пример: +7 (916) 987 11 11</span>
 				</div>
@@ -371,6 +371,7 @@
 			</div>
 		</div>
 
+
 	</form>
 
 </section>
@@ -487,8 +488,33 @@
 				// handler for auth section
 			},
 			checkValidateFor8Button(){
-				if( this.reg_name && this.reg_age && this.reg_phone && this.reg_check ) this.btn8isDisabled = false
+				if( this.reg_name && this.reg_age >= 18 && this.reg_phone.length >= 12 && this.reg_check ) this.btn8isDisabled = false
 				else this.btn8isDisabled = true
+			},
+
+			beforeEnter: function (el) {
+				el.style.opacity = 0
+				el.style.height = 0
+			},
+			enter: function (el, done) {
+				var delay = el.dataset.index * 150
+				setTimeout(function () {
+					Velocity(
+					el,
+					{ opacity: 1, height: '1.6em' },
+					{ complete: done }
+					)
+				}, delay)
+			},
+			leave: function (el, done) {
+				var delay = el.dataset.index * 150
+				setTimeout(function () {
+					Velocity(
+					el,
+					{ opacity: 0, height: 0 },
+					{ complete: done }
+					)
+				}, delay)
 			}
 		},
 		watch: {
@@ -532,7 +558,8 @@
 				this.checkValidateFor8Button()
 			},
 			reg_phone: function(){
-				this.checkValidateFor8Button()
+				this.checkValidateFor8Button();
+				console.log(this.reg_phone, this.reg_phone.length);
 			},
 			reg_check: function(value){
 				this.checkValidateFor8Button()
@@ -1054,7 +1081,7 @@
 
 			.quiz__reg-footer
 				margin-left: 110px
-				padding-top: 24px
+				padding-top: 0px
 				.quiz__reg-cost
 					display: block
 					font: 500 .75rem/1 $font
@@ -1102,7 +1129,7 @@
 						top: calc(50% - 4.5px)
 				.quiz__reg-policy
 					display: block
-					max-height: 120px
+					max-height: 30px
 					background: $black
 					border-radius: 4px
 					padding: 10px
