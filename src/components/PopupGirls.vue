@@ -9,7 +9,7 @@
 		>
 			<li v-if="show['1']">
 				<div class="popup__top">
-					<img src="../assets/popup_1.jpg" alt="">
+					<img src="../assets/ava1.jpg" alt="">
 					<h3>Оля, <span>26</span></h3>
 				</div>
 				<p class="popup__text">Срочно ищу мужика на вечер!!! <br>Муж уехал</p>
@@ -17,7 +17,7 @@
 			</li>
 			<li v-if="show['2']">
 				<div class="popup__top">
-					<img src="../assets/popup_2.jpg" alt="">
+					<img src="../assets/ava2.jpg" alt="">
 					<h3>Мята, <span>27</span></h3>
 				</div>
 				<p class="popup__text">Проведу приятный вечер, а может и ночь с незнакомцем.</p>
@@ -25,15 +25,15 @@
 			</li>
 			<li v-if="show['3']">
 				<div class="popup__top">
-					<img src="../assets/popup_3.jpg" alt="">
-					<h3>Вера, <span>41</span></h3>
+					<img src="../assets/ava6.jpg" alt="">
+					<h3>Вера, <span>31</span></h3>
 				</div>
 				<p class="popup__text">Отдыхаем с подругами. Кто составит компанию?</p>
 				<a href="#quiz" class="popup__link" @click.prevent="scrollTo($event)">Начать общение</a>
 			</li>
 			<li v-if="show['4']">
 				<div class="popup__top">
-					<img src="../assets/popup_4.jpg" alt="">
+					<img src="../assets/ava7.jpg" alt="">
 					<h3>Альбина, <span>24</span></h3>
 				</div>
 				<p class="popup__text">Мечтаю попробовать секс втроем!!!</p>
@@ -41,7 +41,7 @@
 			</li>
 			<li v-if="show['5']">
 				<div class="popup__top">
-					<img src="../assets/popup_5.jpg" alt="">
+					<img src="../assets/ava4.jpg" alt="">
 					<h3>Вика, <span>28</span></h3>
 				</div>
 				<p class="popup__text">Хочу взрослого мужчину без комплексов!</p>
@@ -146,13 +146,14 @@ export default {
 				display: block
 				width: 30%
 				max-width: 100%
-				border-radius: 8px
-				border-radius: 18px
+				border-radius: 50%
+				border: 2px solid $accent
 				margin-right: 8px
 			h3
 				font: bold .87rem/1.25 $font
 				font: bold 1.125rem/1.25 $font
 				color: white
+				color: $accent
 				span
 					display: block
 		.popup__text
@@ -196,7 +197,7 @@ export default {
 					display: block
 					width: 50%
 					max-width: 100%
-					border-radius: 22px
+					// border-radius: 22px
 				h3
 					font: bold 1rem/1.25 $font
 			.popup__text
