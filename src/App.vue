@@ -3,7 +3,7 @@
 
 		<myHeader></myHeader>
 		<myBody></myBody>
-		<myFooter  v-if="true"></myFooter>
+		<myFooter></myFooter>
 
 		<myPopupGirls 
 			@update="showControl = $event" 
@@ -43,9 +43,11 @@ export default {
 	background: black
 
 	
-.component-fade-enter-active, .component-fade-leave-active
+.component-fade-enter-active, 
+.component-fade-leave-active
 	transition: opacity .3s ease
-.component-fade-enter, .component-fade-leave-to
+.component-fade-enter, 
+.component-fade-leave-to
 	opacity: 0
 
 

@@ -1,11 +1,20 @@
 <template>
 <section id="quiz" :class="{'result': formData['7'] || formData['8'] || formData['9'] || formData['10']}">
 
-	<h2 class="quiz__title"> {{ title }} </h2>
+<transition
+	name="fade"
+	mode="out-in"
+>
+	<h2 class="quiz__title" > <span v-show="title">{{ title }}</span> </h2>
+</transition>
 
 	<form class="quiz__form">
 
-		<div class="quiz__step1" v-show="formData['1']">
+<transition
+	name="fade"
+	mode="out-in"
+>
+		<div class="quiz__step1" v-if="formData['1']" key="1">
 			<div class="quiz__cont intim">
 				<input type="radio" name="target" id="target1" @click="nextStep('2', '1')">
 				<label for="target1" >
@@ -36,8 +45,7 @@
 			</div>
 		</div>
 
-
-		<div class="quiz__step2" v-show="formData['2']">
+		<div class="quiz__step2" v-else-if="formData['2']" key="2">
 			<div class="quiz__cont">
 				<input type="radio" name="sex" id="sex1" value="g" @click="nextStep('3', '2', $event.target.value)">
 				<label for="sex1">
@@ -54,8 +62,7 @@
 			</div>
 		</div>
 
-
-		<div class="quiz__step3" v-show="formData['3']"> 
+		<div class="quiz__step3" v-else-if="formData['3']" key="3"> 
 			<div class="quiz__cont">
 				<label>
 					<input type="checkbox" name="partner_location[]" value="1" v-model="partner_location"> 
@@ -82,7 +89,7 @@
 		</div>
 
 
-		<div class="quiz__step4" v-show="formData['4']">
+		<div class="quiz__step4" v-else-if="formData['4']" key="4">
 			<div class="quiz__cont">
 				<label>
 					<input type="radio" name="partner_body" value="1" v-model="partner_body">
@@ -101,7 +108,7 @@
 		</div>
 
 
-		<div class="quiz__step5" v-show="formData['5']">
+		<div class="quiz__step5" v-else-if="formData['5']" key="5">
 
 			<div class="quiz__cont">
 				<div class="quiz__item first">
@@ -123,7 +130,7 @@
 		</div>
 
 
-		<div class="quiz__step6" v-show="formData['6']">
+		<div class="quiz__step6" v-else-if="formData['6']" key="6">
 			<div class="quiz__cont">
 				<label>
 					<input type="checkbox" name="desire[]"  value="1" v-model="desire">
@@ -162,7 +169,7 @@
 		</div>
 
 
-		<div class="quiz__result" v-show="formData['7']">
+		<div class="quiz__result" v-else-if="formData['7']" key="7">
 			<div class="quiz__cont1">
 				<div class="quiz__s">
 					<p class="quiz__res-text1">В ВАШЕМ ГОРОДЕ</p>
@@ -189,7 +196,7 @@
 		</div>
 
 
-		<div class="quiz__reg" v-show="formData['8']">
+		<div class="quiz__reg"    v-else-if="formData['8']" key="8">
 			<p class="quiz__reg-description">ЧТОБЫ ПОДКЛЮЧИТЬ ДОСТУП К ПОДПИСКЕ НА КОНТЕНТ, ЗАПОЛНИТЕ СЛЕДУЮЩУЮ ФОРМУ:</p>
 
 			<label class="quiz__reg-labels">
@@ -310,7 +317,7 @@
 		</div>
 
 
-		<div class="quiz__auth quiz__reg" v-show="formData['9']">
+		<div class="quiz__auth quiz__reg" v-else-if="formData['9']" key="9">
 			<p class="quiz__reg-description quiz__auth">ЕСЛИ ВАМ ИСПОЛНИЛОСЬ 18 ЛЕТ, ЗАПОЛНИТЕ ПОЛЕ И НАЖМИТЕ КНОПКУ "ПОЛУЧИТЬ КОНТЕНТ".</p>
 
 			<label class="quiz__reg-labels aifs">
@@ -327,7 +334,7 @@
 		</div>
 
 
-		<div class="quiz__other quiz__reg" v-show="formData['10']">
+		<div class="quiz__other quiz__reg" v-else-if="formData['10']" key="10">
 			<p class="quiz__reg-description quiz__auth">ДЛЯ УСПЕШНОГО ПРОДОЛЖЕНИЯ ВАМ НУЖНО ОТПРАВИТЬ СМС И ВВЕСТИ ПОЛУЧЕННЫЙ КОД ДОСТУПА.</p>
 
 			<label class="quiz__reg-labels">
@@ -371,7 +378,7 @@
 			</div>
 		</div>
 
-
+		</transition>
 	</form>
 
 </section>
@@ -420,32 +427,34 @@
 		},
 		methods: {
 			setTitle(index) {
-				this.title = titles[index];
+				this.title = '';
+				new Promise((resolve,reject) => {
+					setTimeout(resolve, 100, "any")
+				}).then(res => {
+					this.title = this.titles[index];
+				});
 			},
 			nextStep(step, prevStep, event) {
 				new Promise((resolve,reject) => {
 					// make pause
-					setTimeout(()=>{
-						resolve(1)
-					}, 500)
+					setTimeout(resolve, 100)
 
 				}).then(result => {
-					
+
 					// change title
 					let index = +step - 1;
 					this.title = this.titles[index];
+					// this.setTitle(index);
 					// change step section
 					this.formData[step] = true;
 					this.formData[prevStep] = !this.formData[prevStep];
-					
 					// change bg in body component
-					if(step === '3') this.sex1 = event;
-					if(step === '6') this.sex2 = event;
-					if(step === '7') {
+					if (step === '3') this.sex1 = event;
+					if (step === '6') this.sex2 = event;
+					if (step === '7') {
 						if ( this.sex1 === 'g' && this.sex2 === 'g' || this.sex1 === 'm' && this.sex2 === 'm' ) this.$emit('isUserBi', true);
-						if( this.sex1 === 'm' && this.sex2 === 'g' || this.sex1 === 'g' && this.sex2 === 'm' ) this.$emit('isUserGetero', true);
+						if ( this.sex1 === 'm' && this.sex2 === 'g' || this.sex1 === 'g' && this.sex2 === 'm' ) this.$emit('isUserGetero', true);
 					}
-	
 					// send event to Body component for add account component below
 					if(step === '7' || step === '8') this.$emit('stepResult', true);
 					else this.$emit('stepResult', false);
@@ -576,7 +585,12 @@
 
 <style lang="sass">
 @import './src/styles/main.sass'
-
+.fade-enter-active,
+.fade-leave-active
+	transition: opacity .25s
+.fade-enter,
+.fade-leave-to
+	opacity: 0
 
 #quiz
 	width: 100%

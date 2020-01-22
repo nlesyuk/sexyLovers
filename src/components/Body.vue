@@ -10,11 +10,16 @@
 
 			<div class="main__cont">
 				<myEggs v-show="!currentWidth"></myEggs>
-				<myQuiz v-show="true" 
+				<transition
+						name="fade"
+						mode="out-in"
+					>
+				<myQuiz
 					@stepResult="isAccountsShown = $event"
 					@isUserGetero="isUserGetero = $event"
 					@isUserBi="isUserBi = $event"
 				></myQuiz>
+				</transition>
 				<myMap v-show="!isAccountsShown"></myMap>
 				<myEggs v-show="currentWidth"></myEggs>
 			</div>
@@ -56,6 +61,12 @@ export default {
 
 <style lang="sass">
 @import './src/styles/main.sass'
+.fade-enter-active,
+.fade-leave-active
+	transition: opacity .25s
+.fade-enter,
+.fade-leave-to
+	opacity: 0
 
 .body__cont
 	width: 100%
