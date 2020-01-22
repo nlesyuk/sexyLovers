@@ -683,10 +683,14 @@
 					svg
 						margin-bottom: 12px
 				&:hover
+					label
+						border: 1px solid $pink
 					svg,
 					.quiz__text
 						fill: white
+						fill: $accent
 						color: white
+						color: $accent
 						cursor: pointer
 						transition: all .25s
 				&:focus
@@ -746,6 +750,11 @@
 				max-width: 100%
 				padding: 16px
 				cursor: pointer
+				&:hover
+					img
+						border: 2px solid $accent
+					.quiz__text
+						color: $accent
 				img
 					display: block
 					max-width: 100%
@@ -758,7 +767,6 @@
 					text-transform: uppercase
 					text-align: center
 					color: white
-
 		.quiz__step3,
 		.quiz__step6
 			width: 100%
@@ -867,6 +875,13 @@
 				flex-wrap: wrap
 				width: 100%
 			.quiz__item
+				&:hover
+					label
+						border: 2px solid $accent
+						transition: all .25s
+					.quiz__text
+						color: $accent
+						transition: all .25s
 				input
 					display: none
 					&:checked + label
@@ -886,7 +901,7 @@
 				margin: 0 auto
 				max-width: 100%
 				border-radius: 50%
-				border: 5px solid transparent
+				border: 2px solid transparent
 				background: $grey2
 				cursor: pointer
 				box-shadow: -7px 5px 20px 0px rgba(0, 0, 0, 0.3)
@@ -903,6 +918,7 @@
 				text-transform: uppercase
 				text-align: center
 				color: white
+				transition: all .25s
 
 
 		.quiz__step6
@@ -1251,19 +1267,19 @@
 	40%,
 	80%,
 	100%
-		right: 120% 
+		right: 145%
 	10%,
 	30%,
 	50%,
 	70%,
 	90%
 	0%,
-		right: -20%
+		right: -30%
 	20.1%,
 	40.1%,
 	80.1%,
 	100.1%
-		right: -20%
+		right: -30%
 
 // ADAPTIVE
 @media (max-width: 1200.98px)
@@ -1415,12 +1431,10 @@
 			padding: 50px 50px 70px
 		.quiz__title
 			font: bold 1.25rem/1 $font
-
 		.quiz__form
 			.btn__continue,
 			.btn__confirm
 				width: 50%
-
 			.quiz__step2
 				box-sizing: border-box
 				justify-content: center
@@ -1528,6 +1542,25 @@
 				font: bold .87rem/1 $font
 				&.more
 					width: 90%
+			.quiz__step1
+				.quiz__cont
+					display: flex
+					width: calc(50% - 20px)
+					margin-bottom: 15px
+					&:hover
+						label
+							border: 1px solid $pink
+						svg,
+						.quiz__text
+							fill: $accent
+							color: $accent
+					label
+						border: 1px solid rgba(255,255,255, .25)
+					svg,
+					.quiz__text
+						fill: white
+						color: white
+
 			.quiz__step2
 				display: flex
 				justify-content: center
