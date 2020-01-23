@@ -55,6 +55,7 @@
 
 <script>
 export default {
+	props: ['hidePopupGirlsToApp'],
 	data () {
 		return {
 			msg: 'PopupGirls',
@@ -69,25 +70,30 @@ export default {
 		}
 	},
 	methods: {
-		showGirls(showAfter, hideAfter) {
+		showGirls(showAfterSec, hideAfterSec) {
 			return new Promise((resolve, reject) => {
 
-				setTimeout( () => {
-					// hide all
+				if( !this.hidePopupGirlsToApp ){
+					setTimeout( () => {
+						// hide all
+						for (let item in this.show) this.show[item] = false;
+
+						// check
+						this.currentItem = +this.currentItem + 1;
+						if( +this.currentItem > 5) this.currentItem = 1
+
+						// show
+						let strIndex = this.currentItem.toString();
+						this.show[strIndex] = true;
+
+						// console.log(+strIndex, '1-timeout');
+						resolve(strIndex);
+
+					}, showAfterSec * 1000);
+				} else {
 					for (let item in this.show) this.show[item] = false;
-
-					// check
-					this.currentItem = +this.currentItem + 1;
-					if( +this.currentItem > 5) this.currentItem = 1
-
-					// show
-					let strIndex = this.currentItem.toString();
-					this.show[strIndex] = true;
-
-					// console.log(+strIndex, '1-timeout');
-					resolve(strIndex);
-
-				}, showAfter * 1000);
+					reject()
+				}
 
 			}).then( (index) => {
 				return new Promise((resolve, reject) => {
@@ -96,13 +102,16 @@ export default {
 						this.show[index] = false;
 						// console.log(+index, '2-timeout');
 						resolve(index);
-					}, hideAfter * 1000)
+					}, hideAfterSec * 1000)
 
 				});
 			}).then( (index) => {
 
+				// stop show girls popup
+				if( !this.hidePopupGirlsToApp ){
+					this.showGirls(5, 7);
+				}
 				// console.log(+index, '3-timeout');
-				this.showGirls(5, 7);
 
 			}).catch(err => console.log(err))
 
@@ -112,7 +121,17 @@ export default {
 			document.querySelector(hash).scrollIntoView({ behavior: 'smooth', block: 'end'});
 		}
 	},
+	watch: {
+		// start show girls popup
+		hidePopupGirlsToApp: function(value) {
+			console.log("WATCH hidePopupGirlsToApp", value)
+			if(value){
+				this.showGirls(5, 7);
+			}
+		}
+	},
 	mounted() {
+		// show girls popup
 		this.showGirls(5, 7)
 	}
 }

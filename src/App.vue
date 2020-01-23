@@ -1,14 +1,14 @@
 <template>
 	<div id="app">
 
-		<myHeader></myHeader>
-		<myBody></myBody>
-		<myFooter></myFooter>
-
+		<myHeader/>
+		<myBody @hidePopupGirlsToApp="hidePopupGirlsToApp = $event"/>
+		<myFooter/>
 		<myPopupGirls 
 			@update="showControl = $event" 
 			v-show="showControl"
-		></myPopupGirls>
+			:hidePopupGirlsToApp="hidePopupGirlsToApp"
+		/>
 
 	</div>
 </template>
@@ -23,7 +23,8 @@ export default {
 	name: 'app',
 	data(){
 		return {
-			showControl: true
+			showControl: true,
+			hidePopupGirlsToApp: null
 		}
 	},
 	components: {
@@ -31,6 +32,14 @@ export default {
 		myBody: body,
 		myFooter: footer,
 		myPopupGirls: PopupGirls
+	},
+	watch: {
+		showControl: function(value) {
+			console.log("showControl", value)
+		},
+		hidePopupGirlsToApp: function(value) {
+			console.log("APP hidePopupGirlsToApp",value)
+		}
 	}
 }
 </script>

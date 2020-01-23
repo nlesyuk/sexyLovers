@@ -387,12 +387,12 @@
 				title: 'ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:',
 				titles: ['ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:','ПОКАЖИТЕ МНЕ:', 'КАК БЛИЗКО ДОЛЖЕН БЫТЬ ПАРТНЕР?', 'КАКОЙ У ВАС ТИП ТЕЛОСЛОЖЕНИЯ?', 'ВЫБЕРИТЕ ВАШ ПОЛ:', 'МЕНЯ ВОЗБУЖДАЕТ:', 'ИЩЕМ ПАРТНЕРОВ В ВАШЕМ ГОРОДЕ', 'РЕГИСТРАЦИЯ', 'АВТОРИЗАЦИЯ'],
 				formData: {
-					'1': true,
+					'1': false,
 					'2': false,
 					'3': false,
 					'4': false,
 					'5': false,
-					'6': false,
+					'6': true,
 					'7': false,
 					'8': false,
 					'9': false,
@@ -450,6 +450,8 @@
 					if (step === '7') {
 						if ( this.sex1 === 'g' && this.sex2 === 'g' || this.sex1 === 'm' && this.sex2 === 'm' ) this.$emit('isUserBi', true);
 						if ( this.sex1 === 'm' && this.sex2 === 'g' || this.sex1 === 'g' && this.sex2 === 'm' ) this.$emit('isUserGetero', true);
+						this.$emit('hidePopupGirls', true);
+						console.log("QUIZ hidePopupGirls", true)
 					}
 					// send event to Body component for add account component below
 					if(step === '7' || step === '8') this.$emit('stepResult', true);

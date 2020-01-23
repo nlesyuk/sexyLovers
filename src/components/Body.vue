@@ -14,6 +14,7 @@
 					@stepResult="isAccountsShown = $event"
 					@isUserGetero="isUserGetero = $event"
 					@isUserBi="isUserBi = $event"
+					@hidePopupGirls="hidePopupGirls = $event"
 				></myQuiz>
 				<myMap v-show="!isAccountsShown"></myMap>
 				<myEggs v-show="currentWidth"></myEggs>
@@ -39,7 +40,8 @@ export default {
 			isAccountsShown: false,
 			isUserGetero: false,
 			isUserBi: false,
-			currentWidth: false
+			currentWidth: false,
+			hidePopupGirls: null,
 		}
 	},
 	components: {
@@ -47,6 +49,12 @@ export default {
 		myQuiz: quiz,
 		myMap: map,
 		myAccounts: accounts,
+	},
+	watch: {
+		hidePopupGirls: function(value) {
+			console.log("BODY hidePopupGirls", value)
+			this.$emit("hidePopupGirlsToApp", value)
+		}
 	},
 	mounted(){
 		if( window.innerWidth < 768 ) this.currentWidth = true;
