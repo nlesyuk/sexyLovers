@@ -10,22 +10,22 @@ Vue.config.productionTip = false
 Vue.use(VueMeta);
 Vue.use(VueMask);
 
-new Vue({
-  metaInfo: {
-    htmlAttrs: {
-      lang: 'ru'
-    },
-    title: 'Sexy lovers - Ищите интим без обязательств? Вы по адресу!',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'theme-color', content: '#e73939' },
-    ],
-    link: [
-      // { rel: 'icon', href: '../public/favicon.ico', type: "image/x-icon"}
-      // { rel: 'icon', href: './public/favicon.ico', type: "image/x-icon"}
-      // { rel: 'icon', href: '../public/icon.png', type: "image/x-icon"}
-    ]
+const metaInfo = {
+  htmlAttrs: {
+    lang: 'ru'
   },
+  title: 'Sexy lovers - Ищите интим без обязательств? Вы по адресу!',
+  meta: [
+    { charset: 'utf-8' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'theme-color', content: '#e73939' },
+  ],
+  link: [
+    { rel: 'icon', href: '../public/icon.png', type: "image/x-icon"}
+  ]
+};
+
+new Vue({
+  metaInfo: metaInfo,
   render: h => h(App)
 }).$mount('#app')
