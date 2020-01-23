@@ -9,38 +9,38 @@
 		<ul class="acccount__list">
 			<li>
 				<img src="../assets/ava1.jpg" alt="" class="accounts__ava">
-				<h3 class="accounts__name">kisska072</h3>
-				<h3 class="accounts__age">22, Красноярск</h3>
+				<h3 class="accounts__name">kisska072, 22</h3>
+				<!-- <p class="accounts__age">22, Красноярск</p> -->
 			</li>
 			<li>
 				<img src="../assets/ava2.jpg" alt="" class="accounts__ava">
-				<h3 class="accounts__name">Таня</h3>
-				<h3 class="accounts__age">27, Омск</h3>
+				<h3 class="accounts__name">Таня, 27</h3>
+				<!-- <p class="accounts__age">27, Омск</p> -->
 			</li>
 			<li>
 				<img src="../assets/ava3.jpg" alt="" class="accounts__ava">
-				<h3 class="accounts__name">Анатолий</h3>
-				<h3 class="accounts__age">35, Челябинск</h3>
+				<h3 class="accounts__name">Анатолий, 35</h3>
+				<!-- <p class="accounts__age">35, Челябинск</p> -->
 			</li>
 			<li>
 				<img src="../assets/ava4.jpg" alt="" class="accounts__ava">
-				<h3 class="accounts__name">Алина+Даша</h3>
-				<h3 class="accounts__age">31, Красноярск</h3>
+				<h3 class="accounts__name">Алина+Даша, 31</h3>
+				<!-- <p class="accounts__age">31, Красноярск</p> -->
 			</li>
 			<li>
 				<img src="../assets/ava5.jpg" alt="" class="accounts__ava">
-				<h3 class="accounts__name">Александр</h3>
-				<h3 class="accounts__age">23, Москва</h3>
+				<h3 class="accounts__name">Александр, 23</h3>
+				<!-- <p class="accounts__age">23, Москва</p> -->
 			</li>
 			<li>
 				<img src="../assets/ava6.jpg" alt="" class="accounts__ava">
-				<h3 class="accounts__name">Ксюша</h3>
-				<h3 class="accounts__age">27, Омск</h3>
+				<h3 class="accounts__name">Ксюша, 27</h3>
+				<!-- <p class="accounts__age">27, Омск</p> -->
 			</li>
 			<li>
 				<img src="../assets/ava7.jpg" alt="" class="accounts__ava">
-				<h3 class="accounts__name">Карина</h3>
-				<h3 class="accounts__age">29, Киев</h3>
+				<h3 class="accounts__name">Карина, 29</h3>
+				<!-- <p class="accounts__age">29, Киев</p> -->
 			</li>
 		</ul>
 
