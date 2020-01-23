@@ -387,13 +387,13 @@
 				title: 'ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:',
 				titles: ['ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:','ПОКАЖИТЕ МНЕ:', 'КАК БЛИЗКО ДОЛЖЕН БЫТЬ ПАРТНЕР?', 'КАКОЙ У ВАС ТИП ТЕЛОСЛОЖЕНИЯ?', 'ВЫБЕРИТЕ ВАШ ПОЛ:', 'МЕНЯ ВОЗБУЖДАЕТ:', 'ИЩЕМ ПАРТНЕРОВ В ВАШЕМ ГОРОДЕ', 'РЕГИСТРАЦИЯ', 'АВТОРИЗАЦИЯ'],
 				formData: {
-					'1': false,
+					'1': true,
 					'2': false,
 					'3': false,
 					'4': false,
 					'5': false,
 					'6': false,
-					'7': true,
+					'7': false,
 					'8': false,
 					'9': false,
 					'10': false,
@@ -594,9 +594,16 @@
 	border-radius: 15px
 	min-height: 400px
 	background: $grey2
+	background-size: 400%
+	// background-image: linear-gradient(45deg, red, blue, red)
+	background-image: linear-gradient(45deg, $grey2,$grey2, rgba(231, 57, 57, 0.1), $grey2,$grey2)
+	animation: 5s ease 5s infinite forwards running bgMove
 	margin-bottom: 40px
 	// overflow: auto
 	position: relative
+	transition: .5s ease
+	&:hover
+		background-position: 20%
 	&::before
 		content: ""
 		display: block
@@ -1287,6 +1294,17 @@
 		right: 144%
 	100%
 		right: -30%
+
+@keyframes bgMove
+	0%
+		background-position: 0
+	50%
+		background-position: right
+	51%
+		background-position: left
+	100%
+		background-position: 0
+		background-image: linear-gradient(45deg, $grey2,$grey2)
 
 // ADAPTIVE
 @media (max-width: 1200.98px)
