@@ -10,16 +10,11 @@
 
 			<div class="main__cont">
 				<myEggs v-show="!currentWidth"></myEggs>
-				<transition
-						name="fade"
-						mode="out-in"
-					>
 				<myQuiz
 					@stepResult="isAccountsShown = $event"
 					@isUserGetero="isUserGetero = $event"
 					@isUserBi="isUserBi = $event"
 				></myQuiz>
-				</transition>
 				<myMap v-show="!isAccountsShown"></myMap>
 				<myEggs v-show="currentWidth"></myEggs>
 			</div>

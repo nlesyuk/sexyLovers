@@ -1,19 +1,13 @@
 <template>
 <section id="quiz" :class="{'result': formData['7'] || formData['8'] || formData['9'] || formData['10']}">
 
-<transition
-	name="fade"
-	mode="out-in"
->
-	<h2 class="quiz__title" > <span v-show="title">{{ title }}</span> </h2>
+<transition name="fade"	mode="out-in">
+	<h2 class="quiz__title" v-show="title"> {{ title }} </h2>
 </transition>
 
 	<form class="quiz__form">
+	<transition	name="fade"	mode="out-in">
 
-<transition
-	name="fade"
-	mode="out-in"
->
 		<div class="quiz__step1" v-if="formData['1']" key="1">
 			<div class="quiz__cont intim">
 				<input type="radio" name="target" id="target1" @click="nextStep('2', '1')">
@@ -45,6 +39,7 @@
 			</div>
 		</div>
 
+
 		<div class="quiz__step2" v-else-if="formData['2']" key="2">
 			<div class="quiz__cont">
 				<input type="radio" name="sex" id="sex1" value="g" @click="nextStep('3', '2', $event.target.value)">
@@ -61,6 +56,7 @@
 				</label>
 			</div>
 		</div>
+
 
 		<div class="quiz__step3" v-else-if="formData['3']" key="3"> 
 			<div class="quiz__cont">
@@ -199,7 +195,7 @@
 		<div class="quiz__reg"    v-else-if="formData['8']" key="8">
 			<p class="quiz__reg-description">ЧТОБЫ ПОДКЛЮЧИТЬ ДОСТУП К ПОДПИСКЕ НА КОНТЕНТ, ЗАПОЛНИТЕ СЛЕДУЮЩУЮ ФОРМУ:</p>
 
-			<label class="quiz__reg-labels">
+			<label class="quiz__reg-labels name">
 				<span class="quiz__reg-span">Имя:</span>
 				<input type="text" name="name" required="required" v-model="reg_name">
 			</label>
@@ -208,7 +204,7 @@
 				<input type="number" name="age" min="18" max="100" value="18"  required="required" v-model="reg_age">
 			</label>
 
-			<div class="quiz__reg-labels">
+			<div class="quiz__reg-labels sex">
 				<span class="quiz__reg-span">Ваш пол:</span>
 				<div class="quiz__reg-radio">
 					<input type="radio" name="gender" id="reg_sex1" value="man" checked>
@@ -317,7 +313,7 @@
 		</div>
 
 
-		<div class="quiz__auth quiz__reg" v-else-if="formData['9']" key="9">
+		<div class="quiz__auth  quiz__reg" v-else-if="formData['9']" key="9">
 			<p class="quiz__reg-description quiz__auth">ЕСЛИ ВАМ ИСПОЛНИЛОСЬ 18 ЛЕТ, ЗАПОЛНИТЕ ПОЛЕ И НАЖМИТЕ КНОПКУ "ПОЛУЧИТЬ КОНТЕНТ".</p>
 
 			<label class="quiz__reg-labels aifs">
@@ -378,7 +374,7 @@
 			</div>
 		</div>
 
-		</transition>
+	</transition>
 	</form>
 
 </section>
@@ -391,13 +387,13 @@
 				title: 'ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:',
 				titles: ['ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:','ПОКАЖИТЕ МНЕ:', 'КАК БЛИЗКО ДОЛЖЕН БЫТЬ ПАРТНЕР?', 'КАКОЙ У ВАС ТИП ТЕЛОСЛОЖЕНИЯ?', 'ВЫБЕРИТЕ ВАШ ПОЛ:', 'МЕНЯ ВОЗБУЖДАЕТ:', 'ИЩЕМ ПАРТНЕРОВ В ВАШЕМ ГОРОДЕ', 'РЕГИСТРАЦИЯ', 'АВТОРИЗАЦИЯ'],
 				formData: {
-					'1': true,
+					'1': false,
 					'2': false,
 					'3': false,
 					'4': false,
 					'5': false,
 					'6': false,
-					'7': false,
+					'7': true,
 					'8': false,
 					'9': false,
 					'10': false,
@@ -500,7 +496,6 @@
 				if( this.reg_name && this.reg_age >= 18 && this.reg_phone.length >= 12 && this.reg_check ) this.btn8isDisabled = false
 				else this.btn8isDisabled = true
 			},
-
 			beforeEnter: function (el) {
 				el.style.opacity = 0
 				el.style.height = 0
@@ -524,7 +519,7 @@
 					{ complete: done }
 					)
 				}, delay)
-			}
+			} 
 		},
 		watch: {
 			partner_location: function(value){
@@ -600,11 +595,12 @@
 	min-height: 400px
 	background: $grey2
 	margin-bottom: 40px
-	overflow: hidden
+	// overflow: auto
 	position: relative
 	&::before
 		content: ""
 		display: block
+		display: none
 		width: 100px
 		height: 120%
 		background: rgba(231, 57, 57, 0.1)
@@ -640,7 +636,6 @@
 		.btn__continue,
 		.btn__confirm
 			display: block
-			width: 200px
 			width: 33%
 			margin: 0 auto
 			border: none
@@ -654,6 +649,9 @@
 			margin-top: 30px
 			transition: all .25s
 			cursor: pointer
+			position: sticky
+			bottom: 0px
+			z-index: 10
 			&.more
 				width: 40%
 			&:disabled
@@ -925,7 +923,7 @@
 			// display: none
 		.quiz__result
 			.quiz__cont1
-				display: flex
+				// display: flex
 				justify-content: space-between
 			.quiz__s
 				width: 48%
@@ -996,6 +994,7 @@
 			.btn__confirm
 				margin: 0
 				margin-right: auto !important
+				position: sticky
 
 		.quiz__reg
 			.quiz__reg-description
@@ -1281,6 +1280,14 @@
 	100.1%
 		right: -30%
 
+@keyframes fastLine1
+	0%,
+		right: 145%
+	95%
+		right: 144%
+	100%
+		right: -30%
+
 // ADAPTIVE
 @media (max-width: 1200.98px)
 	#quiz
@@ -1420,7 +1427,7 @@
 		padding: 30px 16px 40px
 		min-height: 0px
 		&::before
-			animation: 3s ease-in 5s infinite forwards running fastLine
+			animation: 13s ease-in 15s infinite forwards running fastLine1
 			width: 50px
 			height: 120%
 			top: -10%
@@ -1513,8 +1520,197 @@
 					width: 120px
 					height: 120px
 
+			.quiz__reg1
+				.quiz__reg-description
+					font: 500 .87rem/1.125 $font
+					text-align: left
+					margin-bottom: 20px
+					&.quiz__auth
+						margin-bottom: 40px
+				.quiz__reg-labels
+					display: flex
+					justify-content: flex-start
+					align-items: center
+					margin-bottom: 14px
+					&.aifs
+						align-items: flex-start
+						.quiz__reg-span
+							margin-top: 10px
+							&.mt0
+								margin-top: 5px
+						input
+							margin-bottom: 4px
+					&.name
+						width: 80%
+					&.age
+						width: 20%
+						input
+							width: 60px
+					.quiz__reg-span
+						display: block
+						width: 120px
+						font: 500 1rem/1 $font
+						color: white
+					.flag-none
+						display: none
+					input
+						display: block
+						box-sizing: border-box
+						width: 260px
+						max-width: 100%
+						padding: 8px
+						border-radius: 3px
+						background: transparent
+						border: 2px solid #909093
+						font: 500 1rem/1 $font
+						color: white
+						&:focus
+							border-color: white
+							outline: none
+						&[type=number]::-webkit-outer-spin-button,
+						&[type=number]::-webkit-inner-spin-button 
+							-webkit-appearance: none
+							margin: 0
+						&[type="number"]
+							-moz-appearance: textfield
+						&[type="number"]:hover,
+						&[type="number"]:focus
+							-moz-appearance: number-input
+					input:-webkit-autofill,
+					input:-webkit-autofill:hover, 
+					input:-webkit-autofill:focus,
+					textarea:-webkit-autofill,
+					textarea:-webkit-autofill:hover,
+					textarea:-webkit-autofill:focus,
+					select:-webkit-autofill,
+					select:-webkit-autofill:hover,
+					select:-webkit-autofill:focus
+						border: 2px solid white
+						-webkit-text-fill-color: white
+						-webkit-box-shadow: 0 0 0px 1000px $grey2 inset
+						transition: background-color 5000s ease-in-out 0s
 
+					.quiz__reg-radio
+						display: flex
+						justify-content: flex-start
+						align-items: center
+						padding: 10px 0
+						input
+							display: none
+							&:checked + label
+								&:after
+									display: block
+						label
+							display: block
+							padding: 0 10px 0 25px
+							font: 500 1rem/1 $font
+							color: white
+							position: relative
+							margin-right: 10px
+							cursor: pointer
+							&:before
+								content: ""
+								display: block
+								box-sizing: border-box
+								width: 20px
+								height: 20px
+								border: 2px solid $pink
+								border-radius: 50%
+								position: absolute
+								left: 0
+								top: calc(50% - 10px)
+							&:after
+								content: ""
+								display: none
+								width: 8px
+								height: 8px
+								background: $pink
+								border-radius: 50%
+								position: absolute
+								left: 6px
+								top: 4px
+					.quiz__reg-cont
+						.quiz__reg-text1
+							font: 500 .75rem/1 $font
+							color: rgba(255,255,255,.25)
 
+				.quiz__reg-footer
+					margin-left: 110px
+					padding-top: 0px
+					.quiz__reg-cost
+						display: block
+						font: 500 .75rem/1 $font
+						color: rgba(255,255,255, .5)
+						margin-bottom: 10px
+					input[id=reg_check]
+						display: none
+						&:checked + .quiz__reg-check
+							// color: $pink
+							&:after
+								display: block
+					.quiz__reg-check
+						display: block
+						font: 500 .75rem/1.25 $font
+						color: white
+						padding-left: 30px
+						margin-bottom: 10px
+						cursor: pointer
+						position: relative
+						&:before
+							content: ""
+							display: block
+							box-sizing: border-box
+							width: 20px
+							height: 20px
+							border: 2px solid white
+							border-radius: 3px
+							position: absolute
+							left: 0
+							top: calc(50% - 10px)
+						&:after
+							content: ""
+							display: none
+							// display: block
+							box-sizing: border-box
+							width: 13px
+							height: 7px
+							border: 1px solid transparent
+							border-left: 2px solid white
+							border-bottom: 2px solid white
+							transform: rotate(-48deg)
+							position: absolute
+							left: 4px
+							top: 9px
+							top: calc(50% - 4.5px)
+					.quiz__reg-policy
+						display: block
+						max-height: 30px
+						background: $black
+						border-radius: 4px
+						padding: 10px
+						font: .75rem/1.25 $font
+						color: rgba(255,255,255,.2)
+						overflow: auto
+						margin-bottom: 20px
+						&::-webkit-scrollbar
+							width: 8px
+							// height: 6px
+						&::-webkit-scrollbar-button
+							// background-color: #222
+						&::-webkit-scrollbar-track
+							background-color: red
+						&::-webkit-scrollbar-track-piece
+							background-color: #313138
+						&::-webkit-scrollbar-thumb
+							height: 30px
+							background-color: #45454f
+						&::-webkit-scrollbar-corner
+							background-color: purpure
+						&::-webkit-resizer
+							background-color: green
+				.btn__continue
+					margin: 0
+					margin-right: auto
 
 
 
@@ -1620,6 +1816,8 @@
 					font: 500 .87rem/1.25 $font
 				.btn__confirm
 					margin: 0 auto
+					position: sticky
+					bottom: 0px
 
 			.quiz__reg
 				.quiz__reg-description
@@ -1638,9 +1836,26 @@
 								margin-top: 5px
 						input
 							margin-bottom: 4px
+					&.name
+						display: inline-block
+						width: 70%
 					&.age
+						display: inline-block
+						box-sizing: border-box
+						width: 30%
+						padding-left: 5px
 						input
 							width: 100px
+					&.sex
+						display: flex
+						justify-content: space-between
+						align-items: center
+						.quiz__reg-span
+							width: 30%
+							margin-bottom: 0px
+						.quiz__reg-radio
+							width: 70%
+							padding-top: 0px
 					.quiz__reg-span
 						width: 100%
 						font: 500 .87rem/1 $font
@@ -1681,9 +1896,10 @@
 						&:after
 							top: 6px
 					.quiz__reg-policy
-						max-height: 160px
+						max-height: 60px
 						font: .75rem/1.25 $font
 						margin-bottom: 20px
+
 				.btn__continue
 					margin: 0 auto
 
