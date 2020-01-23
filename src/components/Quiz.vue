@@ -387,12 +387,12 @@
 				title: 'ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:',
 				titles: ['ВЫБЕРИТЕ ЦЕЛЬ ЗНАКОМСТВА:','ПОКАЖИТЕ МНЕ:', 'КАК БЛИЗКО ДОЛЖЕН БЫТЬ ПАРТНЕР?', 'КАКОЙ У ВАС ТИП ТЕЛОСЛОЖЕНИЯ?', 'ВЫБЕРИТЕ ВАШ ПОЛ:', 'МЕНЯ ВОЗБУЖДАЕТ:', 'ИЩЕМ ПАРТНЕРОВ В ВАШЕМ ГОРОДЕ', 'РЕГИСТРАЦИЯ', 'АВТОРИЗАЦИЯ'],
 				formData: {
-					'1': false,
+					'1': true,
 					'2': false,
 					'3': false,
 					'4': false,
 					'5': false,
-					'6': true,
+					'6': false,
 					'7': false,
 					'8': false,
 					'9': false,
@@ -597,11 +597,9 @@
 	min-height: 400px
 	background: $grey2
 	background-size: 400%
-	// background-image: linear-gradient(45deg, red, blue, red)
-	background-image: linear-gradient(45deg, $grey2,$grey2, rgba(231, 57, 57, 0.1), $grey2,$grey2)
+	background-image: linear-gradient(45deg, $grey2 0%,$grey2 40%, rgba(231, 57, 57, 0.1) 50%, $grey2 60%, $grey2 100%)
 	animation: 5s ease 5s infinite forwards running bgMove
 	margin-bottom: 40px
-	// overflow: auto
 	position: relative
 	transition: .5s ease
 	&:hover
@@ -683,6 +681,7 @@
 			display: flex
 			justify-content: space-around
 			align-items: stretch
+			margin-top: 80px
 			.quiz__cont
 				display: flex
 				align-items: stretch
@@ -1307,7 +1306,16 @@
 	100%
 		background-position: 0
 		background-image: linear-gradient(45deg, $grey2,$grey2)
-
+@keyframes bgMoveXS
+	0%
+		background-position: 0
+	50%
+		background-position: right
+	51%
+		background-position: left
+	100%
+		background-position: 0
+		background-image: linear-gradient(45deg, rgba(33, 33, 38, 0.9),rgba(33, 33, 38, 0.9))
 // ADAPTIVE
 @media (max-width: 1200.98px)
 	#quiz
@@ -1420,6 +1428,7 @@
 			.quiz__step1
 				display: flex
 				flex-wrap: wrap
+				margin-top: 30px
 				.quiz__cont
 					width: 48%
 					// background: red
@@ -1443,8 +1452,10 @@
 
 @media (max-width: 768.98px)
 	#quiz
-		background: rgba(33, 33, 38, 0.9)
 		padding: 30px 16px 40px
+		background-size: 500%
+		background-image: linear-gradient(45deg, $grey2Opacity 0%,$grey2Opacity 40%, rgba(231, 57, 57, 0.1) 50%, $grey2Opacity 60%, $grey2Opacity 100%)
+		animation: 5s ease 5s infinite forwards running bgMoveXS
 		min-height: 0px
 		&::before
 			animation: 13s ease-in 15s infinite forwards running fastLine1
