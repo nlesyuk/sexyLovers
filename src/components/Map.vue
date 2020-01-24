@@ -1,9 +1,18 @@
 <template>
 <section id="map">
 	<h2 class="map__title">Поиск партнера поблизости <br>и знакомство уже <span>через 5 минут</span></h2>
+	<button @click="addMarker">1</button>
 	<div class="map__cont">
 		<ul class="map__pointers">
-			<li><img src="../assets/pointer.png"></li>
+
+			<transition-group name="nz" mode="out-in" tag="ul">
+				<li v-for="(index, num) of items" :key="num" :style="{'top': Math.floor(Math.random()*Math.floor(250))+'px', 'left': Math.floor(Math.random()*Math.floor(650))+'px'}">
+					<img src="../assets/pointer.png">
+					{{num}}
+				</li>
+			</transition-group>
+
+			<!-- <li><img src="../assets/pointer.png"></li>
 			<li><img src="../assets/pointer.png"></li>
 			<li><img src="../assets/pointer.png"></li>
 			<li><img src="../assets/pointer.png"></li>
@@ -25,7 +34,7 @@
 			<li><img src="../assets/pointer.png"></li>
 			<li><img src="../assets/pointer.png"></li>
 			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
+			<li><img src="../assets/pointer.png"></li> -->
 		</ul>
 	</div>
 </section>
@@ -34,13 +43,59 @@
 <script>
 export default {
 	data () {
-		return {}
+		return {
+			items: [1]
+		}
+	},
+	methods: {
+		showMarkers(value) {
+			const vm = this;
+			new Promise((resolve, reject) => {
+				setTimeout(()=>{
+					this.items.push( Date.now() );
+					console.log("promise");
+					resolve(1);
+				}, 300)
+			}).then(result => {
+				if( this.items.length < 10 ) {
+					this.showMarkers();
+				}
+			})
+		},
+		addMarker(){
+			// this.items.push( Date.now() );
+			this.set( this.items, Date.now() );
+		}
+	},
+	mounted() {
+		this.showMarkers(1);
 	}
 }
 </script>
 
 <style lang="sass">
 @import './src/styles/main.sass'
+
+.nz-enter,
+.nz-leave-to,
+.nz-enter-active,
+.nz-leave-active
+	position: relative
+	transition: all .5s
+
+.nz-enter-active,
+.nz-leave-active
+	transition: all .25s
+
+.nz-enter,
+.nz-enter-to
+	top: 15px
+	transition: all .25s
+.nz-leave,
+.nz-leave-to
+	top: 0px
+	transition: all .25s
+
 
 #map
 	margin-top: 30px
@@ -133,23 +188,19 @@ export default {
 					top: 65%
 					left: 89%
 
- 				// @for $i from 1 through 20
-				// 	&:nth-child(#{$i})
-				// 		top: calc(100% - #{$i * $i-1}%)
-				// 		left: calc(100% - #{$i * $i+2}px)
 
 
 
-@keyframes fastLine2
-	0%
-		top: -5px 
-		transform: scale(1.25)
-	50%
-		top: 0
-		transform: scale(1)
-	100%
-		top: -5px
-		transform: scale(1.25)
+// @keyframes fastLine2
+// 	0%
+// 		top: -5px 
+// 		transform: scale(1.25)
+// 	50%
+// 		top: 0
+// 		transform: scale(1)
+// 	100%
+// 		top: -5px
+// 		transform: scale(1.25)
 
 
 @media (max-width: 1200.98px)
