@@ -1,74 +1,178 @@
 <template>
 <section id="map">
 	<h2 class="map__title">Поиск партнера поблизости <br>и знакомство уже <span>через 5 минут</span></h2>
-	<button @click="addMarker">1</button>
+	<!-- <button @click="addMarker">button ADD</button> -->
 	<div class="map__cont">
-		<ul class="map__pointers">
+		<div id="mapBoxContainer"></div>
 
+		<ul class="map__pointers">
 			<transition-group name="nz" mode="out-in" tag="ul">
-				<li v-for="(index, num) of items" :key="num" :style="{'top': Math.floor(Math.random()*Math.floor(250))+'px', 'left': Math.floor(Math.random()*Math.floor(650))+'px'}">
-					<img src="../assets/pointer.png">
-					{{num}}
+				<li 
+					v-for="(item, index) in items" :key="item.num + Math.random()"
+					class="list-item" 
+					:style="{'top': item.top, 'left': item.left}"
+				>
+					<img :src="require(`../assets/marker_${index+1}.png`)">
 				</li>
 			</transition-group>
-
-			<!-- <li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li>
-			<li><img src="../assets/pointer.png"></li> -->
 		</ul>
+
 	</div>
 </section>
 </template>
 
 <script>
+import mapboxgl from 'mapbox-gl';
+mapboxgl.accessToken = 'pk.eyJ1IjoibmEzYXIxeSIsImEiOiJjanloM29tenQwNzRtM2hwYWw4emUyaXhlIn0.PuWkJSZ5w1Ijq-surIhTsw';
+// mapboxgl.accessToken = '09..pk.eyJ1IjoibmEzYXIxeSIsImEiOiJjanloM29tenQwNzRtM2hwYWw4emUyaXhlIn0.PuWkJSZ5w1Ijq-surIhTsw';
+
+import mapImg from '@/components/MapImg'
+
 export default {
 	data () {
 		return {
-			items: [1]
+			data: {
+				service1Url: "http://api.sypexgeo.net/Fzyxh/json/",
+				service2Url: "http://api.sypexgeo.net/Fzyxh/json/",
+				userIP: '',
+				lat: '',
+				lon: '',
+			},
+			items: [],
+		}
+	},
+	components: {
+		myImg: mapImg
+	},
+	watch: {
+		'data.lat': (newValue) => {
+			console.log(newValue);
+		},
+		data: (newValue) => {
+			console.log("data: ",newValue);
 		}
 	},
 	methods: {
-		showMarkers(value) {
-			const vm = this;
+		showMarkers() {
 			new Promise((resolve, reject) => {
 				setTimeout(()=>{
-					this.items.push( Date.now() );
-					console.log("promise");
-					resolve(1);
-				}, 300)
-			}).then(result => {
-				if( this.items.length < 10 ) {
+					this.items.push( {
+						top: Math.floor(10 + Math.random() * (90 - 30)) + "%",
+						left: Math.floor(10 + Math.random() * (90 - 10)) + "%",
+						num: Date.now() 
+					});
+					resolve();
+				}, 500);
+			}).then( () => {
+				if( this.items.length <= 10 ) {
 					this.showMarkers();
+				} else {
+
 				}
-			})
+			});
 		},
+		initialMap(arrLocations){
+			// console.log(arrLocations);
+			var location = ( arrLocations != undefined ) ? arrLocations : [37.707313, 55.734053] ; // Kyiv by default
+
+			new mapboxgl.Map({
+				container: 'mapBoxContainer',
+				style: 'mapbox://styles/na3ar1y/cjyq06c1y1my31cpit9snzpsi',
+				center: location,
+				zoom: 10
+			});
+		},
+		// 
 		addMarker(){
-			// this.items.push( Date.now() );
-			this.set( this.items, Date.now() );
-		}
+			this.items.push( Date.now() );
+		},
+		setItemsInLocalStorage(){
+			fetch(url, {
+				method: method,
+				// body: JSON.stringify(body),
+			}).then(response => {
+				if(response.ok) {
+					// if(response.status < 400)
+					return response.json();
+				}
+
+				return response.json().then(error => {
+					const e = new Error('Что то пошло не так')
+					e.data = error 
+					throw e
+				})
+			});
+		},
+
+		getIP() {
+			// const url = window.location.href + '/server/'; 
+			const url = 'http://pronazvo.beget.tech/markline/'; // test 
+			return fetch(url);
+		},
+		getGeoOfUser(ip){
+			/* 
+			https://sypexgeo.net/ru/pc/auth/
+			https://ip-location.icu/pricing
+			https://ipinfodb.com/register
+			 */
+			const url = this.data.service1Url + ip;
+			fetch(url, {
+				method: "GET",
+			}).then(response => {
+				if(response.ok) {
+					return response.json(); 
+				}
+			}).then(result => {
+				// RESULT
+				console.log("getGeoOfUser", result);
+				// + save  lat lon
+				this.data.lat = result.region.lat;
+				this.data.lon = result.region.lon;
+				// + set data in LocalStorage
+				localStorage.setItem('map', JSON.stringify(this.data));
+			}).then(error => {
+				new Error('Что то пошло не так: ', error)
+			})
+
+		},
+	},
+	beforeCreate() {
+		console.log("beforeCreate");
 	},
 	mounted() {
-		this.showMarkers(1);
+		this.initialMap();
+		// this.showMarkers();
+
+		// 0 check LocalStorage
+		const fingerPrint = localStorage.getItem('map');
+		console.log(typeof fingerPrint, fingerPrint, !!fingerPrint)
+		let obj = !!fingerPrint ? JSON.parse(fingerPrint) : false;
+		// console.log(obj);
+		if( obj && obj.userIP && obj.lat && obj.lon ) {
+			// console.log(obj.userIP, obj.lat, obj.lon);
+			this.initialMap([obj.lon, obj.lat]);
+		} else {
+			// 1 get IP
+			this.getIP().then( response => {
+				return response.json();
+			}).then( res => {
+				console.log("getIP", res.ip);
+				// RESULT
+				if(res.ip) {
+					// + save IP
+					this.data.userIP = res.ip;
+					// 2 send IP to the location server
+					// this.getGeoOfUser(res.ip);
+				}
+			}).catch((error) => {
+				console.error('Error:', error);
+			});
+		}
+
+// TODO
+// якщо сервіс вичерпав заявки то підставляти статичну карту мск
+// 
+
 	}
 }
 </script>
@@ -76,25 +180,13 @@ export default {
 <style lang="sass">
 @import './src/styles/main.sass'
 
-.nz-enter,
-.nz-leave-to,
-.nz-enter-active,
-.nz-leave-active
-	position: relative
+
+.nz-enter-active, .nz-leave-active
 	transition: all .5s
-
-.nz-enter-active,
-.nz-leave-active
-	transition: all .25s
-
-.nz-enter,
-.nz-enter-to
-	top: 15px
-	transition: all .25s
-.nz-leave,
-.nz-leave-to
-	top: 0px
-	transition: all .25s
+.nz-enter, .nz-leave-to
+	opacity: 0
+.nz-enter-to, .nz-leave
+	opacity: 1
 
 
 #map
@@ -109,10 +201,16 @@ export default {
 			color: $accent
 	.map__cont
 		border-radius: 15px
-		background: url(../assets/map-clear.png) no-repeat center center/cover
+		// background: url(../assets/map-clear.png) no-repeat center center/cover
+		background: #999
 		min-height: 250px
+		height: 250px
 		overflow: hidden
 		position: relative
+		#mapBoxContainer
+			width: 100%
+			height: 280px
+			background: red
 		.map__pointers
 			z-index: 3
 			position: absolute
@@ -129,7 +227,7 @@ export default {
 					animation: 1s cubic-bezier(0, 1.01, 0, 1.24) 1s infinite forwards running fastLine2
 				&:nth-child(odd)
 					img
-						filter: hue-rotate(90deg)
+						// filter: hue-rotate(90deg)
 				&:nth-child(1)
 					top: 28%
 					left: 12%
@@ -191,16 +289,7 @@ export default {
 
 
 
-// @keyframes fastLine2
-// 	0%
-// 		top: -5px 
-// 		transform: scale(1.25)
-// 	50%
-// 		top: 0
-// 		transform: scale(1)
-// 	100%
-// 		top: -5px
-// 		transform: scale(1.25)
+
 
 
 @media (max-width: 1200.98px)
