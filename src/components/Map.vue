@@ -23,10 +23,8 @@
 
 <script>
 import mapboxgl from 'mapbox-gl';
-mapboxgl.accessToken = 'pk.eyJ1IjoibmEzYXIxeSIsImEiOiJjanloM29tenQwNzRtM2hwYWw4emUyaXhlIn0.PuWkJSZ5w1Ijq-surIhTsw';
-// mapboxgl.accessToken = '09..pk.eyJ1IjoibmEzYXIxeSIsImEiOiJjanloM29tenQwNzRtM2hwYWw4emUyaXhlIn0.PuWkJSZ5w1Ijq-surIhTsw';
+mapboxgl.accessToken = '09..pk.eyJ1IjoibmEzYXIxeSIsImEiOiJjanloM29tenQwNzRtM2hwYWw4emUyaXhlIn0.PuWkJSZ5w1Ijq-surIhTsw';
 
-import mapImg from '@/components/MapImg'
 
 export default {
 	data () {
@@ -40,9 +38,6 @@ export default {
 			},
 			items: [],
 		}
-	},
-	components: {
-		myImg: mapImg
 	},
 	watch: {
 		'data.lat': (newValue) => {
