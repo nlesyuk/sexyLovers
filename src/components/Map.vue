@@ -115,8 +115,8 @@ export default {
 			localStorage.setItem('map', JSON.stringify(this.data));
 		},
 		getIP() {
-			// const url = window.location.href + '/server/'; 
-			const url = 'http://pronazvo.beget.tech/markline/'; // test 
+			const url = window.location.href + '/server/'; 
+			// const url = 'http://pronazvo.beget.tech/markline/'; // test 
 			return fetch(url);
 		},
 		getGeoOfUser(ip){
@@ -156,9 +156,6 @@ export default {
 
 		},
 	},
-	beforeCreate() {
-		console.log("beforeCreate");
-	},
 	mounted() {
 		// 0 check LocalStorage
 		const fingerPrint = localStorage.getItem('map');
@@ -174,21 +171,21 @@ export default {
 				return response.json();
 			}).then( res => {
 				console.log("getIP", res.ip);
+				let IP = res.ip.split(',')[0];
+				console.log("getIP", IP);
+				// let ss = "194.183.167.96, 172.69.202.35";
+				// let IPs = ss.split(',')[0];
 				// RESULT
-				if(res.ip) {
+				if(IP) {
 					// + save IP
-					this.data.userIP = res.ip;
+					this.data.userIP = IP;
 					// 2 send IP to the location server
-					this.getGeoOfUser(res.ip);
+					this.getGeoOfUser(IP);
 				}
 			}).catch((error) => {
 				console.error('Error:', error);
 			});
 		}
-
-// TODO
-// якщо сервіс вичерпав заявки то підставляти статичну карту мск
-// 
 
 	}
 }
