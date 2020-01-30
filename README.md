@@ -1,4 +1,4 @@
-# vue-test1
+# CPA offer
 
 ## Project setup
 ```
@@ -17,3 +17,6 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### PS
+Copy `server` folder in a folder where will be placed all files from `dist` .
