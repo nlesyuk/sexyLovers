@@ -1,7 +1,7 @@
 <template>
-<section id="map">
+<section id="map" >
 	<h2 class="map__title">Поиск партнера поблизости <br>и знакомство уже <span>через 5 минут</span></h2>
-	<!-- <button @click="addMarker">button ADD</button> -->
+
 	<div class="map__cont">
 		<div id="mapBoxContainer"></div>
 
@@ -31,10 +31,11 @@ export default {
 		return {
 			data: {
 				service1Url: "http://api.sypexgeo.net/Fzyxh/json/",
-				service2Url: "http://api.sypexgeo.net/Fzyxh/json/",
 				userIP: '',
 				lat: '',
 				lon: '',
+				items: [],
+				serviceBlocked: false,
 			},
 			items: [],
 		}
@@ -48,86 +49,110 @@ export default {
 		}
 	},
 	methods: {
-		showMarkers() {
-			new Promise((resolve, reject) => {
-				setTimeout(()=>{
-					this.items.push( {
-						top: Math.floor(10 + Math.random() * (90 - 30)) + "%",
-						left: Math.floor(10 + Math.random() * (90 - 10)) + "%",
-						num: Date.now() 
-					});
-					resolve();
-				}, 500);
-			}).then( () => {
-				if( this.items.length <= 10 ) {
-					this.showMarkers();
-				} else {
+		showMarkers(isNeedItemsFromLS) {
 
+			if(isNeedItemsFromLS) {
+				const fingerPrint = localStorage.getItem('map');
+				let obj = !!fingerPrint ? JSON.parse(fingerPrint) : false;
+				if( obj && obj.items.length ) {
+					this.items = obj.items.slice();
+				} else {
+					this.showMarkers();
 				}
-			});
+			} else {
+
+				new Promise((resolve, reject) => {
+					setTimeout(()=>{
+						this.items.push( {
+							top: Math.floor(10 + Math.random() * (90 - 30)) + "%",
+							left: Math.floor(10 + Math.random() * (90 - 10)) + "%",
+							num: Date.now() 
+						});
+						resolve();
+					}, 500);
+				}).then( () => {
+					if( this.items.length < 14 ) {
+						this.showMarkers();
+					} else {
+						this.data.items = this.items.slice(); // copy to data.items
+						this.setItemsInLocalStorage();
+					}
+				});
+
+			}
 		},
 		initialMap(arrLocations){
-			// console.log(arrLocations);
-			var location = ( arrLocations != undefined ) ? arrLocations : [37.707313, 55.734053] ; // Kyiv by default
+			// console.log(arrLocations); // [lon, lat]
+			var location = ( arrLocations != undefined ) ? arrLocations : [37.707313, 55.734053] ; // Msc by default
 
-			new mapboxgl.Map({
+			const map = new mapboxgl.Map({
 				container: 'mapBoxContainer',
 				style: 'mapbox://styles/na3ar1y/cjyq06c1y1my31cpit9snzpsi',
 				center: location,
 				zoom: 10
 			});
-		},
-		// 
-		addMarker(){
-			this.items.push( Date.now() );
-		},
-		setItemsInLocalStorage(){
-			fetch(url, {
-				method: method,
-				// body: JSON.stringify(body),
-			}).then(response => {
-				if(response.ok) {
-					// if(response.status < 400)
-					return response.json();
-				}
 
-				return response.json().then(error => {
-					const e = new Error('Что то пошло не так')
-					e.data = error 
-					throw e
-				})
+			map.once('load', () => {
+				console.log('On loaded! load');
+				setTimeout( () => {
+					// 0 check LocalStorage
+					const fingerPrint = localStorage.getItem('map');
+					let obj = !!fingerPrint ? JSON.parse(fingerPrint) : false;
+
+					if ( obj && obj.items.length ) {
+						this.showMarkers(true);
+					} else {
+						this.showMarkers();
+					}
+				}, 500)
 			});
-		},
+			map.once('styledata', () => {
+				console.log('On loaded! styledata');
+			});
 
+		},
+		setItemsInLocalStorage() {
+			localStorage.setItem('map', JSON.stringify(this.data));
+		},
 		getIP() {
 			// const url = window.location.href + '/server/'; 
 			const url = 'http://pronazvo.beget.tech/markline/'; // test 
 			return fetch(url);
 		},
 		getGeoOfUser(ip){
-			/* 
-			https://sypexgeo.net/ru/pc/auth/
-			https://ip-location.icu/pricing
-			https://ipinfodb.com/register
-			 */
 			const url = this.data.service1Url + ip;
+
 			fetch(url, {
 				method: "GET",
 			}).then(response => {
-				if(response.ok) {
-					return response.json(); 
-				}
+				if(response.ok)  return response.json();
 			}).then(result => {
 				// RESULT
 				console.log("getGeoOfUser", result);
-				// + save  lat lon
-				this.data.lat = result.region.lat;
-				this.data.lon = result.region.lon;
-				// + set data in LocalStorage
-				localStorage.setItem('map', JSON.stringify(this.data));
+				// check existing request
+				if( result.request < 0) {
+					// + block req
+					this.data.serviceBlocked = true;
+					// + set map by default
+					this.initialMap();
+
+					// + set data in LocalStorage
+					// localStorage.setItem('map', JSON.stringify(this.data));
+				} else {
+					// + unblock req
+					this.data.serviceBlocked = false;
+					// + save lat lon
+					this.data.lat = result.region.lat;
+					this.data.lon = result.region.lon;
+					// + init map with coordinates
+					this.initialMap([ result.region.lon, result.region.lat ]);
+
+					// + set data in LocalStorage
+					// localStorage.setItem('map', JSON.stringify(this.data));
+				}
 			}).then(error => {
-				new Error('Что то пошло не так: ', error)
-			})
+				new Error('Что то пошло не так: ', error);
+			});
 
 		},
 	},
@@ -135,18 +160,15 @@ export default {
 		console.log("beforeCreate");
 	},
 	mounted() {
-		this.initialMap();
-		// this.showMarkers();
-
 		// 0 check LocalStorage
 		const fingerPrint = localStorage.getItem('map');
-		console.log(typeof fingerPrint, fingerPrint, !!fingerPrint)
 		let obj = !!fingerPrint ? JSON.parse(fingerPrint) : false;
-		// console.log(obj);
-		if( obj && obj.userIP && obj.lat && obj.lon ) {
-			// console.log(obj.userIP, obj.lat, obj.lon);
+
+		if( obj && obj.userIP && obj.lat && obj.lon && !obj.serviceBlocked ) {
+			console.log("STATIC");
 			this.initialMap([obj.lon, obj.lat]);
 		} else {
+			console.log("DYNAMIC");
 			// 1 get IP
 			this.getIP().then( response => {
 				return response.json();
@@ -157,7 +179,7 @@ export default {
 					// + save IP
 					this.data.userIP = res.ip;
 					// 2 send IP to the location server
-					// this.getGeoOfUser(res.ip);
+					this.getGeoOfUser(res.ip);
 				}
 			}).catch((error) => {
 				console.error('Error:', error);
@@ -196,7 +218,6 @@ export default {
 			color: $accent
 	.map__cont
 		border-radius: 15px
-		// background: url(../assets/map-clear.png) no-repeat center center/cover
 		background: #999
 		min-height: 250px
 		height: 250px
@@ -205,7 +226,7 @@ export default {
 		#mapBoxContainer
 			width: 100%
 			height: 280px
-			background: red
+			background: #343332
 		.map__pointers
 			z-index: 3
 			position: absolute
