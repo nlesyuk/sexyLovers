@@ -9,7 +9,7 @@
   "dependencies": {
     "animate.css": "^3.7.2",
     "core-js": "^3.4.4",
-    "mapbox-gl": "^1.7.0",
+    "mapbox-gl": "^1.10.0",
     "v-mask": "^2.0.2",
     "vue": "^2.6.10",
     "vue-meta": "^2.3.1",
